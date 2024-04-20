@@ -2,156 +2,314 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 0;
-  box-sizing: border-box;
-  position: relative;
-  background-color: #FCF6F6;
-  /* scrollbar-width: none; */
+  @layer base {
+    :root {
+      --background: hsl(0 0% 100%);
+      --foreground: hsl(222.2 84% 4.9%);
+
+      --card: hsl(0 0% 100%);
+      --card-foreground: hsl(222.2 84% 4.9%);
+
+      --popover: hsl(0 0% 100%);
+      --popover-foreground: hsl(222.2 84% 4.9%);
+
+      --primary: hsl(222.2 47.4% 11.2%);
+      --primary-foreground: hsl(210 40% 98%);
+
+      --secondary: hsl(210 40% 96.1%);
+      --secondary-foreground: hsl(222.2 47.4% 11.2%);
+
+      --muted: hsl(210 40% 96.1%);
+      --muted-foreground: hsl(215.4 16.3% 46.9%);
+
+      --accent: hsl(210 40% 96.1%);
+      --accent-foreground: hsl(222.2 47.4% 11.2%);
+
+      --destructive: hsl(0 84.2% 60.2%);
+      --destructive-foreground: hsl(210 40% 98%);
+
+      --border: hsl(214.3 31.8% 91.4%);
+      --input: hsl(214.3 31.8% 91.4%);
+      --ring: hsl(222.2 84% 4.9%);
+    
+
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: hsl(222.2 84% 4.9%);
+      --foreground: hsl(210 40% 98%);
+
+      --card: hsl(222.2 84% 4.9%);
+      --card-foreground: hsl(210 40% 98%);
+
+      --popover: hsl(222.2 84% 4.9%);
+      --popover-foreground: hsl(210 40% 98%);
+
+      --primary: hsl(210 40% 98%);
+      --primary-foreground: hsl(222.2 47.4% 11.2%);
+
+      --secondary: hsl(217.2 32.6% 17.5%);
+      --secondary-foreground: hsl(210 40% 98%);
+
+      --muted: hsl(217.2 32.6% 17.5%);
+      --muted-foreground: hsl(215 20.2% 65.1%);
+
+      --accent: hsl(217.2 32.6% 17.5%);
+      --accent-foreground: hsl(210 40% 98%);
+
+      --destructive: hsl(0 62.8% 30.6%);
+      --destructive-foreground: hsl(210 40% 98%);
+
+      --border: hsl(217.2 32.6% 17.5%);
+      --input: hsl(217.2 32.6% 17.5%);
+      --ring: hsl(212.7 26.8% 83.9%);
+    }
+  }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
+
+  * {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    background-color: #FCF6F6;
+    /* scrollbar-width: none; */
+  }
+  
+  
+  
+  .box {
+    position: relative;
+    width: 566px;
+    height: 1040px;
+    left: 764px;
+    top: 14px;
+    border: 1px solid black;
+  }
+
+  /*vins*/
+  .Produits_texte{
+
+    text-align: left;
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 30px;
+    margin-left: 80px;
+    color: #424144
 }
 
+.section_produits{
 
-
-.box {
-  position: relative;
-  width: 566px;
-  height: 1040px;
-  left: 764px;
-  top: 14px;
-  border: 1px solid black;
+padding: 40px 5%;
 }
 
+.produits{
 
-@layer utilities {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 
-  .btn_pourpre { 
-    @apply  bg-pourpre w-44 h-12 p-2.5 text-white transition-all hover:bg-redhot gap-2.5 inline-flex
-  }
-
-  .max-container {
-    @apply mx-auto max-w-[1440px];
-  }
-
-  /* .padding-container {
-      @apply px-6 lg:px-20 3xl:px-0;
-    } */
-
-  .flexCenter {
-    @apply flex items-center justify-center;
-  }
-
-  .flexBetween {
-    @apply flex items-center justify-between;
-  }
-
-  .flexStart {
-    @apply flex items-center justify-start;
-  }
-
-  .flexEnd {
-    @apply flex items-center justify-end;
-  }
-
-  /* FONTS */
-  .regular-64 {
-    @apply text-[64px] font-[400] leading-[120%];
-  }
-
-  .regular-40 {
-    @apply text-[40px] font-[400] leading-[120%];
-  }
-
-  .regular-30 {
-    @apply text-[30px] font-[400];
-  }
-
-  .regular-24 {
-    @apply text-[24px] font-[400];
-  }
-
-  .regular-20 {
-    @apply text-[20px] font-[400];
-  }
-
-  .regular-18 {
-    @apply text-[18px] font-[400];
-  }
-
-  .regular-16 {
-    @apply text-[16px] font-[400];
-  }
-
-  .regular-14 {
-    @apply text-[14px] font-[400];
-  }
-
-  .medium-14 {
-    @apply text-[14px] font-[600];
-  }
-
-  .bold-88 {
-    @apply text-[88px] font-[700] leading-[120%];
-  }
-
-  .bold-64 {
-    @apply text-[64px] font-[700] leading-[120%];
-  }
-
-  .bold-52 {
-    @apply text-[52px] font-[700] leading-[120%];
-  }
-
-  .bold-40 {
-    @apply text-[40px] font-[700] leading-[120%];
-  }
-
-  .bold-32 {
-    @apply text-[32px] font-[700] leading-[120%];
-  }
-
-  .bold-20 {
-    @apply text-[20px] font-[700];
-  }
-
-  .bold-18 {
-    @apply text-[18px] font-[700];
-  }
-
-  .bold-16 {
-    @apply text-[16px] font-[700];
-  }
-
-  /* Hero */
-  .hero-map {
-    @apply absolute right-0 top-0 h-screen w-screen  bg-cover bg-center md:-right-28 xl:-top-60;
-  }
-
-  /* Camp */
-  .camp-quote {
-    @apply absolute -right-6 bottom-4 w-[140px] lg:bottom-10 xl:-right-8 xl:w-[186px] 3xl:right-0;
-  }
-
-  /* Feature */
-  .feature-phone {
-    @apply absolute top-[13%] z-10 hidden max-w-[1500px] rotate-[15deg] md:-left-16 lg:flex 3xl:left-20;
-  }
-
-  /* Get App */
-  .get-app {
-    @apply max-container relative flex w-full flex-col justify-between gap-32 overflow-hidden bg-green-90 bg-pattern bg-cover bg-center bg-no-repeat px-6 py-12 text-white sm:flex-row sm:gap-12 sm:py-24 lg:px-20 xl:max-h-[598px] 2xl:rounded-5xl;
-  }
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+.produits .carte{
+
+    width: 250px;
+    background: #fcf6f6;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
+.produits .carte img {
+
+    height: 280px;
+    width: 100%;
+    border-radius: 10px;
 }
+
+.produits .carte .desc{
+
+    padding: 5px 20px;
+    opacity: 0.8;
+}
+
+.produits .carte .titre{
+
+    font-weight: 900px;
+    font-size: 20px;
+    color: 20px;
+    padding: 0 20px;
+}
+
+.produits .carte .box{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.produits .carte .prix {
+    color: #f63e4e;
+    font-size: 20px;
+    font-weight: bold;
+}
+.produits .carte .achat{
+    font-size: 13px;
+    font-weight: 900;
+    color: #f63e4e;
+    padding: 10px 18px;
+    border-radius: 5px;
+
+}
+
+.produits .carte .box .achat:hover{
+
+    cursor: pointer;
+    background: #4a050d ;
+    color: white;
+}
+  
+/*   
+  @layer utilities {
+  
+    .btn_pourpre { 
+      @apply  bg-pourpre w-44 h-12 p-2.5 text-white transition-all hover:bg-redhot gap-2.5 inline-flex
+    }
+  
+    .max-container {
+      @apply mx-auto max-w-[1440px];
+    } 
+  
+    /* .padding-container {
+        @apply px-6 lg:px-20 3xl:px-0;
+      } 
+  
+    .flexCenter {
+      @apply flex items-center justify-center;
+    }
+  
+    .flexBetween {
+      @apply flex items-center justify-between;
+    }
+  
+    .flexStart {
+      @apply flex items-center justify-start;
+    }
+  
+    .flexEnd {
+      @apply flex items-center justify-end;
+    }
+  
+    /* FONTS 
+    .regular-64 {
+      @apply text-[64px] font-[400] leading-[120%];
+    }
+  
+    .regular-40 {
+      @apply text-[40px] font-[400] leading-[120%];
+    }
+  
+    .regular-30 {
+      @apply text-[30px] font-[400];
+    }
+  
+    .regular-24 {
+      @apply text-[24px] font-[400];
+    }
+  
+    .regular-20 {
+      @apply text-[20px] font-[400];
+    }
+  
+    .regular-18 {
+      @apply text-[18px] font-[400];
+    }
+  
+    .regular-16 {
+      @apply text-[16px] font-[400];
+    }
+  
+    .regular-14 {
+      @apply text-[14px] font-[400];
+    }
+  
+    .medium-14 {
+      @apply text-[14px] font-[600];
+    }
+  
+    .bold-88 {
+      @apply text-[88px] font-[700] leading-[120%];
+    }
+  
+    .bold-64 {
+      @apply text-[64px] font-[700] leading-[120%];
+    }
+  
+    .bold-52 {
+      @apply text-[52px] font-[700] leading-[120%];
+    }
+  
+    .bold-40 {
+      @apply text-[40px] font-[700] leading-[120%];
+    }
+  
+    .bold-32 {
+      @apply text-[32px] font-[700] leading-[120%];
+    }
+  
+    .bold-20 {
+      @apply text-[20px] font-[700];
+    }
+  
+    .bold-18 {
+      @apply text-[18px] font-[700];
+    }
+  
+    .bold-16 {
+      @apply text-[16px] font-[700];
+    }
+  
+    /* Hero 
+    .hero-map {
+      @apply absolute right-0 top-0 h-screen w-screen  bg-cover bg-center md:-right-28 xl:-top-60;
+    }
+  
+    /* Camp 
+    .camp-quote {
+      @apply absolute -right-6 bottom-4 w-[140px] lg:bottom-10 xl:-right-8 xl:w-[186px] 3xl:right-0;
+    }
+  
+    /* Feature 
+    .feature-phone {
+      @apply absolute top-[13%] z-10 hidden max-w-[1500px] rotate-[15deg] md:-left-16 lg:flex 3xl:left-20;
+    }
+  
+    /* Get App *
+    .get-app {
+      @apply max-container relative flex w-full flex-col justify-between gap-32 overflow-hidden bg-green-90 bg-pattern bg-cover bg-center bg-no-repeat px-6 py-12 text-white sm:flex-row sm:gap-12 sm:py-24 lg:px-20 xl:max-h-[598px] 2xl:rounded-5xl;
+    }
+  }
+  
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox *
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge *
+    scrollbar-width: none;
+    /* Firefox *
+  }
+  */

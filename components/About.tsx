@@ -3,8 +3,8 @@ import React from 'react'
 
 const About = () => {
     return (
-        <section className=' flex flex-wrap items-center'>
-            <div className=" flex-grow basis-48 w-[500px] h-24 mx-11  relative z-0 text-myblack text-6xl font-medium font-['Cormorant']">
+        <section className=' flex flex-wrap items-center h-[700px]'>
+            <div className=" flex-grow w-[500px] h-24 items-center ml-80 text-center  relative z-0 text-myblack text-6xl font-medium font-['Cormorant']">
             {/* left-[351px] top-[-750px]*/}
                 A propos de nous
             </div>
@@ -16,7 +16,7 @@ const About = () => {
                 className=' bg-transparent z-10'
                 // left-[900px] top-[-900px]
             />
-            <div className="w-[700px] ms-5 h-32   text-center">
+            <div className="w-[700px] h-32 mx-80 text-left">
             {/* top-[-650px] */}
                 <span className="text-myblack text-xl font-normal font-['Montaga']">
                     Nous sommes une entreprise passionnée par le vin et le champagne. Chez

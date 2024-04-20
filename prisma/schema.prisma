@@ -1,0 +1,110 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id                  Int             @id @default(autoincrement())
+  name                String
+  lastname            String?
+  avatar              String?
+  username            String          @unique
+  age                 String
+  gender              String?
+  email               String          @unique
+  password            String
+  role                Role            @default(USER)
+  createdAt           DateTime        @default(now())
+  updateAt            DateTime        @updatedAt
+  Orders              Order[]
+  reservations        Reservation[]
+}
+
+
+
+model Product {
+  id                Int               @id @default(autoincrement())
+  name              String   
+  description       String?
+  img               String?
+  isAvailable       Boolean           @default(true)  
+  createdAt         DateTime          @default(now())
+  quantity          Decimal?
+  price             Decimal 
+  category          Categories?       @relation(fields: [categoryId], references: [id])
+  categoryId        Int? 
+  Orders            Order_items[]
+  paniers           Panier[]
+}
+
+
+model Categories {
+  id          Int         @id @default(autoincrement())
+  name        String   
+  products    Product[]
+}
+
+
+
+model Panier {
+  id                  Int           @id @default(autoincrement())
+  isEmpty             Boolean       @default(true)
+  products            Product?      @relation(fields: [productId], references: [id])
+  productId           Int? 
+}
+
+
+
+model Order {
+  id                  Int           @id @default(autoincrement())
+  delivery_address    String
+  createdAt           DateTime      @default(now())
+  status              String?  
+  author              Client?       @relation(fields: [authorId], references: [id])
+  authorId            Int? 
+  orders_items        Order_items[]    
+
+}
+
+
+
+model Order_items {
+  id                  Int           @id @default(autoincrement())
+  orders              Order?        @relation(fields: [orderId], references: [id])
+  orderId             Int?           
+  products            Product?      @relation(fields: [productId], references: [id])
+  productId           Int?  
+  quantity            Int    
+
+}
+
+
+
+model Payment {
+  id                  Int                 @id @default(autoincrement())
+  createdAt           DateTime
+}
+
+model Reservation {
+  id            Int           @id @default(autoincrement())
+  createdAt     DateTime      @default(now())
+  status        String?
+  author        Client?       @relation(fields: [authorId], references: [id])
+  authorId      Int?   
+}
+
+
+enum Role {
+  USER
+  ADMIN
+}
