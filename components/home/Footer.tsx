@@ -3,85 +3,62 @@ import { Mail } from "lucide-react";
 
 const footerNavs = [
   {
-      label: "Resources",
+      label: "Nos Produits",
       items: [
           {
-              href: '#',
-              name: 'contact'
+              href: '/vins',
+              name: 'vins'
           },
           {
-              href: '#',
-              name: 'Support'
+              href: '/champagnes',
+              name: 'champagnes'
           },
           {
-              href: '#',
-              name: 'Documentation'
-          },
-          {
-              href: '#',
-              name: 'Pricing'
+              href: '/spiritueux',
+              name: 'spiritueux'
           },
       ],
   },
   {
-      label: "About",
+      label: "Infos Legales",
       items: [
           {
               href: '#',
-              name: 'Terms'
+              name: 'Avis clients'
           },
           {
               href: '#',
-              name: 'License'
+              name: 'Mentions legales'
           },
           {
               href: '#',
-              name: 'Privacy'
+              name: 'CGV'
           },
           {
               href: '#',
-              name: 'About US'
+              name: 'Livraison'
           },
       ]
   },
   {
-      label: "Explore",
+      label: "Explorez",
       items: [
           {
               href: '#',
-              name: 'Showcase'
+              name: 'Promotions'
           },
           {
               href: '#',
-              name: 'Roadmap'
+              name: 'A propos de nous'
           },
           {
               href: '#',
-              name: 'Languages'
+              name: 'Notre Catalogue'
           },
-          {
-              href: '#',
-              name: 'Blog'
-          },
+          
       ]
   },
-  {
-      label: "Company",
-      items: [
-          {
-              href: '#',
-              name: 'Partners'
-          },
-          {
-              href: '#',
-              name: 'Team'
-          },
-          {
-              href: '#',
-              name: 'Careers'
-          },
-      ],
-  }
+  
 ]
 
 
@@ -104,7 +81,7 @@ const Footer = () => {
                             <input
                                 type="email"
                                 required
-                                placeholder="Enter your email"
+                                placeholder="Entrez votre email"
                                 className="w-full pl-12 pr-3 py-2 text-tahiti bg-myblack placeholder:text-white outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                             />
                             <Mail className=' absolute flex top-2 bg-transparent left-0 stroke-white'/>

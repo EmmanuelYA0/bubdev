@@ -4,7 +4,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
+import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -31,6 +31,7 @@ const formSchema = z.object({
 })
 
 export function SignInForm() {
+  const { toast } = useToast()
   const router = useRouter();
   // ...
   // 1. Define your form.
@@ -53,12 +54,16 @@ export function SignInForm() {
 
 
     if(signInData?.error){
-      console.log(signInData.error)
+      toast({
+        title: "Error",
+        description:"Oops! Something went wrong",
+        variant:"destructive",
+      })
     } 
     else
     {
-      router.push('/vins')
-
+      router.push('/spiritueux');
+      router.refresh();
     }
   }
 

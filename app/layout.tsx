@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/home/Navbar";
+import Footer from "@/components/home/Footer";
+import Provider from "@/components/providers";
 
 
 export const metadata: Metadata = {
@@ -18,11 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <main className=" overflow-hidden">
-          {children}
-        </main>
-        <Footer />
+        <Provider>
+          <Navbar />
+          <main className=" overflow-hidden">
+            {children}
+          </main>
+          <Footer />
+        </Provider>
       </body>
     </html>
   )

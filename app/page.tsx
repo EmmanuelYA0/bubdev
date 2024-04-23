@@ -1,7 +1,7 @@
-import About from "@/components/About";
-import Catalog from "@/components/Catalog";
-import Hero from "@/components/Hero";
-import { TestimonialsSection } from "@/components/testimonials";
+import About from "@/components/home/About";
+import Catalog from "@/components/home/Catalog";
+import Hero from "@/components/home/Hero";
+import { TestimonialsSection } from "@/components/home/testimonials";
 
 export default function Home() {
   return (

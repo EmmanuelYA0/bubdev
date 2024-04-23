@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React from 'react'
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Autoplay, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -19,10 +19,10 @@ const Catalog = () => {
     return (
         <section className='mt-10 w-full h-[800px]'>
             <h1 className='font-[Cormorant] pb-8 text-6xl font-medium mb-16 text-myblack'>Notre Catalogue</h1>
-            <div className="swiper-button-prev bg-transparent stroke-bulgarian-rose-950"></div>
+            <div className="swiper-button-prev bg-transparent text-red-600 stroke-green-600"></div>
             <div className="swiper-button-next bg-transparent"></div>
             <Swiper
-                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                modules={[Navigation, Autoplay, Pagination, Scrollbar, A11y]}
                 spaceBetween={8}
                 slidesPerView={3}
                 navigation={{
@@ -30,6 +30,10 @@ const Catalog = () => {
                     nextEl: '.swiper-button-next'
                 }}
                 pagination={{ clickable: true }}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }}
                 loop={true}
                 className=' bg-transparent'
 

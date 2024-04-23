@@ -1,4 +1,4 @@
-import { SignInForm } from '@/components/signInForm'
+import { SignInForm } from '@/components/form/signInForm'
 import React from 'react'
 
 const page = () => {

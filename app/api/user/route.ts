@@ -5,7 +5,7 @@ import { hash } from "bcrypt";
 import { prisma } from "@/lib/prisma";
 
 
-const clientSchema = z
+const UserSchema = z
 .object({
     username: z.string().min(1, 'Veuillez remplir').max(100),
     name: z.string().min(1, 'Veuillez remplir'),
@@ -24,28 +24,28 @@ const clientSchema = z
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const {email, username, gender,  password, name, age} = clientSchema.parse(body);
+        const {email, username, gender,  password, name, age} = UserSchema.parse(body);
 
-        // verifier existance client par l'email
-        const ExistingClientByEmail = await prisma.client.findUnique({
+        // verifier existance User par l'email
+        const ExistingUserByEmail = await prisma.user.findUnique({
             where : {email: email}
         });
-        if (ExistingClientByEmail) {
-            return NextResponse.json({client:null, message:"Un utilisateur avec cette email existe déja", status:409})
+        if (ExistingUserByEmail) {
+            return NextResponse.json({user:null, message:"Un utilisateur avec cette email existe déja", status:409})
         }
 
-        // verifier existance client par l'username
-        const ExistingClientByUsername = await prisma.client.findUnique({
+        // verifier existance User par l'username
+        const ExistingUserByUsername = await prisma.user.findUnique({
             where : {username: username}
         })
 
-        if (ExistingClientByUsername) {
-            return NextResponse.json({client:null, message:"Un utilisateur avec ce nom d'utilisateur existe déja", status:409})
+        if (ExistingUserByUsername) {
+            return NextResponse.json({user:null, message:"Un utilisateur avec ce nom d'utilisateur existe déja", status:409})
         }
 
         const hashedPassword = await hash(password, 10)
 
-        const newClient = await prisma.client.create({
+        const newUser = await prisma.user.create({
             data :{
                 username,
                 name,
@@ -55,12 +55,12 @@ export async function POST(req: Request) {
                 password : hashedPassword,
             }
         })
-        const {password : newClientPassword, ...rest} = newClient;
+        const {password : newUserPassword, ...rest} = newUser;
         
-        return NextResponse.json({client: rest, message: 'Client créé avec succès'},
+        return NextResponse.json({user: rest, message: 'Utilisateur créé avec succès'},
             {status:201}
         )
     } catch (error) {
-        return NextResponse.json({ error: 'Une erreur est survenue lors de la création du client' }, { status: 500 });
+        return NextResponse.json({ error: "Une erreur est survenue lors de la création de l'utilisateur" }, { status: 500 });
     }
 }
