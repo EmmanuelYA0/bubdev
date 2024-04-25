@@ -74,12 +74,12 @@ model VerificationToken {
 model Product {
   id                Int               @id @default(autoincrement())
   name              String   
-  description       String?
+  description       String?           @db.Text
   img               String?
   isAvailable       Boolean           @default(true)  
   createdAt         DateTime          @default(now())
-  quantity          Decimal?
-  price             Decimal 
+  quantity          Float?
+  price             Float 
   category          Categories?       @relation(fields: [categoryId], references: [id])
   categoryId        Int? 
   Orders            Order_items[]
