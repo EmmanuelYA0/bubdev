@@ -20,21 +20,29 @@ import GoogleButton from "./GoogleButton"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { signIn } from "next-auth/react"
+import { Eye, EyeOff } from 'lucide-react';
+import { useState } from "react"
+
 
 const formSchema = z.object({
   email: z.string().min(1, 'Veuillez remplir').email('Email Invalide!'),
   password: z
-  .string()
-  .min(1, 'Veuillez remplir')
-  .min(8, 'Le mot de passe doit avoir au moins 8 caracteres')
+    .string()
+    .min(1, 'Veuillez remplir')
+    .min(8, 'Le mot de passe doit avoir au moins 8 caracteres')
   ,
 })
 
 export function SignInForm() {
   const { toast } = useToast()
   const router = useRouter();
-  // ...
-  // 1. Define your form.
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,26 +50,25 @@ export function SignInForm() {
       password: ""
     },
   })
- 
-  // 2. Define a submit handler.
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    
-    const signInData = await signIn('credentials',{
+
+    const signInData = await signIn('credentials', {
       email: values.email,
       password: values.password,
       redirect: false
     });
 
 
-    if(signInData?.error){
+    if (signInData?.error) {
       toast({
-        title: "Error",
-        description:"Oops! Something went wrong",
-        variant:"destructive",
+        title: "Erreur",
+        description: "Mot de passe ou Email incorrect",
+        variant: "destructive",
+        className: 'bg-red-100  border-red-500'
       })
-    } 
-    else
-    {
+    }
+    else {
       router.push('/spiritueux');
       router.refresh();
     }
@@ -81,7 +88,7 @@ export function SignInForm() {
                 <FormControl>
                   <Input placeholder="mail@example.com" {...field} />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="bg-transparent"/>
               </FormItem>
             )}
           />
@@ -92,9 +99,14 @@ export function SignInForm() {
               <FormItem className="bg-slate-200 mb-2">
                 <FormLabel className=" bg-transparent">Mot de passe</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Entrez votre mot de passe" {...field} />
+                  <div className=" rounded w-full right-2 bg-transparent">
+                    <Input type={passwordShown ? "text" : "password"} placeholder="Entrez votre mot de passe" {...field} />
+                    <i className=" absolute top-2 right-2 bg-transparent cursor-pointer hover:stroke-redhot" onClick={togglePasswordVisiblity}>
+                    { passwordShown ? <EyeOff size={24} className="bg-transparent hover:stroke-blue-400"/>: <Eye size={24} className=" bg-transparent hover:stroke-blue-400"/>}
+                    </i>{" "}
+                  </div>
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="bg-transparent" />
               </FormItem>
             )}
           />
@@ -106,13 +118,13 @@ export function SignInForm() {
           ou
         </div>
         <GoogleButton>
-          S'inscrire avec Google
+          Se connecter avec Google
           <Image
-          height={30}
-          width={30}
-          src='/logo-google.svg'
-          alt="google"
-          className=" bg-transparent"
+            height={30}
+            width={30}
+            src='/logo-google.svg'
+            alt="google"
+            className=" bg-transparent"
           />
         </GoogleButton>
         <p className=" text-center text-sm text-gray-600 mt-2 bg-transparent">

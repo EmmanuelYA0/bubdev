@@ -16,7 +16,7 @@ const About = () => {
                 className=' bg-transparent z-10'
                 // left-[900px] top-[-900px]
             />
-            <div className="w-[700px] h-32 mx-80 text-left">
+            <div className="w-[700px] h-32 mx-[350px] text-justify">
             {/* top-[-650px] */}
                 <span className="text-myblack text-xl font-normal font-['Montaga']">
                     Nous sommes une entreprise passionnée par le vin et le champagne. Chez

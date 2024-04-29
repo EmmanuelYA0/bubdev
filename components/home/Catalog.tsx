@@ -61,8 +61,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-3xl font-bold text-white  bg-transparent">$59.99</span>
-                                    <span className="text-sm text-white line-through bg-transparent">$90.99</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">33500 fcfa</span>
+                                    <span className="text-sm text-white line-through bg-transparent">40000 fcfa</span>
                                 </p>
                             </div>
                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -104,8 +104,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-3xl font-bold text-white  bg-transparent">$64.99</span>
-                                    <span className="text-sm text-white line-through bg-transparent">$88</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">40000 fcfa</span>
+                                    <span className="text-sm text-white line-through bg-transparent">50000 fcfa</span>
                                 </p>
                             </div>
                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -147,8 +147,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-3xl font-bold text-white  bg-transparent">$199.99</span>
-                                    <span className="text-sm text-white line-through bg-transparent">$300</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">119700 fcfa</span>
+                                    <span className="text-sm text-white line-through bg-transparent">122000 fcfa</span>
                                 </p>
                             </div>
                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -190,8 +190,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-3xl font-bold text-white  bg-transparent">$599.99</span>
-                                    <span className="text-sm text-white line-through bg-transparent">$699</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">359500 fcfa</span>
+                                    <span className="text-sm text-white line-through bg-transparent">385000 fcfa</span>
                                 </p>
                             </div>
                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -233,8 +233,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-3xl font-bold text-white  bg-transparent">$399</span>
-                                    <span className="text-sm text-white line-through bg-transparent">$549</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">239593 fcfa</span>
+                                    <span className="text-sm text-white line-through bg-transparent">239593 fcfa</span>
                                 </p>
                             </div>
                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -259,7 +259,7 @@ const Catalog = () => {
             </Swiper>
 
             <div className='flex flex-row items-center justify-center mt-8'>
-            <a href="/vins" className="hover:bg-rock-700 flex flex-row  w-36 rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 items-center text-sm  text-white focus:outline-none focus:ring-4">
+            <a href="/champagnes" className="hover:bg-rock-700 flex flex-row  w-36 rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 items-center text-sm  text-white focus:outline-none focus:ring-4">
                 Voir plus
                 <CircleChevronRight className='bg-transparent stroke-white'/>
             </a>

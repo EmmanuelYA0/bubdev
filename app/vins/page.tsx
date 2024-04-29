@@ -6,69 +6,21 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
 import styles from './vins.module.css'
 import SkeletonCard from '@/components/SkeletonCard';
+import { useRouter } from 'next/navigation';
+import { Vin } from "@/lib/constants";
 
-interface Vin {
-    name: string;
-    description: string;
-    price: string;
-    img: string;
-}
+
+
 
 export default async function Vins() {
     const [vins, setVins] = useState<Vin[]>([]);
     const [isloading, setLoading] = useState(true);
+    const router = useRouter()
 
-    // const vins = [
-    //     {
-    //         titre: 'CHATEAU MARGAUX',
-    //         desc: 'Chateau Margaux premier grand cru classNameé',
-    //         prix: '35000fcfa',
-    //         ancien_prix: '45000fcfa',
-    //         image: "/imgs/vin1.jpg",
-    //     },
-    //     {
-    //         titre: 'OPUS ONE',
-    //         desc: 'opus one',
-    //         prix: '35000fcfa',
-    //         ancien_prix: '45000fcfa',
-    //         image: "/imgs/vin2.jpg",
-    //     },
-    //     {
-    //         titre: 'ROMANEE-CONTI',
-    //         desc: 'romanEE-CONTI',
-    //         prix: '38000fcfa',
-    //         ancien_prix: '45000fcfa',
-    //         image: "/imgs/vin3.jpg",
-    //     },
-    //     {
-    //         titre: 'SCREAMING EAGLE',
-    //         desc: 'Screaming Eagle',
-    //         prix: '55000fcfa',
-    //         ancien_prix: '67000fcfa',
-    //         image: "/imgs/vin4.jpg",
-    //     },
-    //     {
-    //         titre: 'PENFOLDS GRANGE 2016',
-    //         desc: 'Penfolds Grange vintage 2016',
-    //         prix: '40000fcfa',
-    //         ancien_prix: '45000fcfa',
-    //         image: "/imgs/vin5.jpg",
-    //     },
-    //     {
-    //         titre: 'VEGA SICILIA UNICO',
-    //         desc: 'Vega Sicilia Unico Ribera del Duero, Espagne depuis 2003',
-    //         prix: '40000fcfa',
-    //         ancien_prix: '45000fcfa',
-    //         image: "/imgs/vin6.jpg",
-    //     },
-    //     {
-    //         titre: 'SASSICAIA',
-    //         desc: 'Sassicaia de Toscane en Italie',
-    //         prix: '36000fcfa',
-    //         ancien_prix: '40000fcfa',
-    //         image: "/imgs/vin7.jpg",
-    //     },
-    // ]
+
+    // function handleClick(id : number) {
+    //     router.push(`/vins/${id}`)
+    // }
 
     useEffect(() => {
         const fetchVins = async () => {
@@ -104,7 +56,7 @@ export default async function Vins() {
             <section className={styles.section_produits}>
                 {isloading ? (
                     <div className=' grid grid-cols-3 justify-center items-center'>
-                        {"0123456".split('').map(i => (
+                        {"01234567".split('').map(i => (
                             <SkeletonCard key={i} />
                         ))}
                     </div>
@@ -114,7 +66,8 @@ export default async function Vins() {
                             vins.map((vin, index) => (
                                 <div className="grid justify-center">
                                     <div key={index} className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
-                                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`vins/${vin.id}`}>
+                                        {/* onClick={handleClick(vin.id)} */}
                                             <Image
                                                 src={vin.img}
                                                 alt={vin.name}
@@ -139,8 +92,8 @@ export default async function Vins() {
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className="text-xl font-bold text-white  bg-transparent">{vin.price}</span>
-                                                    <span className="text-sm text-white line-through bg-transparent">{vin.price}</span>
+                                                    <span className="text-lg font-bold text-white  bg-transparent">{vin.price} FCFA</span>
+                                                    <span className="text-sm text-white line-through bg-transparent">{vin.price} FCFA</span>
                                                 </p>
                                             </div>
                                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">

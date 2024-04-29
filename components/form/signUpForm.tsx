@@ -20,7 +20,8 @@ import GoogleButton from "./GoogleButton"
 import Image from "next/image"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useRouter } from "next/navigation"
-// import { useState } from "react"
+import { Eye, EyeOff } from 'lucide-react';
+import { useState } from "react"
 // import AgeCalculator from "./ageCalculator"
 
 
@@ -61,6 +62,11 @@ export const formSchema = z
 export function SignUpForm() {
 
   const router = useRouter();
+
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
   // ...
   // 1. Define your form.
@@ -154,7 +160,7 @@ export function SignUpForm() {
             render={({ field }) => (
               <FormItem className="bg-slate-200 mb-2">
                 <FormLabel className=" bg-transparent">Age</FormLabel>
-                <FormDescription className=" bg-transparent text-rose-600">Entrez votre age sous forme de nombre</FormDescription>
+                <FormDescription className=" bg-transparent text-rose-400">* Entrez votre age sous forme de nombre</FormDescription>
                 <FormControl>
                   <Input placeholder="Votre Age" {...field}/>
                 </FormControl>
@@ -223,7 +229,12 @@ export function SignUpForm() {
               <FormItem className="bg-slate-200 mb-2">
                 <FormLabel className=" bg-transparent">Mot de passe</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Entrez votre mot de passe" {...field} />
+                  <div className=" rounded w-full right-2 bg-transparent">
+                  <Input type={passwordShown ? "text" : "password"} placeholder="Entrez votre mot de passe" {...field} />
+                  <i className=" absolute top-2 right-2 bg-transparent cursor-pointer" onClick={togglePasswordVisiblity}>
+                    { passwordShown ? <EyeOff size={24} className="bg-transparent hover:stroke-blue-400"/>: <Eye size={24} className=" bg-transparent hover:stroke-blue-400"/>}
+                    </i>{" "}
+                  </div>
                 </FormControl>
                 <FormMessage className=" bg-transparent" />
               </FormItem>
@@ -236,7 +247,7 @@ export function SignUpForm() {
               <FormItem className="bg-slate-200 mb-2">
                 <FormLabel className=" bg-transparent">Verification mot de passe</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="RE-Entrez votre mot de passe" {...field} />
+                  <Input type="password" placeholder="Entrez à nouveau votre mot de passe" {...field} />
                 </FormControl>
                 <FormMessage className=" bg-transparent" />
               </FormItem>

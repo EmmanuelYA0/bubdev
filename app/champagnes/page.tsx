@@ -6,13 +6,8 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
 import styles from './champagnes.module.css'
 import SkeletonCard from '@/components/SkeletonCard';
+import { Champagne } from "@/lib/constants";
 
-interface Champagne {
-    name: string;
-    description: string;
-    price: string;
-    img: string;
-}
 
 export default async function Champagnes() {
     const [Champagnes, setchampagnes] = useState<Champagne[]>([]);
@@ -61,8 +56,8 @@ export default async function Champagnes() {
                         {
                             Champagnes.map((champagne, index) => (
                                 <div className="grid justify-center">
-                                    <div key={index} className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
-                                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                                    <div key={index} className="group border-gray-100/30 flex w-full min-h-80 max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
+                                    <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`spiritueux/${champagne.id}`}>
                                             <Image
                                                 src={champagne.img}
                                                 alt={champagne.name}
@@ -86,8 +81,8 @@ export default async function Champagnes() {
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className="text-xl font-bold text-white  bg-transparent">{champagne.price}</span>
-                                                    <span className="text-sm text-white line-through bg-transparent">{champagne.price}</span>
+                                                    <span className=" text-base font-bold text-white  bg-transparent">{champagne.price} FCFA</span>
+                                                    <span className=" text-xs text-white line-through bg-transparent">{champagne.price} FCFA</span>
                                                 </p>
                                             </div>
                                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">

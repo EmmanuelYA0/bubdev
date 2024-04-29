@@ -39,7 +39,7 @@ const User = () => {
                         <DropdownMenuItem className='bg-transparent'>
                             <Button className='bg-transparent hover:bg-transparent h-4'>
                                 <User2 stroke='white' className="bg-transparent mr-2 h-4 w-4" />
-                                <span className='text-white bg-transparent'>{session?.user.username? (session.user.username):("Profile")}</span>
+                                <span className='text-white capitalize bg-transparent'>{session?.user.username? (session.user.username):(session.user.name)}</span>
                             </Button>
                         </DropdownMenuItem>
                         <DropdownMenuItem className="bg-transparent">
