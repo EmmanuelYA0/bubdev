@@ -12,20 +12,23 @@ export interface Vin {
   description: string;
   price: number;
   img: string;
+  quantity: number;
 }
 
 export interface Champagne {
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   img: string;
+  quantity: number;
 }
 
 export interface SpiritueuxInterface {
   id: number;
   name: string;
   description: string;
-  price: string;
+  price: number;
   img: string;
+  quantity: number;
 }

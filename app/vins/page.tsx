@@ -17,6 +17,12 @@ export default async function Vins() {
     const [isloading, setLoading] = useState(true);
     const router = useRouter()
 
+    const formatPrice = (price: number | undefined) => {
+        if (price) {
+          return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        return ""; // Return empty string if price is undefined
+      };
 
     // function handleClick(id : number) {
     //     router.push(`/vins/${id}`)
@@ -92,8 +98,8 @@ export default async function Vins() {
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className="text-lg font-bold text-white  bg-transparent">{vin.price} FCFA</span>
-                                                    <span className="text-sm text-white line-through bg-transparent">{vin.price} FCFA</span>
+                                                    <span className="text-lg font-bold text-white  bg-transparent">{formatPrice(vin.price)} FCFA</span>
+                                                    <span className="text-sm text-white line-through bg-transparent">{formatPrice(vin.price)} FCFA</span>
                                                 </p>
                                             </div>
                                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">

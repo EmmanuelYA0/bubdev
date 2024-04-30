@@ -22,106 +22,156 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { useRouter } from "next/navigation"
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from "react"
+import { FormError } from "./form-error"
+import { FormSuccess } from "./form-success"
+import { toast } from "../ui/use-toast"
 // import AgeCalculator from "./ageCalculator"
 
 
 
 
 export const formSchema = z
-.object({
-  username: z.string().min(1, 'Veuillez remplir').max(100),
-  name: z.string().min(1, 'Veuillez remplir'),
-  email: z.string().min(1, 'Veuillez remplir').email('Email Invalide!'),
-  age: z.string().min(1, 'Veuillez remplir'),
-  gender: z.enum(["Homme", "Femme", "none"], {
-    required_error: "Selectionner votre genre svp!",
-  }),
-  password: z
-  .string()
-  .min(1, 'Veuillez remplir')
-  .min(8, 'Le mot de passe doit avoir au moins 8 caracteres')
-  ,
-  checkpassword: z
-  .string()
-  .min(1, 'Veuillez remplir')
-  .min(8, 'Le mot de passe doit avoir au moins 8 caracteres')
-  ,
-})
-.refine((data) => data.password === data.checkpassword,{
-  path:['checkpassword'],
-  message : 'Les mots de passe ne correspondent pas !!'
-})
-.refine((data) => {
-  const ageInt = parseInt(data.age);
-  return !isNaN(ageInt) && ageInt >= 18;
-}, {
-  path: ['age'],
-  message: "Vous n'êtes pas majeur !!",
-});
+  .object({
+    username: z.string().min(1, 'Veuillez remplir').max(100),
+    name: z.string().min(1, 'Veuillez remplir'),
+    email: z.string().min(1, 'Veuillez remplir').email('Email Invalide!'),
+    age: z.string().min(1, 'Veuillez remplir'),
+    gender: z.enum(["Homme", "Femme", "none"], {
+      required_error: "Selectionner votre genre svp!",
+    }),
+    password: z
+      .string()
+      .min(1, 'Veuillez remplir')
+      .min(8, 'Le mot de passe doit avoir au moins 8 caracteres')
+    ,
+    checkpassword: z
+      .string()
+      .min(1, 'Veuillez remplir')
+      .min(8, 'Le mot de passe doit avoir au moins 8 caracteres')
+    ,
+  })
+  .refine((data) => data.password === data.checkpassword, {
+    path: ['checkpassword'],
+    message: 'Les mots de passe ne correspondent pas !!'
+  })
+  .refine((data) => {
+    const ageInt = parseInt(data.age);
+    return !isNaN(ageInt) && ageInt >= 18;
+  }, {
+    path: ['age'],
+    message: "Vous n'êtes pas majeur !!",
+  });
 
 export function SignUpForm() {
 
   const router = useRouter();
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  // ...
-  // 1. Define your form.
-  // const [birthdate, setBirthdate] = useState('');
-  // const [realAge, setAge] = useState<string | null>(null);
-  
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setBirthdate(e.target.value);
-  //   // Calculer l'âge à partir de la date de naissance
-  //   const today = new Date();
-  //   const birthdateDate = new Date(e.target.value);
-  //   const realAge = String(today.getFullYear() - birthdateDate.getFullYear());
-  //   setAge(realAge);
-  // };
-  // const AgeNotNull = realAge !== null
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
       name: "",
       email: "",
-      age:"",
-      gender:"none",
+      age: "",
+      gender: "none",
       password: "",
     },
   })
-  // 2. Define a submit handler.
-  // function onSubmit(values: z.infer<typeof formSchema>) {
-  //   console.log(values)
+
+
+  // async function SubmitForm (values: z.infer<typeof formSchema>) {
+
+  //   const response = await fetch('/api/user', {
+  //       method: 'POST',
+  //       headers:{
+  //           'Content-type': 'application/json',
+  //       },
+  //       body : JSON.stringify({
+  //           username : values.username,
+  //           email : values.email,
+  //           name : values.name,
+  //           password : values.password,
+  //           age : values.age,
+  //           gender : values.gender,
+  //       })
+  //   })
+
+  //   if (response.ok) {
+  //       setSuccessMessage("Inscription reussie")
+  //       router.push('/login')
+  //   } else {
+  //       setErrorMessage("L'inscription a echouée")
+  //       // console.error("L'inscription a echouée")
+  //   }
   // }
 
-  async function SubmitForm (values: z.infer<typeof formSchema>) {
-
-    const response = await fetch('/api/user', {
+  async function SubmitForm(values: z.infer<typeof formSchema>) {
+    try {
+      const response = await fetch('/api/user', {
         method: 'POST',
-        headers:{
-            'Content-type': 'application/json',
+        headers: {
+          'Content-type': 'application/json',
         },
-        body : JSON.stringify({
-            username : values.username,
-            email : values.email,
-            name : values.name,
-            password : values.password,
-            age : values.age,
-            gender : values.gender,
+        body: JSON.stringify({
+          username: values.username,
+          email: values.email,
+          name: values.name,
+          password: values.password,
+          age: values.age,
+          gender: values.gender,
         })
-    })
+      })
 
-    if (response.ok) {
-        router.push('/login')
-    } else {
-        console.error("L'inscription a echouée")
+      //   if (response.ok) {
+      //     setSuccessMessage("Inscription réussie")
+      //     router.push('/login')
+      //   } else {
+      //     const data = await response.json();
+      //     if (data.message) {
+      //       setErrorMessage(data.message);
+      //     } else {
+      //       setErrorMessage("L'inscription a échoué");
+      //     }
+      //   }
+      // } catch (error) {
+      //   setErrorMessage("Une erreur est survenue lors de l'inscription");
+      //   console.error("Une erreur est survenue lors de l'inscription :", error);
+      // }
+
+      const data = await response.json();
+
+      if (response.ok) {
+        if (data.error) {
+          setErrorMessage(data.error);
+          
+        } else if (data.message) {
+          setSuccessMessage(data.message);
+          toast({
+              title: "Succès",
+              description: "Inscription réussie",
+              variant: "destructive",
+              className: 'bg-emerald-100  border-emerald-500'
+            })
+          router.push('/login');
+        }
+      } else {
+        setErrorMessage(data.error || "Une erreur est survenue lors de l'inscription");
+      }
+    } catch (error) {
+      setErrorMessage("Une erreur est survenue lors de l'inscription" );
+      console.error("Une erreur est survenue lors de l'inscription :", error);
     }
   }
+
 
 
   return (
@@ -148,7 +198,7 @@ export function SignUpForm() {
               <FormItem className="bg-slate-200 mb-2">
                 <FormLabel className=" bg-transparent">Nom</FormLabel>
                 <FormControl>
-                  <Input placeholder="Entrez votre nom" {...field}/>
+                  <Input placeholder="Entrez votre nom" {...field} />
                 </FormControl>
                 <FormMessage className=" bg-transparent" />
               </FormItem>
@@ -162,7 +212,7 @@ export function SignUpForm() {
                 <FormLabel className=" bg-transparent">Age</FormLabel>
                 <FormDescription className=" bg-transparent text-rose-400">* Entrez votre age sous forme de nombre</FormDescription>
                 <FormControl>
-                  <Input placeholder="Votre Age" {...field}/>
+                  <Input placeholder="Votre Age" {...field} />
                 </FormControl>
                 <FormMessage className=" bg-transparent" />
                 {/* {AgeNotNull && <AgeCalculator birthdate={birthdate} />} */}
@@ -183,45 +233,45 @@ export function SignUpForm() {
             )}
           />
           <FormField
-          control={form.control}
-          name="gender"
-          render={({ field }) => (
-            <FormItem className="bg-slate-200 mb-2">
-              <FormLabel className=" bg-transparent">Genre</FormLabel>
-              <FormControl>
-                <RadioGroup
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  className="flex flex-col space-y-1 bg-transparent"
-                >
-                  <FormItem className="flex bg-transparent items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="Homme"/>
-                    </FormControl>
-                    <FormLabel className="font-normal bg-transparent">
-                    Homme
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex bg-transparent items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="Femme"/>
-                    </FormControl>
-                    <FormLabel className="font-normal bg-transparent">
-                    Femme
-                    </FormLabel>
-                  </FormItem>
-                  <FormItem className="flex bg-transparent items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <RadioGroupItem value="none" />
-                    </FormControl>
-                    <FormLabel className="font-normal bg-transparent">Aucun</FormLabel>
-                  </FormItem>
-                </RadioGroup>
-              </FormControl>
-              <FormMessage className=" bg-transparent" />
-            </FormItem>
-          )}
-        />
+            control={form.control}
+            name="gender"
+            render={({ field }) => (
+              <FormItem className="bg-slate-200 mb-2">
+                <FormLabel className=" bg-transparent">Genre</FormLabel>
+                <FormControl>
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    className="flex flex-col space-y-1 bg-transparent"
+                  >
+                    <FormItem className="flex bg-transparent items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="Homme" />
+                      </FormControl>
+                      <FormLabel className="font-normal bg-transparent">
+                        Homme
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="flex bg-transparent items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="Femme" />
+                      </FormControl>
+                      <FormLabel className="font-normal bg-transparent">
+                        Femme
+                      </FormLabel>
+                    </FormItem>
+                    <FormItem className="flex bg-transparent items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <RadioGroupItem value="none" />
+                      </FormControl>
+                      <FormLabel className="font-normal bg-transparent">Aucun</FormLabel>
+                    </FormItem>
+                  </RadioGroup>
+                </FormControl>
+                <FormMessage className=" bg-transparent" />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="password"
@@ -230,9 +280,9 @@ export function SignUpForm() {
                 <FormLabel className=" bg-transparent">Mot de passe</FormLabel>
                 <FormControl>
                   <div className=" rounded w-full right-2 bg-transparent">
-                  <Input type={passwordShown ? "text" : "password"} placeholder="Entrez votre mot de passe" {...field} />
-                  <i className=" absolute top-2 right-2 bg-transparent cursor-pointer" onClick={togglePasswordVisiblity}>
-                    { passwordShown ? <EyeOff size={24} className="bg-transparent hover:stroke-blue-400"/>: <Eye size={24} className=" bg-transparent hover:stroke-blue-400"/>}
+                    <Input type={passwordShown ? "text" : "password"} placeholder="Entrez votre mot de passe" {...field} />
+                    <i className=" absolute top-2 right-2 bg-transparent cursor-pointer" onClick={togglePasswordVisiblity}>
+                      {passwordShown ? <EyeOff size={24} className="bg-transparent hover:stroke-blue-400" /> : <Eye size={24} className=" bg-transparent hover:stroke-blue-400" />}
                     </i>{" "}
                   </div>
                 </FormControl>
@@ -253,6 +303,8 @@ export function SignUpForm() {
               </FormItem>
             )}
           />
+          <FormError message={errorMessage} />
+          <FormSuccess message={successMessage} />
           <Button type="submit" className=" mt-6 mx-auto w-full bg-pourpre">
             S'inscrire
           </Button>
@@ -263,11 +315,11 @@ export function SignUpForm() {
         <GoogleButton>
           S'inscrire avec Google
           <Image
-          height={30}
-          width={30}
-          src='/logo-google.svg'
-          alt="google"
-          className=" bg-transparent"
+            height={30}
+            width={30}
+            src='/logo-google.svg'
+            alt="google"
+            className=" bg-transparent"
           />
         </GoogleButton>
         <p className=" text-center text-sm text-gray-600 mt-2 bg-transparent">

@@ -16,7 +16,13 @@ interface ParamsProps {
 export default function SpiritueuxItem({ params }: ParamsProps) {
   const [spiritueux, setSpiritueux] = useState<Vin | null>();
   // const id = params.id;
-
+  
+  const formatPrice = (price: number | undefined) => {
+    if (price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    return ""; // Return empty string if price is undefined
+  };
 
   const [quantity, setQuantity] = useState(1);
 
@@ -27,7 +33,11 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
   };
 
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+    if (spiritueux?.quantity){
+      if (quantity <= (spiritueux?.quantity - 1)) {
+         setQuantity(quantity + 1);
+      }
+    }
   };
 
 
@@ -57,7 +67,7 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
                   height={300}
                   alt={spiritueux.name}
                   src={spiritueux.img}
-                  className=" h-full w-full object-contain"
+                  className=" h-full w-full object-contain transition-transform duration-300 transform hover:scale-110"
                 />
               ) : (
                 <Loading />
@@ -73,7 +83,7 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
                 {spiritueux.description}
               </p>
               <p className="text-3xl text-redhot font-[Cormorant] font-normal ">
-                {spiritueux.price} FCFA
+                {formatPrice(spiritueux.price)} FCFA
               </p>
               <div className=" w-full flex gap-4">
                 <div className="flex items-center gap-1">

@@ -1,3 +1,4 @@
+// api/user
 
 import { NextResponse } from "next/server";
 import { z } from "zod"
@@ -31,7 +32,7 @@ export async function POST(req: Request) {
             where : {email: email}
         });
         if (ExistingUserByEmail) {
-            return NextResponse.json({user:null, message:"Un utilisateur avec cette email existe déja", status:409})
+            return NextResponse.json({user:null, error:"Un utilisateur avec cette email existe déja", status:409})
         }
 
         // verifier existance User par l'username
@@ -40,7 +41,7 @@ export async function POST(req: Request) {
         })
 
         if (ExistingUserByUsername) {
-            return NextResponse.json({user:null, message:"Un utilisateur avec ce nom d'utilisateur existe déja", status:409})
+            return NextResponse.json({user:null, error:"Un utilisateur avec ce nom d'utilisateur existe déja", status:409})
         }
 
         const hashedPassword = await hash(password, 10)

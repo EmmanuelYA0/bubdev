@@ -14,6 +14,12 @@ export default async function Spiritueux() {
     const [spiritueux, setSpiritueux] = useState<SpiritueuxInterface[]>([]);
     const [isloading, setLoading] = useState(true);
 
+    const formatPrice = (price: number | undefined) => {
+        if (price) {
+          return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        return ""; // Return empty string if price is undefined
+      };
 
     useEffect(() => {
         const fetchSpiritueux = async () => {
@@ -82,8 +88,8 @@ export default async function Spiritueux() {
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className="text-lg font-bold text-white  bg-transparent">{spiritueux.price} FCFA</span>
-                                                    <span className="text-sm text-white line-through bg-transparent">{spiritueux.price} FCFA</span>
+                                                    <span className="text-lg font-bold text-white  bg-transparent">{formatPrice(spiritueux.price)} FCFA</span>
+                                                    <span className="text-sm text-white line-through bg-transparent">{formatPrice(spiritueux.price)} FCFA</span>
                                                 </p>
                                             </div>
                                             <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">

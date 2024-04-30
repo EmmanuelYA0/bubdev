@@ -18,6 +18,14 @@ export default function ChampagneItem({ params }: ParamsProps) {
   // const id = params.id;
 
 
+  const formatPrice = (price: number | undefined) => {
+    if (price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    return ""; // Return empty string if price is undefined
+  };
+
+
   const [quantity, setQuantity] = useState(1);
 
   const decreaseQuantity = () => {
@@ -27,7 +35,11 @@ export default function ChampagneItem({ params }: ParamsProps) {
   };
 
   const increaseQuantity = () => {
-    setQuantity(quantity + 1);
+    if (champagne?.quantity){
+      if (quantity <= (champagne?.quantity - 1)) {
+         setQuantity(quantity + 1);
+      }
+    }
   };
 
 
@@ -57,7 +69,7 @@ export default function ChampagneItem({ params }: ParamsProps) {
                   height={300}
                   alt={champagne.name}
                   src={champagne.img}
-                  className=" h-full w-full object-contain"
+                  className=" h-full w-full object-contain transition-transform duration-300 transform hover:scale-110"
                 />
               ) : (
                 <Loading />
@@ -73,7 +85,7 @@ export default function ChampagneItem({ params }: ParamsProps) {
                 {champagne.description}
               </p>
               <p className="text-3xl text-redhot font-[Cormorant] font-normal ">
-                {champagne.price} FCFA
+                {formatPrice(champagne.price)} FCFA
               </p>
               <div className=" w-full flex gap-4">
                 <div className="flex items-center gap-1">

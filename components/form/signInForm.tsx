@@ -22,6 +22,8 @@ import { useRouter } from "next/navigation"
 import { signIn } from "next-auth/react"
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from "react"
+import { FormError } from "./form-error"
+import { FormSuccess } from "./form-success"
 
 
 const formSchema = z.object({
@@ -34,8 +36,11 @@ const formSchema = z.object({
 })
 
 export function SignInForm() {
-  const { toast } = useToast()
+  // const { toast } = useToast()
   const router = useRouter();
+
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisiblity = () => {
@@ -61,16 +66,19 @@ export function SignInForm() {
 
 
     if (signInData?.error) {
-      toast({
-        title: "Erreur",
-        description: "Mot de passe ou Email incorrect",
-        variant: "destructive",
-        className: 'bg-red-100  border-red-500'
-      })
+      // toast({
+      //   title: "Erreur",
+      //   description: "Mot de passe ou Email incorrect",
+      //   variant: "destructive",
+      //   className: 'bg-red-100  border-red-500'
+      // })
+      setErrorMessage("Mot de passe ou Email incorrect")
     }
     else {
+      setSuccessMessage("Connexion reussie")
       router.push('/spiritueux');
       router.refresh();
+
     }
   }
 
@@ -110,6 +118,8 @@ export function SignInForm() {
               </FormItem>
             )}
           />
+          <FormError message={errorMessage}/>
+          <FormSuccess message={successMessage}/>
           <Button type="submit" className=" mt-6 mx-auto w-full bg-pourpre">
             Se connecter
           </Button>
@@ -130,6 +140,9 @@ export function SignInForm() {
         <p className=" text-center text-sm text-gray-600 mt-2 bg-transparent">
           Si vous n'avez pas de compte.
           <Link className="text-blue-500 bg-transparent hover:underline" href='/register'>Inscrivez-vous</Link>
+        </p>
+        <p className=" text-center text-sm text-gray-600 mt-2 bg-transparent">
+          <Link className="text-blue-500 bg-transparent hover:underline" href='/forgot-password'>Mot de passe oublié.</Link>
         </p>
       </Form>
     </div>
