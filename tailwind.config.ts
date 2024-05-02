@@ -31,8 +31,9 @@ const config = {
       'bermuda': '#78dcca',
       'myblack': '#1C1315',
       'redhot': '#955D6F',
-      'red200': 'CFBCC2',
+      'red200': '#CFBCC2',
       'pourpre':'#4A050D',
+      'coolbg': '#FCF6F6',
       rock: {
         '50': '#f5f3f1',
         '100': '#e6e0db',

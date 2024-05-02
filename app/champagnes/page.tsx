@@ -64,20 +64,20 @@ export default async function Champagnes() {
                             Champagnes.map((champagne, index) => (
                                 <div className="grid justify-center">
                                     <div key={index} className="group border-gray-100/30 flex w-full min-h-80 max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
-                                    <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`champagnes/${champagne.id}`}>
+                                    <a className="relative bg-white mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`champagnes/${champagne.id}`}>
                                             <Image
                                                 src={champagne.img}
                                                 alt={champagne.name}
                                                 width={250}
                                                 height={280}
-                                                className="peer absolute top-0 right-0 left-0 h-full w-full object-contain"
+                                                className="peer absolute bg-white top-0 right-0 left-0 h-full w-full object-contain"
                                             />
                                             <Image
                                                 src={champagne.img}
                                                 alt={champagne.name}
                                                 width={250}
                                                 height={280}
-                                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0"
+                                                className="peer peer-hover:right-0 bg-white absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0"
                                             />
                                         </a>
                                         <div className="mt-4 px-5 pb-5 bg-transparent">

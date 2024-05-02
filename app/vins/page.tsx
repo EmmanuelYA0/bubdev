@@ -72,21 +72,21 @@ export default async function Vins() {
                             vins.map((vin, index) => (
                                 <div className="grid justify-center">
                                     <div key={index} className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
-                                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`vins/${vin.id}`}>
+                                        <a className="relative mx-3 mt-3 bg-white flex h-60 overflow-hidden rounded-2xl" href={`vins/${vin.id}`}>
                                         {/* onClick={handleClick(vin.id)} */}
                                             <Image
                                                 src={vin.img}
                                                 alt={vin.name}
                                                 width={250}
                                                 height={280}
-                                                className="peer absolute top-0 right-0 left-0 h-full w-full object-contain"
+                                                className="peer absolute top-0 bg-white right-0 left-0 h-full w-full object-contain"
                                             />
                                             <Image
                                                 src={vin.img}
                                                 alt={vin.name}
                                                 width={250}
                                                 height={280}
-                                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0"
+                                                className="peer peer-hover:right-0 bg-white absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0"
                                             />
                                             {/* <span className="absolute top-0 left-0 m-2 font-[Montaga] rounded-full bg-[#D9D9D9] px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span> */}
                                         </a>

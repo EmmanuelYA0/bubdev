@@ -83,8 +83,12 @@
     padding: 0;
     box-sizing: border-box;
     position: relative;
-    background-color: #FCF6F6;
+    
     /* scrollbar-width: none; */
+  }
+
+  body{
+    background-color: #FCF6F6;
   }
   
   

@@ -67,7 +67,7 @@ const Footer = () => {
     <>
        
     <footer className="pt-10 bg-[#4A050D] rounded-md">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-8">
+        <div className="max-w-screen-xl bg-coolbg mx-auto px-4 md:px-8">
             <div className="justify-between items-center gap-12 md:flex">
                 <div className="flex-1 max-w-lg">
                     <h3 className="text-myblack text-2xl font-bold">
@@ -92,7 +92,7 @@ const Footer = () => {
                     </form>
                 </div>
             </div>
-            <div className="flex-1 mt-16 space-y-6 justify-between sm:flex md:space-y-0">
+            <div className="flex-1 mt-16 space-y-6 bg-coolbg justify-between sm:flex md:space-y-0">
                 {
                     footerNavs.map((item, idx) => (
                         <ul
@@ -119,7 +119,7 @@ const Footer = () => {
                     ))
                 }
             </div>
-            <div className="mt-10 py-10 border-t border-gray-700 items-center justify-between sm:flex">
+            <div className="mt-10 py-10 border-t bg-coolbg border-gray-700 items-center justify-between sm:flex">
                 <p className="text-[#4A050D]">© 2024 BubblyApp. All rights reserved.</p>
                 <div className="flex items-center gap-x-6 text-myblack mt-6">
                     <a href="#">

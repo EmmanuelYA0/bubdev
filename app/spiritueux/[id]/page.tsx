@@ -75,7 +75,7 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
               }
 
             </div>
-            <div className=" flex flex-col gap-7 p-10 rounded-md w-full  drop-shadow-2xl">
+            <div className=" flex flex-col gap-7 p-10 rounded-md w-full bg-white  drop-shadow-2xl">
               <h1 className="text-3xl font-[Montserrat] text-redhot font-bold">
                 {spiritueux.name}
               </h1>

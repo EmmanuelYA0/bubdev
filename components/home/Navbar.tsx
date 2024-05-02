@@ -62,7 +62,7 @@ const Navbar = () => {
             alt="menu"
             width={32}
             height={32}
-            className="inline-center cursor-pointer lg:hidden hover:stroke-[#4A050D]"
+            className="inline-center bg-transparent cursor-pointer lg:hidden hover:stroke-[#4A050D]"
           />
         </button>
         {open &&

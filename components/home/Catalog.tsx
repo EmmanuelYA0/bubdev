@@ -40,19 +40,19 @@ const Catalog = () => {
             >
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
-                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                        <a className="relative  mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="#">
                             <Image
                                 src="/moet-chandon-brut-imperial-champagne.png"
                                 alt="bottle1"
                                 width={500}
                                 height={500}
-                                className="peer absolute top-0 right-0 h-full w-full object-contain" />
+                                className="peer absolute bg-coolbg top-0 right-0 h-full w-full object-contain" />
                             <Image
                                 src="/moet.png"
                                 alt="bottle3"
                                 width={480}
                                 height={480}
-                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0" />
+                                className="peer peer-hover:right-0 bg-coolbg absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0" />
                             <span className="absolute top-0 left-0 m-2 font-[Montaga] rounded-full bg-[#D9D9D9] px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span>
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
@@ -83,19 +83,19 @@ const Catalog = () => {
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
-                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                        <a className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="#">
                             <Image
                                 src="/veuve-clicquot-champagne-sparkling-veuve-clicquot-yellow-lab.jpg"
                                 alt="bottle1"
                                 width={352}
                                 height={352}
-                                className="peer absolute top-0 right-0 h-full w-full object-contain" />
+                                className="peer absolute top-0 bg-coolbg right-0 h-full w-full object-contain" />
                             <Image
                                 src="/bottle3.svg"
                                 alt="bottle3"
                                 width={100}
                                 height={200}
-                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-fill transition-all delay-100 duration-1000 hover:right-0" />
+                                className="peer peer-hover:right-0 bg-coolbg absolute top-0 -right-96 h-full w-full object-fill transition-all delay-100 duration-1000 hover:right-0" />
                             <span className="absolute top-0 left-0 m-2 font-[Montaga] rounded-full bg-[#D9D9D9] px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span>
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
@@ -126,19 +126,19 @@ const Catalog = () => {
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
-                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                        <a className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="#">
                             <Image
                                 src="/dom-perignon-champagne-sparkling-dom-perignon-750ml-31515614 (1).png"
                                 alt="bottle1"
                                 width={750}
                                 height={750}
-                                className="peer absolute top-0 right-0 h-full w-full object-contain" />
+                                className="peer absolute top-0 bg-coolbg right-0 h-full w-full object-contain" />
                             <Image
                                 src="/final-dom.png"
                                 alt="bottle3"
                                 width={400}
                                 height={400}
-                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0" />
+                                className="peer peer-hover:right-0 bg-coolbg absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0" />
                             <span className="absolute top-0 left-0 m-2 font-[Montaga] bg-[#D9D9D9] rounded-full px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span>
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
@@ -169,19 +169,19 @@ const Catalog = () => {
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
-                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                        <a className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl" href="#">
                             <Image
                                 src="/LouisRoedererCristal.png"
                                 alt="bottle1"
                                 width={406}
                                 height={614}
-                                className="peer absolute top-0 right-0 h-full w-full object-contain" />
+                                className="peer absolute top-0 right-0 bg-coolbg h-full w-full object-contain" />
                             <Image
                                 src="/louis.png"
                                 alt="bottle2"
                                 width={500}
                                 height={500}
-                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-fill transition-all delay-100 duration-1000 hover:right-0" />
+                                className="peer peer-hover:right-0 absolute top-0 bg-coolbg -right-96 h-full w-full object-fill transition-all delay-100 duration-1000 hover:right-0" />
                             <span className="absolute top-0 left-0 m-2 font-[Montaga] bg-[#D9D9D9] rounded-full  px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span>
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
@@ -212,19 +212,19 @@ const Catalog = () => {
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
-                        <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href="#">
+                        <a className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl" href="#">
                             <Image
                                 src="/dom-perignon-p2-plenitude-brut-rose.png"
                                 alt="bottle1"
                                 width={458}
                                 height={533}
-                                className="peer absolute top-0 right-0 h-full w-full object-contain" />
+                                className="peer absolute top-0 right-0 bg-coolbg h-full w-full object-contain" />
                             <Image
                                 src="/domperignonrose.png"
                                 alt="bottle3"
                                 width={384}
                                 height={650}
-                                className="peer peer-hover:right-0 absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0" />
+                                className="peer peer-hover:right-0 absolute bg-coolbg top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0" />
                             <span className="absolute top-0 left-0 m-2 font-[Montaga] bg-[#D9D9D9] rounded-full  px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span>
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">

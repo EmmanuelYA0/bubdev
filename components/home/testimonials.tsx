@@ -4,7 +4,7 @@ import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 
 export function TestimonialsSection() {
     return (
-        <section className="h-[40rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+        <section className="h-[40rem] rounded-md flex flex-col antialiased bg-coolbg dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
             <h1 className='font-[Cormorant] text-6xl  bg-transparent font-medium mb-16 text-myblack'>Ils parlent de nous</h1>
 
             <InfiniteMovingCards
