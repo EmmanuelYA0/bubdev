@@ -21,7 +21,7 @@ export default function CartClient() {
             <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
                 <div className="mx-auto max-w-3xl">
                     <header className="text-center">
-                        <h1 className="text-xl font-bold font-[Cormorant] text-myblack sm:text-3xl">Votre Panier</h1>
+                        <h1 className="text-2xl font-bold font-[Cormorant] text-myblack sm:text-3xl">Votre Panier</h1>
                     </header>
                     {cartItems && cartItems.map((item) => {
                         return (
@@ -47,9 +47,9 @@ export default function CartClient() {
 
 
                                         <div>
-                                            <h3 className="text-sm text-gray-900">{item.name}</h3>
+                                            <h3 className="text-xl text-redhot">{item.name}</h3>
 
-                                            <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
+                                            <dl className="mt-0.5 space-y-px text-lg text-gray-600">
                                                 {formatPrice(item.price)} FCFA
                                             </dl>
                                         </div>
@@ -97,17 +97,17 @@ export default function CartClient() {
                         <div className="w-screen max-w-lg space-y-4">
                             <dl className="space-y-0.5 text-sm text-gray-700">
                                 <div className="flex justify-between">
-                                    <dt>Subtotal</dt>
+                                    <dt>Sous Total</dt>
                                     <dd>£250</dd>
                                 </div>
 
                                 <div className="flex justify-between">
-                                    <dt>VAT</dt>
+                                    <dt>TVA</dt>
                                     <dd>£25</dd>
                                 </div>
 
                                 <div className="flex justify-between">
-                                    <dt>Discount</dt>
+                                    <dt>Réduction</dt>
                                     <dd>-£20</dd>
                                 </div>
 
@@ -119,7 +119,7 @@ export default function CartClient() {
 
                             <div className="flex justify-end">
                                 <span
-                                    className="inline-flex items-center justify-center rounded-full bg-indigo-100 px-2.5 py-0.5 text-indigo-700"
+                                    className="inline-flex items-center justify-center rounded-full bg-red200 px-2.5 py-0.5 text-pourpre"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +143,7 @@ export default function CartClient() {
                             <div className="flex justify-end">
                                 <a
                                     href="#"
-                                    className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
+                                    className="block rounded bg-pourpre px-5 py-3 text-sm text-gray-100 transition hover:bg-pink-900"
                                 >
                                     Checkout
                                 </a>
