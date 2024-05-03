@@ -4,15 +4,18 @@ import { useCart } from '@/hooks/useCart'
 import { formatPrice } from '@/lib/formatPrice';
 import Image from 'next/image'
 import React from 'react'
+import { Button } from './ui/button';
+import { useRouter } from 'next/navigation';
 
 export default function CartClient() {
-
+    const router = useRouter()
     const { cartItems } = useCart()
 
     if (!cartItems || cartItems.length === 0) {
         return (
             <div className=' flex justify-center flex-col items-center h-screen'>
-                <h1 className=' text-2xl'>Your cart is empty</h1>
+                <h1 className=' text-2xl'>Votre panier est vide </h1>
+                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}>Continuer votre achat</Button>
             </div>
         )
     }
