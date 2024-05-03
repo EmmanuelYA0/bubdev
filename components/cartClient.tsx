@@ -3,19 +3,36 @@
 import { useCart } from '@/hooks/useCart'
 import { formatPrice } from '@/lib/formatPrice';
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { Minus, Plus } from 'lucide-react';
 
 export default function CartClient() {
     const router = useRouter()
-    const { cartItems } = useCart()
+    const { cartItems, decreaseQuantity, increaseQuantity, handleRemoveProductFromCart } = useCart()
+    // const [cartQuantity, setCartQuantity] = useState(1)
+
+
+    // const decreaseQuantity = (quantity : number) => {
+    //     if (cartQuantity > 1) {
+    //         setCartQuantity(cartQuantity - 1);
+    //         quantity = cartQuantity;
+    //     }
+    // };
+    // const increaseQuantity = (quantity : number) => {
+    //     setCartQuantity(cartQuantity + 1);
+    //     quantity = cartQuantity;
+    // }
+
+
 
     if (!cartItems || cartItems.length === 0) {
         return (
             <div className=' flex justify-center flex-col items-center h-screen'>
                 <h1 className=' text-2xl'>Votre panier est vide </h1>
-                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}>Continuer votre achat</Button>
+                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}>Continuer vos achats</Button>
             </div>
         )
     }
@@ -28,7 +45,7 @@ export default function CartClient() {
                     </header>
                     {cartItems && cartItems.map((item) => {
                         return (
-                            <div className="mt-8">
+                            <div className="mt-8 pt-4 border-t border-gray-300">
                                 <ul key={item.id} className="space-y-4">
                                     <li className="flex items-center gap-4">
                                         {item.img ?
@@ -50,27 +67,46 @@ export default function CartClient() {
 
 
                                         <div>
-                                            <h3 className="text-xl text-redhot">{item.name}</h3>
+                                            {item.categoryId === 1 ? (
+                                                <Link className='text-sm sm:text-xl ml-0 text-redhot' href={`vins/${item.id}`}>{item.name}</Link>
+                                            ) : item.categoryId === 2 ? (
+                                                <Link className='text-sm sm:text-xl ml-0 text-redhot' href={`champagnes/${item.id}`}>{item.name}</Link>
+                                            ) : (
+                                                <Link className='text-sm sm:text-xl ml-0 text-redhot' href={`spiritueux/${item.id}`}>{item.name}</Link>
+                                            )}
 
-                                            <dl className="mt-0.5 space-y-px text-lg text-gray-600">
-                                                {formatPrice(item.price)} FCFA
+                                            <dl className="mt-0.5 space-y-px sm:text-lg text-xs text-gray-600">
+                                                <p>{formatPrice(item.price)} FCFA</p>
                                             </dl>
                                         </div>
 
+
+
                                         <div className="flex flex-1 items-center justify-end gap-2">
-                                            <form>
-                                                <label htmlFor="Line1Qty" className="sr-only"> Quantity </label>
+                                            
+                                                <div className="flex items-center gap-1 ">
+                                                    <button type="button" className="size-10 leading-10 text-gray-400 transition hover:opacity-75" onClick={() => decreaseQuantity(item)}>
+                                                        <Minus className=" bg-slate-100 rounded-sm h-6 w-6" />
+                                                    </button>
 
-                                                <input
-                                                    type="number"
-                                                    min="1"
-                                                    value={item.quantity}
-                                                    id="Line1Qty"
-                                                    className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                                />
-                                            </form>
+                                                    <input
+                                                        type="number"
+                                                        value={item.quantity}
+                                                        className="h-8 w-10 rounded border border-gray-200 bg-white text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                                                        readOnly
+                                                    />
 
-                                            <button className="text-gray-600 transition hover:text-red-600">
+                                                    <button type="button" className="size-10 leading-10 text-gray-400 transition hover:opacity-75" onClick={() => increaseQuantity(item)}>
+                                                        <Plus className=" bg-slate-100 rounded-sm h-6 w-6" />
+                                                    </button>
+                                                </div>
+                                            
+                                            <p className="mt-0.5 space-y-px sm:text-sm font-semibold text-xs text-gray-600">
+                                                {item.price && item.quantity && formatPrice(item.price * item.quantity)} FCFA
+                                            </p>
+
+
+                                            <button onClick={() => handleRemoveProductFromCart(item)} className="text-gray-600 transition hover:text-red-600">
                                                 <span className="sr-only">Remove item</span>
 
                                                 <svg
@@ -96,10 +132,10 @@ export default function CartClient() {
                             </div>
                         )
                     })}
-                    <div className="mt-8 flex justify-end border-t border-gray-100 pt-8">
+                    <div className="mt-8 flex justify-end border-t border-gray-500 pt-8">
                         <div className="w-screen max-w-lg space-y-4">
                             <dl className="space-y-0.5 text-sm text-gray-700">
-                                <div className="flex justify-between">
+                                <div className="flex font-semibold text-base text-redhot justify-between">
                                     <dt>Sous Total</dt>
                                     <dd>£250</dd>
                                 </div>
@@ -143,13 +179,15 @@ export default function CartClient() {
                                 </span>
                             </div>
 
-                            <div className="flex justify-end">
+                            <div className="flex justify-end gap-x-5">
+                                <Button variant="outline" className='h-12 text-pourpre hover:bg-red200'>Vider le panier</Button>
                                 <a
                                     href="#"
                                     className="block rounded bg-pourpre px-5 py-3 text-sm text-gray-100 transition hover:bg-pink-900"
                                 >
                                     Checkout
                                 </a>
+
                             </div>
                         </div>
                     </div>

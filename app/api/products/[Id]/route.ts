@@ -1,6 +1,7 @@
 
 
 import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
 import { NextResponse } from "next/server";
 
 
@@ -14,6 +15,7 @@ export async function GET(request: Request, { params }: { params: { Id: string }
     });
     if (!product) {
       return NextResponse.json({ error: "Product Not Found" }, { status: 404 });
+      
     }
 
     return NextResponse.json({ product, status: 200 });

@@ -12,7 +12,7 @@ import { useCart } from '@/hooks/useCart';
 
 
 
-export default async function Spiritueux() {
+export default function Spiritueux() {
     const [spiritueux, setSpiritueux] = useState<SpiritueuxInterface[]>([]);
     const [isloading, setLoading] = useState(true);
     const { handleAddProductToCart, cartItems } = useCart();

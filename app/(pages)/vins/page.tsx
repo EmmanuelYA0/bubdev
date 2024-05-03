@@ -13,11 +13,12 @@ import toast from 'react-hot-toast';
 
 
 
-export default async function Vins() {
+export default function Vins() {
     const [vins, setVins] = useState<Vin[]>([]);
     const [isloading, setLoading] = useState(true);
     const { handleAddProductToCart, cartItems } = useCart();
 
+    
     const handleAddToCart = (vin: Vin) => {
 
         // Vérifier si cartItems est null avant de l'utiliser
@@ -194,7 +195,7 @@ export default async function Vins() {
                         {
                             vins.map((vin, index) => (
                                 <div className="grid justify-center">
-                                    <div key={index} className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
+                                    <div key={vin.id} className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
                                         <a className="relative mx-3 mt-3 bg-white flex h-60 overflow-hidden rounded-2xl" href={`vins/${vin.id}`}>
                                             <Image
                                                 src={vin.img}

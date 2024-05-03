@@ -9,9 +9,10 @@ import SkeletonCard from '@/components/SkeletonCard';
 import { CartProductsInterface, Champagne } from "@/lib/constants";
 import toast from 'react-hot-toast';
 import { useCart } from '@/hooks/useCart';
+import { formatPrice } from '@/lib/formatPrice';
 
 
-export default async function Champagnes() {
+export default function Champagnes() {
     const [Champagnes, setchampagnes] = useState<Champagne[]>([]);
     const [isloading, setLoading] = useState(true);
     const { handleAddProductToCart, cartItems } = useCart();
@@ -91,13 +92,6 @@ export default async function Champagnes() {
 
     };
 
-
-    const formatPrice = (price: number | undefined) => {
-        if (price) {
-          return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-        return ""; // Return empty string if price is undefined
-      };
 
     useEffect(() => {
         const fetchChampagnes = async () => {

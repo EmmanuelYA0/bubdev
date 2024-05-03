@@ -13,6 +13,7 @@ export interface Vin {
   price: number;
   img: string;
   quantity: number;
+  categoryId?: number;
 }
 
 export interface Champagne {
@@ -22,6 +23,7 @@ export interface Champagne {
   price: number;
   img: string;
   quantity: number;
+  categoryId?: number;
 }
 
 export interface SpiritueuxInterface {
@@ -31,6 +33,7 @@ export interface SpiritueuxInterface {
   price: number;
   img: string;
   quantity: number;
+  categoryId?: number;
 }
 export interface CartProductsInterface {
   id?: number;
@@ -39,4 +42,5 @@ export interface CartProductsInterface {
   price?: number;
   img?: string;
   quantity?: number;
+  categoryId?: number;
 }
