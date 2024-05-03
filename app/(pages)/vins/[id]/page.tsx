@@ -1,3 +1,5 @@
+//app/(pages)/vins/[id]/pages.tsx
+
 'use client';
 
 import Loading from "@/app/loading";
@@ -24,21 +26,7 @@ export default function VinItem({ params }: ParamsProps) {
   const [cartProduct, setCartProduct] = useState<CartProductsInterface | null>(null);
   const [isProductInCart, setIsProductInCart] = useState(false);
   const router = useRouter()
-  // const [cartProduct, setCartProduct] = useState<CartProductsInterface>({
-  //   id:          vins?.id,
-  //   name:        vins?.name,
-  //   description: vins?.description,
-  //   price:       vins?.price,
-  //   img:         vins?.img,
-  //   quantity: 1,
-  // });
 
-
-
-  // const id = params.id;
-
-
- 
 
   const handleAddToCart = () => {
     const newCartProduct: CartProductsInterface = {
@@ -63,24 +51,7 @@ export default function VinItem({ params }: ParamsProps) {
     
   };
 
-  console.log(cartItems);
-
-  // const [quantity, setQuantity] = useState(1);
-
-  // const decreaseQuantity = () => {
-  //   if (quantity > 1) {
-  //     setQuantity(quantity - 1);
-  //   }
-  // };
-
-  // const increaseQuantity = () => {
-  //   if (vins?.quantity) {
-  //     if (quantity <= (vins?.quantity - 1)) {
-  //       setQuantity(quantity + 1);
-  //     }
-  //   }
-  //   setQuantity(quantity + 1);
-  // };
+  // console.log(cartItems);
 
 
   const [cartQuantity, setCartQuantity] = useState(1);
@@ -112,7 +83,7 @@ export default function VinItem({ params }: ParamsProps) {
   }, [cartItems, cartProduct])
 
   useEffect(() => {
-    // Mettre à jour cartProduct lorsque cartQuantity change
+    // Mise à jour de cartProduct lorsque cartQuantity change
     if (vins) {
       setCartProduct({
         id: vins.id,

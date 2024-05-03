@@ -6,8 +6,9 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
 import styles from './vins.module.css'
 import SkeletonCard from '@/components/SkeletonCard';
-import { useRouter } from 'next/navigation';
-import { Vin } from "@/lib/constants";
+import { CartProductsInterface, Vin } from "@/lib/constants";
+import { useCart } from '@/hooks/useCart';
+import toast from 'react-hot-toast';
 
 
 
@@ -15,19 +16,141 @@ import { Vin } from "@/lib/constants";
 export default async function Vins() {
     const [vins, setVins] = useState<Vin[]>([]);
     const [isloading, setLoading] = useState(true);
-    const router = useRouter()
+    const { handleAddProductToCart, cartItems } = useCart();
+
+    const handleAddToCart = (vin: Vin) => {
+
+        // Vérifier si cartItems est null avant de l'utiliser
+        if (cartItems) {
+            const existingCartItemIndex = cartItems.findIndex(item => item.id === vin.id);
+
+            if (existingCartItemIndex !== -1) {
+                const updatedCartItems = [...cartItems];
+                let newQuantity = updatedCartItems[existingCartItemIndex].quantity;
+                if (newQuantity) {
+                    newQuantity += 1;
+                    updatedCartItems[existingCartItemIndex].quantity = newQuantity;
+                    toast.success('Quantité du produit mise à jour dans le panier avec succès', {
+                        style: {
+                            backgroundColor: '#fff',
+                            color: '#000',
+                        },
+                        iconTheme: {
+                            primary: '#4caf50',
+                            secondary: '#fff',
+                        },
+                    });
+                }
+            }
+            else {
+                // Si le produit n'est pas encore dans le panier
+                const cartProduct: CartProductsInterface = {
+                    id: vin.id,
+                    name: vin.name,
+                    description: vin.description,
+                    price: vin.price,
+                    img: vin.img,
+                    quantity: 1,
+                };
+
+                handleAddProductToCart(cartProduct);
+                toast.success('Produit ajouté au panier avec succès', {
+                    style: {
+                        backgroundColor: '#fff',
+                        color: '#000',
+                    },
+                    iconTheme: {
+                        primary: '#4caf50',
+                        secondary: '#fff',
+                    },
+                });
+            }
+        } else{
+            // Si le panier est vide
+            const cartProduct: CartProductsInterface = {
+                id: vin.id,
+                name: vin.name,
+                description: vin.description,
+                price: vin.price,
+                img: vin.img,
+                quantity: 1,
+            };
+
+            handleAddProductToCart(cartProduct);
+            toast.success('Produit ajouté au panier avec succès', {
+                style: {
+                    backgroundColor: '#fff',
+                    color: '#000',
+                },
+                iconTheme: {
+                    primary: '#4caf50',
+                    secondary: '#fff',
+                },
+            });
+        }
+
+
+
+    };
+
+
+
+    // const handleAddToCart = () => {
+    //     vins.forEach(vin => {
+    //         const [cartProduct, setCartProduct] = useState<CartProductsInterface>({
+    //             id: vin?.id,
+    //             name: vin?.name,
+    //             description: vin?.description,
+    //             price: vin?.price,
+    //             img: vin?.img,
+    //             quantity: 1,
+
+    //         });
+    //     });
+    //     handleAddProductToCart(cartProduct);
+    //     toast.success('Produit ajouté au panier avec succès', {
+    //       style: {
+    //         backgroundColor: '#fff', // Couleur de fond de la notification
+    //         color: '#000', // Couleur du texte
+    //       },
+    //       iconTheme: {
+    //         primary: '#4caf50', // Couleur de l'icône
+    //         secondary: '#fff', // Couleur de fond de l'icône (s'il y a un fond)
+    //       },
+    //     });
+
+    //   };
+
+    // const handleAddToCart = (vin: Vin) => {
+    //     const cartProduct: CartProductsInterface = {
+    //         id: vin.id,
+    //         name: vin.name,
+    //         description: vin.description,
+    //         price: vin.price,
+    //         img: vin.img,
+    //         quantity: 1,
+    //     };
+
+    //     handleAddProductToCart(cartProduct);
+    //     toast.success('Produit ajouté au panier avec succès', {
+    //         style: {
+    //             backgroundColor: '#fff',
+    //             color: '#000',
+    //         },
+    //         iconTheme: {
+    //             primary: '#4caf50',
+    //             secondary: '#fff',
+    //         },
+    //     });
+    // };
+
 
     const formatPrice = (price: number | undefined) => {
         if (price) {
-          return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
         return ""; // Return empty string if price is undefined
-      };
-
-    // function handleClick(id : number) {
-    //     router.push(`/vins/${id}`)
-    // }
-
+    };
     useEffect(() => {
         const fetchVins = async () => {
             try {
@@ -47,16 +170,16 @@ export default async function Vins() {
     return (
         <>
             {/* className='mt-48' */}
-            <div className=' w-full left-0 my-0 right-0 mt-32'>
+            <div className=' w-full left-0 my-0 right-0 mt-28'>
                 <Image
-                    src='/bgs/Ruinart_AT_HOME_StudioMB_01_1.jpeg'
+                    src='/bgs/bg-vins.jpg'
                     alt=''
-                    width={1265}
+                    width={900}
                     height={525}
-                    className=' object-fill rounded-sm'
+                    className=' object-cover w-full h-[520px] rounded-sm'
                 />
             </div>
-            <h1 className={`${styles.Produits_texte} top-48 `}>
+            <h1 className={`${styles.Produits_texte} top-32 `}>
                 Nos meilleurs vins pour votre plaisir
             </h1>
             <section className={styles.section_produits}>
@@ -73,7 +196,6 @@ export default async function Vins() {
                                 <div className="grid justify-center">
                                     <div key={index} className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
                                         <a className="relative mx-3 mt-3 bg-white flex h-60 overflow-hidden rounded-2xl" href={`vins/${vin.id}`}>
-                                        {/* onClick={handleClick(vin.id)} */}
                                             <Image
                                                 src={vin.img}
                                                 alt={vin.name}
@@ -88,7 +210,6 @@ export default async function Vins() {
                                                 height={280}
                                                 className="peer peer-hover:right-0 bg-white absolute top-0 -right-96 h-full w-full object-contain transition-all delay-100 duration-1000 hover:right-0"
                                             />
-                                            {/* <span className="absolute top-0 left-0 m-2 font-[Montaga] rounded-full bg-[#D9D9D9] px-2 text-center text-sm font-medium text-myblack">TOP Ventes</span> */}
                                         </a>
                                         <div className="mt-4 px-5 pb-5 bg-transparent">
                                             <a href="#">
@@ -102,7 +223,7 @@ export default async function Vins() {
                                                     <span className="text-sm text-white line-through bg-transparent">{formatPrice(vin.price)} FCFA</span>
                                                 </p>
                                             </div>
-                                            <a href="#" className="hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
+                                            <a onClick={() => handleAddToCart(vin)} className="hover:border-white/40 flex items-center justify-center cursor-pointer rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" className="mr-2 h-6 w-6 bg-transparent stroke-white" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M8 16.0001H15.2632C19.7508 16.0001 20.4333 13.1809 21.261 9.06916C21.4998 7.8832 21.6192 7.29022 21.3321 6.89515C21.1034 6.58048 20.7077 6.51645 20 6.50342" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                                                     <path d="M9 6.5H17M13 10.5V2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
@@ -113,7 +234,6 @@ export default async function Vins() {
                                                 </svg>
 
                                                 Ajouter au panier</a>
-
                                         </div>
                                     </div>
 
