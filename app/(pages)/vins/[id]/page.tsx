@@ -112,7 +112,7 @@ export default function VinItem({ params }: ParamsProps) {
   }, [params.id]);
 
   return (
-    <section className=" w-full h-[1024px]">
+    <section className=" w-full min-h-[1024px]">
       <div className=" flex justify-center items-center mt-40 ">
         {vins ? (
           <div className=" flex gap-4 w-full max-lg:flex-col">
@@ -135,13 +135,13 @@ export default function VinItem({ params }: ParamsProps) {
               <h1 className="text-3xl font-[Montserrat] text-redhot font-bold">
                 {vins.name}
               </h1>
-              <p className="text-2xl font-medium font-[Cormorant]">
+              <p className="text-2xl max-sm:text-base font-medium font-[Cormorant]">
                 {vins.description}
               </p>
               <p className="text-3xl text-redhot font-[Cormorant] font-normal ">
                 {formatPrice(vins.price)} FCFA
               </p>
-              <div className=" w-full flex gap-4">
+              <div className=" w-full flex max-lg:flex-col gap-4">
                 <div className="flex items-center gap-1">
                   <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={decreaseQuantity}>
                     <Minus className=" bg-slate-300 rounded-sm h-6 w-6" />
@@ -166,7 +166,7 @@ export default function VinItem({ params }: ParamsProps) {
                     </Button>
                   </> :
                   <>
-                    <a onClick={handleAddToCart} className="hover:border-blue-400 w-60 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none cursor-pointer focus:ring-4 focus:ring-redhot">
+                    <a onClick={handleAddToCart} className="hover:border-blue-400 max-md:w-full max-md:mx-auto w-60 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none cursor-pointer focus:ring-4 focus:ring-redhot">
                       <svg width="24" height="24" viewBox="0 0 24 24" className="mr-2 h-6 w-6 bg-transparent stroke-white" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 16.0001H15.2632C19.7508 16.0001 20.4333 13.1809 21.261 9.06916C21.4998 7.8832 21.6192 7.29022 21.3321 6.89515C21.1034 6.58048 20.7077 6.51645 20 6.50342" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
                         <path d="M9 6.5H17M13 10.5V2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />

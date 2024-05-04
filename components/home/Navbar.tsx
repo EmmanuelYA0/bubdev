@@ -8,6 +8,7 @@ import { Search, ShoppingBasketIcon, X } from 'lucide-react';
 import User from '../sessions/User';
 import { Button } from '../ui/button';
 import UserSidebar from '../sessions/UserSidebar';
+import { CartCount } from '../cartCount';
 
 
 
@@ -40,21 +41,7 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          {/* {session?(
-            <> 
-              {isAdmin && 
-              <Link href="/admin" className={`${isActive("/admin")} regular-20 bg-transparent leading-9 flex items-center text-myblack justify-center cursor-pointer pb-1.5 transition-all hover:text-redhot font-normal font-['Sitka'] hover:scale-125`}>
-                admin
-              </Link>}
-              
-              <button type="button">LogOut</button>
-            </>
-
-          ):(
-            <button type="button">Login</button>
-          )} */}
         </ul>
-
 
         <button onClick={() => setOpen((prev) => !prev)}>
           <Image
@@ -81,10 +68,7 @@ const Navbar = () => {
               <Link href="/" className='bg-transparent'>
                 <Search className='bg-transparent -mr-1 stroke-white w-[25px] h-[25px]' />
               </Link>
-              <UserSidebar/>
-              {/* <Link href='/login' className='bg-transparent'>
-                <UserRound className='bg-transparent -mr-1 stroke-white w-[25px] h-[25px]' />
-              </Link> */}
+              <UserSidebar />
               <Link href='/panier' className='bg-transparent'>
                 <ShoppingBasketIcon className='bg-transparent -mr-1 stroke-white w-[25px] h-[25px]' />
               </Link>
@@ -97,33 +81,14 @@ const Navbar = () => {
           <Link href="/" className='bg-transparent'>
             <Image
               src='/search.svg'
-              alt='serach-icon'
+              alt='search-icon'
               width={35}
               height={35}
               className=' bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125'
             />
           </Link>
-          <User/>
-          {/* <SessionUserGetter/> */}
-          {/* <Link href='/login' className='bg-transparent'>
-            <Image
-              src='/avatar.svg'
-              alt='avatar-icon'
-              width={35}
-              height={35}
-              className='bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125'
-            />
-          </Link> */}
-
-          <Link href='/panier' className='bg-transparent'>
-            <Image
-              src='/basket.svg'
-              alt='basket-icon'
-              width={35}
-              height={35}
-              className=' bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125'
-            />
-          </Link>
+          <User />
+          <CartCount />
         </div>
       </nav >
 

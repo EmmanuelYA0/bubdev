@@ -32,6 +32,7 @@ export default function Vins() {
                     newQuantity += 1;
                     updatedCartItems[existingCartItemIndex].quantity = newQuantity;
                     toast.success('Quantité du produit mise à jour dans le panier avec succès', {
+                        duration: 1500,
                         style: {
                             backgroundColor: '#fff',
                             color: '#000',
@@ -56,6 +57,7 @@ export default function Vins() {
 
                 handleAddProductToCart(cartProduct);
                 toast.success('Produit ajouté au panier avec succès', {
+                    duration: 1000,
                     style: {
                         backgroundColor: '#fff',
                         color: '#000',
@@ -79,6 +81,7 @@ export default function Vins() {
 
             handleAddProductToCart(cartProduct);
             toast.success('Produit ajouté au panier avec succès', {
+                duration: 1000,
                 style: {
                     backgroundColor: '#fff',
                     color: '#000',

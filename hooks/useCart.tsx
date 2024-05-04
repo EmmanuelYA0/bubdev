@@ -4,11 +4,13 @@ import { toast } from 'react-hot-toast'
 
 type CartContextType = {
     cartTotalQty: number;
+    cartTotalAmount: number;
     cartItems: CartProductsInterface[] | null;
     handleAddProductToCart: (product: CartProductsInterface) => void;
     handleRemoveProductFromCart: (product: CartProductsInterface) => void;
     decreaseQuantity: (item: CartProductsInterface) => void; 
     increaseQuantity: (item: CartProductsInterface) => void; 
+    handleClearCart: () => void; 
 
 }
 
@@ -21,7 +23,9 @@ interface Props {
 
 export const CartContextProvider = (props: Props) => {
     const [cartTotalQty, setCartTotalQty] = useState(0);
+    const [cartTotalAmount, setCartTotalAmount] = useState(0);
     const [cartItems, setCartItems] = useState<CartProductsInterface[] | null>(null);
+
 
     useEffect(() => {
         const cItems: any = localStorage.getItem('BubblyShopCartItems');
@@ -30,6 +34,29 @@ export const CartContextProvider = (props: Props) => {
         setCartItems(cProducts);
     }, []);
    
+    useEffect(() => {
+      const getTotal = () =>{
+        if(cartItems){
+            const {total, qty} = cartItems?.reduce((acc, item) => {
+                const itemTotal = (item.price && item.quantity) && (item.price * item.quantity)
+    
+                acc.total += itemTotal? itemTotal : 0
+                acc.qty += item.quantity? item.quantity : 0
+    
+                return acc;
+            }, {
+                total: 0,
+                qty : 0,
+            })
+
+            setCartTotalQty(qty);
+            setCartTotalAmount(total);
+        }
+      }
+      getTotal();
+    
+    }, [cartItems])
+    
 
     const handleAddProductToCart = useCallback((product: CartProductsInterface) => {
         setCartItems((prev) => {
@@ -92,19 +119,27 @@ export const CartContextProvider = (props: Props) => {
                     return item.id !== product.id
                 })
                 setCartItems(filteredProducts)
-                toast.success('Produit supprimer avec succès')
+                toast.success('Produit supprimé avec succès')
                 localStorage.setItem('BubblyShopCartItems', JSON.stringify(filteredProducts));
             }   
     }, [cartItems]);
 
+    const handleClearCart = useCallback(()=>{
+        setCartItems(null);
+        setCartTotalQty(0);
+        localStorage.setItem('BubblyShopCartItems', JSON.stringify(null));
+    },[cartItems])
+
 
     const value = {
         cartTotalQty,
+        cartTotalAmount,
         cartItems,
         handleAddProductToCart,
         decreaseQuantity,
         increaseQuantity,
         handleRemoveProductFromCart,
+        handleClearCart,
 
     }
 

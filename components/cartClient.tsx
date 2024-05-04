@@ -7,11 +7,13 @@ import React, { useState } from 'react'
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Minus, Plus } from 'lucide-react';
+import { ArrowLeft, Minus, Plus } from 'lucide-react';
 
 export default function CartClient() {
     const router = useRouter()
-    const { cartItems, decreaseQuantity, increaseQuantity, handleRemoveProductFromCart } = useCart()
+    const { cartItems, cartTotalAmount, decreaseQuantity, increaseQuantity, handleRemoveProductFromCart, handleClearCart } = useCart()
+    const TVA = 100;
+    const Discount = 0;
     // const [cartQuantity, setCartQuantity] = useState(1)
 
 
@@ -32,20 +34,20 @@ export default function CartClient() {
         return (
             <div className=' flex justify-center flex-col items-center h-screen'>
                 <h1 className=' text-2xl'>Votre panier est vide </h1>
-                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}>Continuer vos achats</Button>
+                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}> <ArrowLeft/>Continuer vos achats</Button>
             </div>
         )
     }
     else {
         return (
-            <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+            <div className=" mx-auto max-w-screen-xl px-1 py-8 sm:px-6 sm:py-12 lg:px-8">
                 <div className="mx-auto max-w-3xl">
                     <header className="text-center">
                         <h1 className="text-2xl font-bold font-[Cormorant] text-myblack sm:text-3xl">Votre Panier</h1>
                     </header>
                     {cartItems && cartItems.map((item) => {
                         return (
-                            <div className="mt-8 pt-4 border-t border-gray-300">
+                            <div className="mt-8 pt-4  border-t border-gray-300">
                                 <ul key={item.id} className="space-y-4">
                                     <li className="flex items-center gap-4">
                                         {item.img ?
@@ -54,7 +56,7 @@ export default function CartClient() {
                                                 width={64}
                                                 height={64}
                                                 alt="bottle"
-                                                className="rounded object-cover"
+                                                className="rounded max-sm:size-14 object-cover"
                                             /> :
                                             <Image
                                                 src=""
@@ -72,7 +74,7 @@ export default function CartClient() {
                                             ) : item.categoryId === 2 ? (
                                                 <Link className='text-sm sm:text-xl ml-0 text-redhot' href={`champagnes/${item.id}`}>{item.name}</Link>
                                             ) : (
-                                                <Link className='text-sm sm:text-xl ml-0 text-redhot' href={`spiritueux/${item.id}`}>{item.name}</Link>
+                                                <Link className='text-xs sm:text-xl ml-0 text-redhot' href={`spiritueux/${item.id}`}>{item.name}</Link>
                                             )}
 
                                             <dl className="mt-0.5 space-y-px sm:text-lg text-xs text-gray-600">
@@ -84,24 +86,24 @@ export default function CartClient() {
 
                                         <div className="flex flex-1 items-center justify-end gap-2">
                                             
-                                                <div className="flex items-center gap-1 ">
-                                                    <button type="button" className="size-10 leading-10 text-gray-400 transition hover:opacity-75" onClick={() => decreaseQuantity(item)}>
-                                                        <Minus className=" bg-slate-100 rounded-sm h-6 w-6" />
+                                                <div className="flex items-center py-1 gap-1 max-sm:size-8 max-sm:-ml-8 ">
+                                                    <button type="button" className="size-10 max-sm:size-4 max-sm:-bottom-5 max-sm:left-[11px] max-sm:justify-self-center leading-10 text-gray-400 transition hover:opacity-75" onClick={() => decreaseQuantity(item)}>
+                                                        <Minus className=" bg-slate-100 max-sm:size-4  rounded-sm h-6 w-6" />
                                                     </button>
 
                                                     <input
                                                         type="number"
                                                         value={item.quantity}
-                                                        className="h-8 w-10 rounded border border-gray-200 bg-white text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                                                        className="h-8 w-10 max-sm:size-4  rounded border border-gray-200 bg-white text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                                                         readOnly
                                                     />
 
-                                                    <button type="button" className="size-10 leading-10 text-gray-400 transition hover:opacity-75" onClick={() => increaseQuantity(item)}>
-                                                        <Plus className=" bg-slate-100 rounded-sm h-6 w-6" />
+                                                    <button type="button" className="size-10 max-sm:size-4 max-sm:-top-5 max-sm:right-[29px] max-sm:justify-self-center leading-10 text-gray-400 transition hover:opacity-75" onClick={() => increaseQuantity(item)}>
+                                                        <Plus className=" bg-slate-100 max-sm:size-4 rounded-sm h-6 w-6" />
                                                     </button>
                                                 </div>
                                             
-                                            <p className="mt-0.5 space-y-px sm:text-sm font-semibold text-xs text-gray-600">
+                                            <p className="mt-0.5 space-y-px sm:text-sm font-semibold text-xs max-sm:w-10 text-gray-600">
                                                 {item.price && item.quantity && formatPrice(item.price * item.quantity)} FCFA
                                             </p>
 
@@ -137,22 +139,22 @@ export default function CartClient() {
                             <dl className="space-y-0.5 text-sm text-gray-700">
                                 <div className="flex font-semibold text-base text-redhot justify-between">
                                     <dt>Sous Total</dt>
-                                    <dd>£250</dd>
+                                    <dd>{formatPrice(cartTotalAmount)} FCFA</dd>
                                 </div>
 
                                 <div className="flex justify-between">
                                     <dt>TVA</dt>
-                                    <dd>£25</dd>
+                                    <dd>{TVA} FCFA</dd>
                                 </div>
 
                                 <div className="flex justify-between">
                                     <dt>Réduction</dt>
-                                    <dd>-£20</dd>
+                                    <dd>-{Discount} FCFA</dd>
                                 </div>
 
                                 <div className="flex justify-between !text-base font-medium">
                                     <dt>Total</dt>
-                                    <dd>£200</dd>
+                                    <dd>{formatPrice(cartTotalAmount + TVA - Discount)} FCFA</dd>
                                 </div>
                             </dl>
 
@@ -175,12 +177,12 @@ export default function CartClient() {
                                         />
                                     </svg>
 
-                                    <p className="whitespace-nowrap text-xs">2 Discounts Applied</p>
+                                    <p className="whitespace-nowrap text-xs">0 Discounts Applied</p>
                                 </span>
                             </div>
 
                             <div className="flex justify-end gap-x-5">
-                                <Button variant="outline" className='h-12 text-pourpre hover:bg-red200'>Vider le panier</Button>
+                                <Button onClick={handleClearCart} variant="outline" className='h-12 text-pourpre hover:bg-red200'>Vider le panier</Button>
                                 <a
                                     href="#"
                                     className="block rounded bg-pourpre px-5 py-3 text-sm text-gray-100 transition hover:bg-pink-900"

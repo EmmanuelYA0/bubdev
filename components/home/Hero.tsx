@@ -17,7 +17,7 @@ const Hero = () => {
                     />
                 </div>
                 {/* left-8 top-40  h-[300px] */}
-                <div className='w-[600px] h-[500px]'>
+                <div className='w-[600px] -top-7 h-[500px]'>
                     <h1 className="text-myblack lg:text-5xl sm:text-4xl text-4xl font-normal text-justify font-['Montserrat'] leading-normal ">
                         DECOUVREZ L’
                         <span className="text-redhot  text-5xl font-normal font-['Montaga'] ">
