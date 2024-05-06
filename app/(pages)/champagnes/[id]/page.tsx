@@ -111,7 +111,7 @@ export default function ChampagneItem({ params }: ParamsProps) {
   }, [params.id]);
 
   return (
-    <section className=" w-full h-[1024px]">
+    <section className=" w-full min-h-screen">
       <div className=" flex justify-center items-center mt-40 ">
         {champagne ? (
           <div className=" flex gap-4 w-full max-lg:flex-col">

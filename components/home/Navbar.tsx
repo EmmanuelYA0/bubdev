@@ -9,6 +9,7 @@ import User from '../sessions/User';
 import { Button } from '../ui/button';
 import UserSidebar from '../sessions/UserSidebar';
 import { CartCount } from '../cartCount';
+import SearchModal from './NavbarSearch';
 
 
 
@@ -78,7 +79,7 @@ const Navbar = () => {
 
 
         <div className='hidden lg:flex items-center justify-between gap-4 bg-transparent'>
-          <Link href="/" className='bg-transparent'>
+          {/* <Link href="/" className='bg-transparent'>
             <Image
               src='/search.svg'
               alt='search-icon'
@@ -86,7 +87,8 @@ const Navbar = () => {
               height={35}
               className=' bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125'
             />
-          </Link>
+          </Link> */}
+          <SearchModal/>
           <User />
           <CartCount />
         </div>

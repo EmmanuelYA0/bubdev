@@ -30,6 +30,7 @@ export default function Champagnes() {
                     newQuantity += 1;
                     updatedCartItems[existingCartItemIndex].quantity = newQuantity;
                     toast.success('Quantité du produit mise à jour dans le panier avec succès', {
+                        duration: 1500,
                         style: {
                             backgroundColor: '#fff',
                             color: '#000',
@@ -54,6 +55,7 @@ export default function Champagnes() {
 
                 handleAddProductToCart(cartProduct);
                 toast.success('Produit ajouté au panier avec succès', {
+                    duration: 1000,
                     style: {
                         backgroundColor: '#fff',
                         color: '#000',
@@ -64,7 +66,7 @@ export default function Champagnes() {
                     },
                 });
             }
-        } else{
+        } else {
             // Si le panier est vide
             const cartProduct: CartProductsInterface = {
                 id: champagne.id,
@@ -77,6 +79,7 @@ export default function Champagnes() {
 
             handleAddProductToCart(cartProduct);
             toast.success('Produit ajouté au panier avec succès', {
+                duration: 1000,
                 style: {
                     backgroundColor: '#fff',
                     color: '#000',
@@ -136,7 +139,7 @@ export default function Champagnes() {
                             Champagnes.map((champagne, index) => (
                                 <div className="grid justify-center">
                                     <div key={index} className="group border-gray-100/30 flex w-full min-h-80 max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 ">
-                                    <a className="relative bg-white mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`champagnes/${champagne.id}`}>
+                                        <a className="relative bg-white mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl" href={`champagnes/${champagne.id}`}>
                                             <Image
                                                 src={champagne.img}
                                                 alt={champagne.name}

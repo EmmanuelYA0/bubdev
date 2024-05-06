@@ -14,27 +14,13 @@ export default function CartClient() {
     const { cartItems, cartTotalAmount, decreaseQuantity, increaseQuantity, handleRemoveProductFromCart, handleClearCart } = useCart()
     const TVA = 100;
     const Discount = 0;
-    // const [cartQuantity, setCartQuantity] = useState(1)
-
-
-    // const decreaseQuantity = (quantity : number) => {
-    //     if (cartQuantity > 1) {
-    //         setCartQuantity(cartQuantity - 1);
-    //         quantity = cartQuantity;
-    //     }
-    // };
-    // const increaseQuantity = (quantity : number) => {
-    //     setCartQuantity(cartQuantity + 1);
-    //     quantity = cartQuantity;
-    // }
-
-
+   
 
     if (!cartItems || cartItems.length === 0) {
         return (
             <div className=' flex justify-center flex-col items-center h-screen'>
                 <h1 className=' text-2xl'>Votre panier est vide </h1>
-                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}> <ArrowLeft/>Continuer vos achats</Button>
+                <Button className='bg-pourpre mt-6' onClick={() => router.push('/vins')}> <ArrowLeft />Commencer vos achats</Button>
             </div>
         )
     }
@@ -85,24 +71,24 @@ export default function CartClient() {
 
 
                                         <div className="flex flex-1 items-center justify-end gap-2">
-                                            
-                                                <div className="flex items-center py-1 gap-1 max-sm:size-8 max-sm:-ml-8 ">
-                                                    <button type="button" className="size-10 max-sm:size-4 max-sm:-bottom-5 max-sm:left-[11px] max-sm:justify-self-center leading-10 text-gray-400 transition hover:opacity-75" onClick={() => decreaseQuantity(item)}>
-                                                        <Minus className=" bg-slate-100 max-sm:size-4  rounded-sm h-6 w-6" />
-                                                    </button>
 
-                                                    <input
-                                                        type="number"
-                                                        value={item.quantity}
-                                                        className="h-8 w-10 max-sm:size-4  rounded border border-gray-200 bg-white text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
-                                                        readOnly
-                                                    />
+                                            <div className="flex items-center py-1 gap-1 max-sm:size-8 max-sm:-ml-8 ">
+                                                <button type="button" className="size-10 max-sm:size-4 max-sm:-bottom-5 max-sm:left-[11px] max-sm:justify-self-center leading-10 text-gray-400 transition hover:opacity-75" onClick={() => decreaseQuantity(item)}>
+                                                    <Minus className=" bg-slate-100 max-sm:size-4  rounded-sm h-6 w-6" />
+                                                </button>
 
-                                                    <button type="button" className="size-10 max-sm:size-4 max-sm:-top-5 max-sm:right-[29px] max-sm:justify-self-center leading-10 text-gray-400 transition hover:opacity-75" onClick={() => increaseQuantity(item)}>
-                                                        <Plus className=" bg-slate-100 max-sm:size-4 rounded-sm h-6 w-6" />
-                                                    </button>
-                                                </div>
-                                            
+                                                <input
+                                                    type="number"
+                                                    value={item.quantity}
+                                                    className="h-8 w-10 max-sm:size-4  rounded border border-gray-200 bg-white text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                                                    readOnly
+                                                />
+
+                                                <button type="button" className="size-10 max-sm:size-4 max-sm:-top-5 max-sm:right-[29px] max-sm:justify-self-center leading-10 text-gray-400 transition hover:opacity-75" onClick={() => increaseQuantity(item)}>
+                                                    <Plus className=" bg-slate-100 max-sm:size-4 rounded-sm h-6 w-6" />
+                                                </button>
+                                            </div>
+
                                             <p className="mt-0.5 space-y-px sm:text-sm font-semibold text-xs max-sm:w-10 text-gray-600">
                                                 {item.price && item.quantity && formatPrice(item.price * item.quantity)} FCFA
                                             </p>
@@ -129,8 +115,6 @@ export default function CartClient() {
                                         </div>
                                     </li>
                                 </ul>
-
-
                             </div>
                         )
                     })}
@@ -141,6 +125,7 @@ export default function CartClient() {
                                     <dt>Sous Total</dt>
                                     <dd>{formatPrice(cartTotalAmount)} FCFA</dd>
                                 </div>
+                                
 
                                 <div className="flex justify-between">
                                     <dt>TVA</dt>
@@ -157,7 +142,11 @@ export default function CartClient() {
                                     <dd>{formatPrice(cartTotalAmount + TVA - Discount)} FCFA</dd>
                                 </div>
                             </dl>
-
+                            <div className='flex justify-end'>
+                                    <p className=' text-gray-500 text-sm sm:text-base'>
+                                        Frais de livraison non inclus à ce stade.
+                                    </p>
+                                </div>
                             <div className="flex justify-end">
                                 <span
                                     className="inline-flex items-center justify-center rounded-full bg-red200 px-2.5 py-0.5 text-pourpre"
@@ -177,17 +166,17 @@ export default function CartClient() {
                                         />
                                     </svg>
 
-                                    <p className="whitespace-nowrap text-xs">0 Discounts Applied</p>
+                                    <p className="whitespace-nowrap text-xs">0 Bon(s) de réduction appliqué(s)</p>
                                 </span>
                             </div>
 
                             <div className="flex justify-end gap-x-5">
                                 <Button onClick={handleClearCart} variant="outline" className='h-12 text-pourpre hover:bg-red200'>Vider le panier</Button>
                                 <a
-                                    href="#"
+                                    href="#" onClick={() => { }}
                                     className="block rounded bg-pourpre px-5 py-3 text-sm text-gray-100 transition hover:bg-pink-900"
                                 >
-                                    Checkout
+                                    Commander
                                 </a>
 
                             </div>
