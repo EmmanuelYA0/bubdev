@@ -217,13 +217,13 @@ export default function Vins() {
                                         </a>
                                         <div className="mt-4 px-5 pb-5 bg-transparent">
                                             <a href="#">
-                                                <h5 className="text-xl tracking-tight text-white bg-transparent">
+                                                <h5 className="text-lg tracking-tight text-white bg-transparent">
                                                     {vin.name}
                                                 </h5>
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className="text-lg font-bold text-white  bg-transparent">{formatPrice(vin.price)} FCFA</span>
+                                                    <span className="text-lg font-bold text-white  bg-transparent">{formatPrice(vin.soldPrice)} FCFA</span>
                                                     <span className="text-sm text-white line-through bg-transparent">{formatPrice(vin.price)} FCFA</span>
                                                 </p>
                                             </div>

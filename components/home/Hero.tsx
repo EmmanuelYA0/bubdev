@@ -37,7 +37,7 @@ const Hero = () => {
                             position='top-28 left-24'
                         />
                     </Link>
-                    <Link href='#'>
+                    <Link href='#About'>
                         <Image
                             src='/fleche.svg'
                             alt='fleche'

@@ -163,7 +163,7 @@ export default function Champagnes() {
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className=" text-base font-bold text-white  bg-transparent">{formatPrice(champagne.price)} FCFA</span>
+                                                    <span className=" text-base font-bold text-white  bg-transparent">{formatPrice(champagne.soldPrice)} FCFA</span>
                                                     <span className=" text-xs text-white line-through bg-transparent">{formatPrice(champagne.price)} FCFA</span>
                                                 </p>
                                             </div>

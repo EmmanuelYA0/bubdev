@@ -4,7 +4,6 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { useToast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -36,8 +35,9 @@ const formSchema = z.object({
 })
 
 export function SignInForm() {
-  // const { toast } = useToast()
   const router = useRouter();
+
+  const [IsLoading, setIsLoading] = useState(true);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -47,6 +47,10 @@ export function SignInForm() {
     setPasswordShown(passwordShown ? false : true);
   };
 
+
+  const handleLoading = () => {
+    setIsLoading(true);
+  };
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -96,7 +100,7 @@ export function SignInForm() {
                 <FormControl>
                   <Input placeholder="mail@example.com" {...field} />
                 </FormControl>
-                <FormMessage className="bg-transparent"/>
+                <FormMessage className="bg-transparent" />
               </FormItem>
             )}
           />
@@ -110,7 +114,7 @@ export function SignInForm() {
                   <div className=" rounded w-full right-2 bg-transparent">
                     <Input type={passwordShown ? "text" : "password"} placeholder="Entrez votre mot de passe" {...field} />
                     <i className=" absolute top-2 right-2 bg-transparent cursor-pointer hover:stroke-redhot" onClick={togglePasswordVisiblity}>
-                    { passwordShown ? <EyeOff size={24} className="bg-transparent hover:stroke-blue-400"/>: <Eye size={24} className=" bg-transparent hover:stroke-blue-400"/>}
+                      {passwordShown ? <EyeOff size={24} className="bg-transparent hover:stroke-blue-400" /> : <Eye size={24} className=" bg-transparent hover:stroke-blue-400" />}
                     </i>{" "}
                   </div>
                 </FormControl>
@@ -118,11 +122,16 @@ export function SignInForm() {
               </FormItem>
             )}
           />
-          <FormError message={errorMessage}/>
-          <FormSuccess message={successMessage}/>
-          <Button type="submit" className=" mt-6 mx-auto w-full bg-pourpre">
-            Se connecter
-          </Button>
+          <FormError message={errorMessage} />
+          <FormSuccess message={successMessage} />
+          {IsLoading ? <>
+            <Button type="submit" onClick={handleLoading} className=" mt-6 mx-auto w-full bg-pourpre">
+              Se connecter
+            </Button>
+          </> : <>
+            <Button>Chargement</Button>
+          </>}
+
         </form>
         <div className=" mx-auto my-4 flex w-full justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:h-px after:flex-grow after:bg-stone-400 bg-transparent">
           ou

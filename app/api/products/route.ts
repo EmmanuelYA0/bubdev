@@ -1,7 +1,7 @@
 
+import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { z } from "zod"
-import { prisma } from "@/lib/prisma";
 
 
 const ProductsSchema = z
@@ -11,13 +11,14 @@ const ProductsSchema = z
     img: z.string(),
     quantity: z.number(),
     price: z.number(),
+    soldPrice: z.number(),
     categoryId: z.number(),
 })
 
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { name, description, img, quantity, price, categoryId} = ProductsSchema.parse(body);
+        const { name, description, img, quantity, price, soldPrice, categoryId} = ProductsSchema.parse(body);
 
         const ExistingProduct = await prisma.product.findFirst({
             where : {name: name}
@@ -33,6 +34,7 @@ export async function POST(req: Request) {
                 img,
                 quantity,
                 price,
+                soldPrice,
                 categoryId
             }
         })

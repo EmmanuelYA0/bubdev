@@ -3,9 +3,9 @@ import React from 'react'
 
 const About = () => {
     return (
-        <section className=' flex flex-wrap items-center h-[700px]'>
+        <section id='About' className=' flex flex-wrap items-center h-[700px]'>
             <div className=" flex-grow w-[500px] h-24 items-center ml-80 text-center  relative z-0 text-myblack text-6xl font-medium font-['Cormorant']">
-            {/* left-[351px] top-[-750px]*/}
+                {/* left-[351px] top-[-750px]*/}
                 A propos de nous
             </div>
             <Image
@@ -17,7 +17,7 @@ const About = () => {
                 // left-[900px] top-[-900px]
             />
             <div className="w-[700px] h-32 mx-[350px] text-justify">
-            {/* top-[-650px] */}
+                {/* top-[-650px] */}
                 <span className="text-myblack text-xl font-normal font-['Montaga']">
                     Nous sommes une entreprise passionnée par le vin et le champagne. Chez
                 </span>

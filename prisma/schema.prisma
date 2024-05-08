@@ -75,11 +75,12 @@ model Product {
   id                Int               @id @default(autoincrement())
   name              String   
   description       String?           @db.Text
-  img               String?
+  img               String
   isAvailable       Boolean           @default(true)  
   createdAt         DateTime          @default(now())
   quantity          Float?
   price             Float 
+  soldPrice         Float?
   category          Categories?       @relation(fields: [categoryId], references: [id])
   categoryId        Int? 
   Orders            Order_items[]

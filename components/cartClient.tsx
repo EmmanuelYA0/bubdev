@@ -129,7 +129,7 @@ export default function CartClient() {
 
                                 <div className="flex justify-between">
                                     <dt>TVA</dt>
-                                    <dd>{TVA} FCFA</dd>
+                                    <dd>{formatPrice(cartTotalAmount*0.18)} FCFA</dd>
                                 </div>
 
                                 <div className="flex justify-between">
@@ -139,7 +139,7 @@ export default function CartClient() {
 
                                 <div className="flex justify-between !text-base font-medium">
                                     <dt>Total</dt>
-                                    <dd>{formatPrice(cartTotalAmount + TVA - Discount)} FCFA</dd>
+                                    <dd>{formatPrice(cartTotalAmount + (cartTotalAmount*0.18) - Discount)} FCFA</dd>
                                 </div>
                             </dl>
                             <div className='flex justify-end'>

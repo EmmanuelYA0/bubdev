@@ -100,85 +100,7 @@ const Catalog = () => {
             console.error(`Champagne avec l'ID ${champagneId} non trouvé.`);
         }
     };
-    // const handleAddToCart = (champagne: Champagne) => {
-
-    // Vérifier si cartItems est null avant de l'utiliser
-    // if (cartItems) {
-    //     const existingCartItemIndex = cartItems.findIndex(item => item.id === champagne.id);
-
-    //     if (existingCartItemIndex !== -1) {
-    //         const updatedCartItems = [...cartItems];
-    //         let newQuantity = updatedCartItems[existingCartItemIndex].quantity;
-    //         if (newQuantity) {
-    //             newQuantity += 1;
-    //             updatedCartItems[existingCartItemIndex].quantity = newQuantity;
-    //             toast.success('Quantité du produit mise à jour dans le panier avec succès', {
-    //                 duration: 1500,
-    //                 style: {
-    //                     backgroundColor: '#fff',
-    //                     color: '#000',
-    //                 },
-    //                 iconTheme: {
-    //                     primary: '#4caf50',
-    //                     secondary: '#fff',
-    //                 },
-    //             });
-    //         }
-    //     }
-    //     else {
-    //         // Si le produit n'est pas encore dans le panier
-    //         const cartProduct: CartProductsInterface = {
-    //             id: champagne.id,
-    //             name: champagne.name,
-    //             description: champagne.description,
-    //             price: champagne.price,
-    //             img: champagne.img,
-    //             quantity: 1,
-    //         };
-
-    //         handleAddProductToCart(cartProduct);
-    //         toast.success('Produit ajouté au panier avec succès', {
-    //             duration: 1000,
-    //             style: {
-    //                 backgroundColor: '#fff',
-    //                 color: '#000',
-    //             },
-    //             iconTheme: {
-    //                 primary: '#4caf50',
-    //                 secondary: '#fff',
-    //             },
-    //         });
-    //     }
-    // } else {
-    //     // Si le panier est vide
-    //     const cartProduct: CartProductsInterface = {
-    //         id: champagne.id,
-    //         name: champagne.name,
-    //         description: champagne.description,
-    //         price: champagne.price,
-    //         img: champagne.img,
-    //         quantity: 1,
-    //     };
-
-    //     handleAddProductToCart(cartProduct);
-    //     toast.success('Produit ajouté au panier avec succès', {
-    //         duration: 1000,
-    //         style: {
-    //             backgroundColor: '#fff',
-    //             color: '#000',
-    //         },
-    //         iconTheme: {
-    //             primary: '#4caf50',
-    //             secondary: '#fff',
-    //         },
-    //     });
-    // }
-
-
-
-    // };
-
-
+    
 
 
     useEffect(() => {
@@ -225,13 +147,13 @@ const Catalog = () => {
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative  mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="champagnes/8">
                             <Image
-                                src="/moet-chandon-brut-imperial-champagne.png"
+                                src="/champagne-imgs/moet-chandon-brut-imperial-champagne.png"
                                 alt="bottle1"
                                 width={500}
                                 height={500}
                                 className="peer absolute bg-coolbg top-0 right-0 h-full w-full object-contain" />
                             <Image
-                                src="/moet.png"
+                                src="/champagne-imgs/moet.png"
                                 alt="bottle3"
                                 width={480}
                                 height={480}
@@ -268,13 +190,13 @@ const Catalog = () => {
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="champagnes/9">
                             <Image
-                                src="/veuve-clicquot-champagne-sparkling-veuve-clicquot-yellow-lab.jpg"
+                                src="/champagne-imgs/veuve-clicquot-champagne-sparkling-veuve-clicquot-yellow-lab.jpg"
                                 alt="bottle1"
                                 width={352}
                                 height={352}
                                 className="peer absolute top-0 bg-coolbg right-0 h-full w-full object-contain" />
                             <Image
-                                src="/bottle3.svg"
+                                src="/champagne-imgs/bottle3.svg"
                                 alt="bottle3"
                                 width={100}
                                 height={200}
@@ -311,13 +233,13 @@ const Catalog = () => {
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="champagnes/10">
                             <Image
-                                src="/dom-perignon-champagne-sparkling-dom-perignon-750ml-31515614 (1).png"
+                                src="/champagne-imgs/dom-perignon-champagne-sparkling-dom-perignon-750ml-31515614 (1).png"
                                 alt="bottle1"
                                 width={750}
                                 height={750}
                                 className="peer absolute top-0 bg-coolbg right-0 h-full w-full object-contain" />
                             <Image
-                                src="/final-dom.png"
+                                src="/champagne-imgs/final-dom.png"
                                 alt="bottle3"
                                 width={400}
                                 height={400}
@@ -354,13 +276,13 @@ const Catalog = () => {
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl" href="champagnes/11">
                             <Image
-                                src="/LouisRoedererCristal.png"
+                                src="/champagne-imgs/LouisRoedererCristal.png"
                                 alt="bottle1"
                                 width={406}
                                 height={614}
                                 className="peer absolute top-0 right-0 bg-coolbg h-full w-full object-contain" />
                             <Image
-                                src="/louis.png"
+                                src="/champagne-imgs/louis.png"
                                 alt="bottle2"
                                 width={500}
                                 height={500}
@@ -397,13 +319,13 @@ const Catalog = () => {
                     <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl" href="champagnes/12">
                             <Image
-                                src="/dom-perignon-p2-plenitude-brut-rose.png"
+                                src="/champagne-imgs/dom-perignon-p2-plenitude-brut-rose.png"
                                 alt="bottle1"
                                 width={458}
                                 height={533}
                                 className="peer absolute top-0 right-0 bg-coolbg h-full w-full object-contain" />
                             <Image
-                                src="/domperignonrose.png"
+                                src="/champagne-imgs/domperignonrose.png"
                                 alt="bottle3"
                                 width={384}
                                 height={650}

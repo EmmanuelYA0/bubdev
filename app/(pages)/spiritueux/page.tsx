@@ -172,7 +172,7 @@ export default function Spiritueux() {
                                             </a>
                                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                                 <p className=' bg-transparent'>
-                                                    <span className="text-lg font-bold text-white  bg-transparent">{formatPrice(spiritueux.price)} FCFA</span>
+                                                    <span className="text-lg font-bold text-white  bg-transparent">{formatPrice(spiritueux.soldPrice)} FCFA</span>
                                                     <span className="text-sm text-white line-through bg-transparent">{formatPrice(spiritueux.price)} FCFA</span>
                                                 </p>
                                             </div>
