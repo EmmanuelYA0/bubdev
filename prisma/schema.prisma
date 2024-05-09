@@ -109,8 +109,9 @@ model Order {
   id                  Int           @id @default(autoincrement())
   delivery_address    String
   createdAt           DateTime      @default(now())
+  amount              Float
   status              String?  
-  author              User?       @relation(fields: [authorId], references: [id])
+  author              User?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId            Int? 
   orders_items        Order_items[]    
 

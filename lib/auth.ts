@@ -58,6 +58,7 @@ export const { handlers, auth } = NextAuth({
           id: `${existingUser.id}`,
           username: existingUser.username,
           email: existingUser.email,
+          role: existingUser.role,
         };
         
       },
@@ -70,7 +71,8 @@ export const { handlers, auth } = NextAuth({
       if (user) {
             return {
               ...token,
-              username: user.username
+              username: user.username,
+              role: user.role,
             }
           }
       return token
@@ -83,6 +85,7 @@ export const { handlers, auth } = NextAuth({
         user: {
           ...session.user,
           username: token.username as string,
+          role: token.role
         },
       }
     },

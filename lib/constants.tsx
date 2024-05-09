@@ -1,3 +1,11 @@
+import {
+  LayoutDashboard,
+  Shapes,
+  ShoppingBag,
+  Tag,
+  UsersRound,
+} from "lucide-react";
+
 // NAVIGATION
 export const NAV_LINKS = [
   { href: '/vins', key: 'vins', label: 'Vins' },
@@ -48,3 +56,29 @@ export interface CartProductsInterface {
   quantity?: number;
   categoryId?: number;
 }
+
+
+// ADMIN NAVIGATION
+
+export const adminNavLinks = [
+  {
+    url: "/admin",
+    icon: <LayoutDashboard />,
+    label: "Tableau de bord",
+  },
+  {
+    url: "/admin/products",
+    icon: <Tag />,
+    label: "Produits",
+  },
+  {
+    url: "/admin/orders",
+    icon: <ShoppingBag />,
+    label: "Commandes",
+  },
+  {
+    url: "/admin/customers",
+    icon: <UsersRound />,
+    label: "Clients",
+  },
+];

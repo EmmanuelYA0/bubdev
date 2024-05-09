@@ -3,6 +3,7 @@ import NextAuth from "next-auth"
 declare module "next-auth" {
     interface User {
         username?: string | null
+        role?: 'USER' | 'ADMIN' | null
     }
     interface AdapterUser{
         // username?: String
@@ -16,6 +17,7 @@ declare module "next-auth" {
     interface Session {
         user: User & {
             username: string
+            role: 'USER' | 'ADMIN';
         }
         // token:{
         //     username?: String
@@ -32,5 +34,6 @@ declare module "next-auth" {
        /** OpenID ID Token */
        idToken?: string
        username?: String | null
+       role?: 'USER' | 'ADMIN' | null;
      }
    }
