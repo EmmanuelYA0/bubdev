@@ -53,12 +53,12 @@ const AdminDashboard = () => {
   }, []);
   
     return (
-      <div className="px-8 py-10 mt-24 min-h-[700px]">
-        <p className="font-bold text-redhot text-3xl/none">Tableau de bord</p>
+      <div className="px-1 py-10 -top-4 mt-24 min-h-[700px]">
+        <p className="font-bold text-redhot text-2xl/none">Tableau de bord</p>
         <Separator className="bg-gray-400 my-5" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
-          <Card>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-3">
+          <Card className=' border border-gray-300'>
             <CardHeader className="flex flex-row text-redhot max-sm:text-base justify-between items-center">
               <CardTitle>Ventes totales</CardTitle>
               <CircleDollarSign className="max-sm:hidden" />
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
             </CardContent>
           </Card>
   
-          <Card>
+          <Card className=' border border-gray-300'>
             <CardHeader className="flex flex-row max-lg:flex-col text-redhot max-lg:text-base justify-between items-center">
               <CardTitle>Commandes totales</CardTitle>
               <ShoppingBag className="max-sm:hidden" />
@@ -78,7 +78,7 @@ const AdminDashboard = () => {
             </CardContent>
           </Card>
   
-          <Card>
+          <Card className=' border border-gray-300'>
             <CardHeader className="flex flex-row max-lg:flex-col text-redhot max-sm:text-base justify-between items-center">
               <CardTitle className='max-sm:text-base'>Total Clients</CardTitle>
               <UserRound className="max-sm:hidden" />
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
           </Card>
         </div>
   
-        <Card className="mt-10 ">
+        <Card className="mt-10 border border-gray-300 ">
           <CardHeader className='text-redhot '>
             <CardTitle>Sales Chart ($)</CardTitle>
           </CardHeader>

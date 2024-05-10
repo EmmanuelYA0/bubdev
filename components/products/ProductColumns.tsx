@@ -13,7 +13,7 @@ export const columns: ColumnDef<CartProductsInterface>[] = [
     accessorKey: "name",
     header: "Nom",
     cell: ({ row }) => (
-      <Link href={`/spiritueux/${row.original.id}`} className="hover:text-redhot">
+      <Link href={`/admin/products/${row.original.id}`} className="hover:text-redhot">
         {row.original.name}
       </Link>
     ),
@@ -33,9 +33,9 @@ export const columns: ColumnDef<CartProductsInterface>[] = [
     header: "Quantité",
   },
   {
-    header: "Action",
+    // header: "Action",
     id: 'actions',
-    cell: ({ row }) => <Delete item="product" id={row.original.id as unknown as string} />,
+    cell: ({ row }) => <Delete item="produit" id={row.original.id as unknown as string} />,
   },
 ];
 

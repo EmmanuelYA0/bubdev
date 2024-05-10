@@ -57,18 +57,18 @@ export function DataTable<TData, TValue>({
           onChange={(event) =>
             table.getColumn(searchKey)?.setFilterValue(event.target.value)
           }
-          className="max-w-sm border border-redhot"
+          className="max-w-sm border border-gray-300"
         />
       </div>
 
-      <div className="rounded-md border-2 w-full">
-        <Table className=" mx-auto -left-3">
+      <div className="rounded-md border border-gray-300 w-full">
+        <Table className=" mx-auto -left-3 ">
           <TableHeader className=" ">
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow key={headerGroup.id} className="border-b border-gray-300">
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className=" text-redhot font-bold">
+                    <TableHead key={header.id} className=" text-redhot font-bold ">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -87,6 +87,7 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="border-b border-gray-300"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="">
@@ -118,6 +119,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className="bg-white border border-redhot text-pourpre hover:bg-redhot hover:text-white"
         >
           Précédent
         </Button>
@@ -126,6 +128,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className="bg-white border border-redhot text-pourpre hover:bg-redhot hover:text-white"
         >
           Suivant
         </Button>

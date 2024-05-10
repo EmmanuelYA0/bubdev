@@ -8,6 +8,7 @@ import {
     UserRoundCheck,
     LogOut,
     User2,
+    LayoutDashboard,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
@@ -39,9 +40,18 @@ const User = () => {
                         <DropdownMenuItem className='bg-transparent'>
                             <Button className='bg-transparent hover:bg-transparent h-4'>
                                 <User2 stroke='white' className="bg-transparent mr-2 h-4 w-4" />
-                                <span className='text-white capitalize bg-transparent'>{session?.user.username? (session.user.username):(session.user.name)}</span>
+                                <span className='text-white capitalize bg-transparent'>{session?.user.username ? (session.user.username) : (session.user.name)}</span>
                             </Button>
                         </DropdownMenuItem>
+
+                        {session?.user.role === 'ADMIN' &&
+                            <DropdownMenuItem className='bg-transparent'>
+                                <Button className='bg-transparent hover:bg-transparent h-4'>
+                                    <LayoutDashboard stroke='white' className="bg-transparent mr-2 h-4 w-4" />
+                                    <Link href='/admin' className='text-white capitalize bg-transparent'> Tableau de bord</Link>
+                                </Button>
+                            </DropdownMenuItem>
+                        }
                         <DropdownMenuItem className="bg-transparent">
                             <Button onClick={() => signOut()} className='bg-transparent hover:bg-transparent h-4'>
                                 <LogOut stroke='white' className="bg-transparent mr-2 h-4 w-4" />

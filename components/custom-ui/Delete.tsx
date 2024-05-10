@@ -28,19 +28,19 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
   const onDelete = async () => {
     try {
       setLoading(true)
-      const itemType = item === "product" ? "products" : "collections"
-      const res = await fetch(`/api/${itemType}/${id}`, {
+
+      const res = await fetch(`/api/products/${id}`, {
         method: "DELETE",
       })
 
       if (res.ok) {
         setLoading(false)
-        window.location.href = (`/${itemType}`)
-        toast.success(`${item} deleted`)
+        window.location.href = (`/admin/products`)
+        toast.success(`${item} supprimé`)
       }
     } catch (err) {
       console.log(err)
-      toast.error("Something went wrong! Please try again.")
+      toast.error("Quelque chose n'a pas fonctionné ! Veuillez réessayer.")
     }
   }
   return (
@@ -50,16 +50,16 @@ const Delete: React.FC<DeleteProps> = ({ item, id }) => {
           <Trash className="h-4 w-4" />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="bg-white text-gray-400">
+      <AlertDialogContent className="bg-white text-gray-500">
         <AlertDialogHeader>
-          <AlertDialogTitle className="text-red-500">Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle className="text-red-500">Êtes-vous absolument sûr ?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your {item}.
+            Cette action ne pourra être annulée. Cette action supprimera définitivement votre {item}.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-400 text-white" onClick={onDelete}>Delete</AlertDialogAction>
+          <AlertDialogCancel>Annuler</AlertDialogCancel>
+          <AlertDialogAction className="bg-red-400 text-white" onClick={onDelete}>Supprimer</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
