@@ -23,14 +23,6 @@ export default function DashboardLayout({
                 containerClassName=" bg-transparent"
                 containerStyle={{}}
                 toastOptions={{
-                    // Define default options
-                    className: 'bg-transparent',
-                    duration: 5000,
-                    style: {
-                        background: '#363636',
-                        color: '#fff',
-                    },
-
                     // Default options for specific types
                     success: {
                         duration: 3000,

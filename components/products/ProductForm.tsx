@@ -28,9 +28,9 @@ const formSchema = z.object({
   description: z.string().min(10).max(900).trim(),
   img: z.string(),
   categoryId: z.number(),
-  price: z.coerce.number().min(3),
-  soldPrice: z.coerce.number().min(3),
-  quantity: z.coerce.number().min(0.1),
+  price: z.coerce.number().min(500),
+  soldPrice: z.coerce.number().min(500),
+  quantity: z.coerce.number().min(1),
 });
 
 interface ProductFormProps {
@@ -83,7 +83,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       if (res.ok) {
         setLoading(false);
         toast.success(`Produit ${initialData ? "mis à jour avec succès" : "crée avec succès"}`);
-        window.location.href = "admin/products";
+        window.location.href = "http://localhost:3000/admin/products";
         router.push("http://localhost:3000/admin/products");
       }
     } catch (err) {
@@ -185,7 +185,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="soldPrice"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Prix promo (facultatif)</FormLabel>
+                  <FormLabel>Prix promo</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Prix promo"
