@@ -4,6 +4,11 @@ import Loading from '@/app/loading'
 import ProductForm from '@/components/products/ProductForm'
 import React, { useEffect, useState } from 'react'
 
+// interface ProductResponse {
+//   product: CartProducts;
+//   status: number;
+// }
+
 const ProductDetails = ({ params }: { params: { Id: string }}) => {
   const [loading, setLoading] = useState(true)
   const [productDetails, setProductDetails] = useState<CartProducts | null>(null)
@@ -14,7 +19,8 @@ const ProductDetails = ({ params }: { params: { Id: string }}) => {
         method: "GET"
       })
       const data = await res.json()
-      setProductDetails(data)
+      setProductDetails(data.product)
+      console.log("ProductDetails : ",data)
       setLoading(false)
     } catch (err) {
       console.log("[productId_GET]", err)

@@ -20,7 +20,6 @@ import { Textarea } from "../ui/textarea";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Delete from "../custom-ui/Delete";
-import Loading from "@/app/loading";
 import ImageUpload from "../custom-ui/ImageUpload";
 import CategorySelect from "../admin/categorySelect";
 
@@ -43,24 +42,22 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 
   const [loading, setLoading] = useState(false);
 
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues:
-      initialData
-        ? {
-          ...initialData,
-
-        }
-        :
-        {
-          name: "",
-          description: "",
-          img: "",
-          categoryId: 1,
-          price: 500,
-          soldPrice: 500,
-          quantity: 1,
-        },
+    defaultValues: initialData
+      ? {
+        ...initialData
+      }
+      : {
+        name: "",
+        description: "",
+        img: "",
+        categoryId: 1,
+        price: 500,
+        soldPrice: 500,
+        quantity: 1,
+      },
   });
 
   const handleKeyPress = (
@@ -74,11 +71,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   };
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // const newValues = {
-    //   ...values,
-    //   price: parseFloat(values.price),
-    //   soldPrice: parseFloat(values.soldPrice),
-    // };
     try {
       setLoading(true);
       const url = initialData
@@ -90,24 +82,22 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       });
       if (res.ok) {
         setLoading(false);
-        toast.success(`Product ${initialData ? "updated" : "created"}`);
+        toast.success(`Produit ${initialData ? "mis à jour avec succès" : "crée avec succès"}`);
         window.location.href = "admin/products";
-        router.push("admin/products");
+        router.push("http://localhost:3000/admin/products");
       }
     } catch (err) {
-      console.log("[products_POST]", err);
-      toast.error("Something went wrong! Please try again.");
+      console.log("[Products_POST]", err);
+      toast.error("Quelque chose n'a pas fonctionné ! Veuillez réessayer.");
     }
   };
 
-  // return loading ? (
-  //   <Loading />
-  // ) :
+
   return (
     <div className="p-10 mt-20">
       {initialData ? (
         <div className="flex items-center justify-between">
-          <p className="text-3xl/none font-bold">Editer Produit</p>
+          <p className="text-3xl/none font-bold">Modifier le produit</p>
           <Delete id={initialData.id as unknown as string} item="produit" />
         </div>
       ) : (
@@ -124,7 +114,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 <FormLabel>Nom</FormLabel>
                 <FormControl>
                   <Input
-                  className="placeholder:text-gray-400"
+                    className="placeholder:text-gray-400"
                     placeholder="Nom"
                     {...field}
                     onKeyDown={handleKeyPress}
@@ -195,7 +185,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
               name="soldPrice"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Prix promo (optional)</FormLabel>
+                  <FormLabel>Prix promo (facultatif)</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Prix promo"
