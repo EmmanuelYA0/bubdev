@@ -8,6 +8,7 @@ import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Minus, Plus } from 'lucide-react';
+import PaymentPage from './payment/handlePayment';
 
 export default function CartClient() {
     const router = useRouter()
@@ -172,13 +173,7 @@ export default function CartClient() {
 
                             <div className="flex justify-end gap-x-5">
                                 <Button onClick={handleClearCart} variant="outline" className='h-12 text-pourpre hover:bg-red200'>Vider le panier</Button>
-                                <a
-                                    href="#" onClick={() => { }}
-                                    className="block rounded bg-pourpre px-5 py-3 text-sm text-gray-100 transition hover:bg-pink-900"
-                                >
-                                    Commander
-                                </a>
-
+                                <PaymentPage/>
                             </div>
                         </div>
                     </div>
