@@ -10,7 +10,7 @@ export default function Loading() {
         //     <span className="sr-only">Loading...</span>
         // </div>
         
-        <div className="loader"></div>
+        <div className="loader h-screen"></div>
 
     )
 }

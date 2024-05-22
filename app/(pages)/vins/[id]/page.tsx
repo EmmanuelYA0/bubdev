@@ -126,7 +126,13 @@ export default function VinItem({ params }: ParamsProps) {
                   className=" h-full w-full object-contain transition-transform duration-300 transform hover:scale-110"
                 />
               ) : (
-                <Loading />
+                <Image
+                  width={300}
+                  height={300}
+                  alt="image_not_found"
+                  src="/no-image-available.jpg"
+                  className=" h-full w-full object-contain transition-transform duration-300 transform hover:scale-110"
+                />
               )
               }
 

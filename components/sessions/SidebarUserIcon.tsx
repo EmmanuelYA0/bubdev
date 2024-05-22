@@ -1,11 +1,10 @@
 import { UserRound, UserRoundCheck } from 'lucide-react';
 import { useSession } from 'next-auth/react'
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
 
-const UserSidebar = () => {
+const SidebarUserIcon = () => {
     const { data: session } = useSession();
 
     return (
@@ -28,4 +27,4 @@ const UserSidebar = () => {
     )
 }
 
-export default UserSidebar
+export default SidebarUserIcon

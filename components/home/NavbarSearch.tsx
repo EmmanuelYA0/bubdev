@@ -4,7 +4,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { LoaderCircleIcon } from 'lucide-react';
 
-interface SearchModalProps {}
+
+interface SearchModalProps { }
 
 const SearchModal: React.FC<SearchModalProps> = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -18,19 +19,56 @@ const SearchModal: React.FC<SearchModalProps> = () => {
   const router = useRouter();
 
   useEffect(() => {
+    let abortController: AbortController | null = null;
+    let timeoutId: NodeJS.Timeout | null = null;
+
     const fetchSuggestions = async () => {
       setIsLoading(true);
+
       if (searchTerm.length > 2) {
-        const response = await fetch(`/api/search?searchTerm=${searchTerm}`);
-        const suggestions = await response.json();
-        setSuggestions(suggestions);
+        abortController = new AbortController();
+        timeoutId = setTimeout(() => {
+          if (abortController) {
+            abortController.abort();
+          }
+          setSuggestions([]);
+          setIsLoading(false);
+        }, 20000); 
+
+        try {
+          const response = await fetch(`/api/search?searchTerm=${searchTerm}`, {
+            signal: abortController?.signal,
+          });
+          const suggestions = await response.json();
+          setSuggestions(suggestions);
+        } catch (error: any) {
+          if (error.name === 'AbortError') {
+            console.log('Fetch request was aborted');
+          } else {
+            console.error('Error fetching suggestions:', error);
+          }
+        } finally {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+          }
+          setIsLoading(false);
+        }
       } else {
         setSuggestions([]);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
 
     fetchSuggestions();
+
+    return () => {
+      if (abortController) {
+        abortController.abort();
+      }
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
   }, [searchTerm]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -89,7 +127,11 @@ const SearchModal: React.FC<SearchModalProps> = () => {
             className="border absolute border-gray-300 focus:border-gray-600 rounded-md py-2 px-4 top-4 w-2/3 mx-auto"
           />
           {isLoading ? (
-            <div className="mt-20 text-white"><LoaderCircleIcon color='red' className=' animate-spin'/></div>
+            <div className="mt-20 text-white">
+              <LoaderCircleIcon color="red" className="animate-spin" />
+            </div>
+          ) : searchTerm.length > 2 && suggestions.length === 0 ? (
+            <p className="text-white">Aucun resultat</p>
           ) : (
             <ul className={`${checkSuggestion} mt-1 rounded-md px-5 py-4`}>
               {suggestions.map((suggestion) => (

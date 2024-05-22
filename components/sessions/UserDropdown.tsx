@@ -17,10 +17,12 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useRouter } from 'next/navigation';
 
 
-const User = () => {
+const UserDropdown = () => {
     const { data: session } = useSession();
+    const router = useRouter();
 
 
     return (
@@ -38,7 +40,7 @@ const User = () => {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-52 bg-redhot">
                         <DropdownMenuItem className='bg-transparent'>
-                            <Button className='bg-transparent hover:bg-transparent h-4'>
+                            <Button className='bg-transparent hover:bg-transparent h-4' onClick={() => router.push('/user')}>
                                 <User2 stroke='white' className="bg-transparent mr-2 h-4 w-4" />
                                 <span className='text-white capitalize bg-transparent'>{session?.user.username ? (session.user.username) : (session.user.name)}</span>
                             </Button>
@@ -46,9 +48,9 @@ const User = () => {
 
                         {session?.user.role === 'ADMIN' &&
                             <DropdownMenuItem className='bg-transparent'>
-                                <Button className='bg-transparent hover:bg-transparent h-4'>
+                                <Button className='bg-transparent hover:bg-transparent h-4' onClick={()=> router.push('/admin')}>
                                     <LayoutDashboard stroke='white' className="bg-transparent mr-2 h-4 w-4" />
-                                    <Link href='/admin' className='text-white capitalize bg-transparent'> Tableau de bord</Link>
+                                    <span className='text-white capitalize bg-transparent'> Tableau de bord</span>
                                 </Button>
                             </DropdownMenuItem>
                         }
@@ -85,4 +87,4 @@ const User = () => {
     )
 }
 
-export default User
+export default UserDropdown

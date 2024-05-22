@@ -5,11 +5,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from 'next/navigation';
 import { Search, ShoppingBasketIcon, X } from 'lucide-react';
-import User from '../sessions/User';
+import UserDropdown from '../sessions/UserDropdown';
 import { Button } from '../ui/button';
-import UserSidebar from '../sessions/UserSidebar';
 import { CartCount } from '../cartCount';
 import SearchModal from './NavbarSearch';
+import SidebarUserIcon from '../sessions/SidebarUserIcon';
 
 
 
@@ -69,7 +69,7 @@ const Navbar = () => {
               <Link href="/" className='bg-transparent'>
                 <Search className='bg-transparent -mr-1 stroke-white w-[25px] h-[25px]' />
               </Link>
-              <UserSidebar />
+              <SidebarUserIcon />
               <Link href='/panier' className='bg-transparent'>
                 <ShoppingBasketIcon className='bg-transparent -mr-1 stroke-white w-[25px] h-[25px]' />
               </Link>
@@ -79,17 +79,8 @@ const Navbar = () => {
 
 
         <div className='hidden lg:flex items-center justify-between gap-4 bg-transparent'>
-          {/* <Link href="/" className='bg-transparent'>
-            <Image
-              src='/search.svg'
-              alt='search-icon'
-              width={35}
-              height={35}
-              className=' bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125'
-            />
-          </Link> */}
           <SearchModal/>
-          <User />
+          <UserDropdown />
           <CartCount />
         </div>
       </nav >
