@@ -26,6 +26,26 @@ export const { handlers, auth } = NextAuth({
           response_type: "code",
         },
       },
+      async profile(profile, tokens) {
+        // Fetch additional user information from Google API
+        const response = await fetch(
+          `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${tokens.accessToken}`
+        );
+        const userData = await response.json();
+
+        // Extract username and gender from userData, or use fallback values
+        const username = userData.name || profile.name || profile.email.split('@')[0];
+        const gender = userData.gender || 'none';
+
+        return {
+          id: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+          username,
+          gender,
+        };
+      },
     }),
     CredentialsProvider({
       credentials: {

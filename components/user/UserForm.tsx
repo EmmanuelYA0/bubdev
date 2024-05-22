@@ -106,9 +106,9 @@ const UserForm = () => {
                             name="username"
                             render={({ field }) => (
                                 <FormItem className=" mb-5">
-                                    <FormLabel className="text-xl mb-3 ">Nom d'utilisateur</FormLabel>
+                                    <FormLabel className="text-lg mb-3 ">Nom d'utilisateur</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="votre nom d'utlisateur" className='max-w-64' {...field} />
+                                        <Input placeholder="votre Nom d'utlisateur" className='max-w-64 my-3' {...field} />
                                     </FormControl>
                                 </FormItem>
                             )}
@@ -119,9 +119,9 @@ const UserForm = () => {
                             name="name"
                             render={({ field }) => (
                                 <FormItem className="mb-5">
-                                    <FormLabel className="text-xl mb-3">Nom</FormLabel>
+                                    <FormLabel className="text-lg mb-3">Nom</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="votre Nom"  className='max-w-72' {...field} />
+                                        <Input placeholder="Votre Nom"  className='max-w-72 my-3' {...field} />
                                     </FormControl>
                                 </FormItem>
                             )}
@@ -131,9 +131,9 @@ const UserForm = () => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem className="mb-5">
-                                    <FormLabel className="text-xl mb-3">Email</FormLabel>
+                                    <FormLabel className="text-lg mb-3">Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="votre nom d'utlisateur"  className='max-w-80' {...field} />
+                                        <Input placeholder="Votre Email"  className='max-w-80 my-3' {...field} />
                                     </FormControl>
                                 </FormItem>
                             )}
