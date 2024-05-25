@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NAV_LINKS } from "@/lib/constants"
 import Image from "next/image"
 import Link from "next/link"
@@ -19,24 +19,35 @@ import SidebarUserIcon from '../sessions/SidebarUserIcon';
 const Navbar = () => {
 
   const pathName = usePathname();
-
+  const [top, setTop] = useState(true);
   const [open, setOpen] = useState(false);
 
 
   const isActive = (href: string) => {
     return pathName === href ? 'text-white px-6 rounded-xl min-w-16 text-center bg-pink-900' : ' bg-transparent hover:text-redhot';
   };
-  {/*flex items-center justify-between w-max md:w-full sm:w-full rounded-md mx-auto px-6 lg:px-20 xl:px-0 top-0 left-0 right-0 fixed bg-transparent backdrop-blur-sm z-50 py-5*/ }
 
+  useEffect(() => {
+    const scrollHandler = () => {
+        setTop(window.scrollY <= 20)
+    };
+    window.addEventListener('scroll', scrollHandler);
+    
+    scrollHandler(); 
+    
+    return () => {
+        window.removeEventListener('scroll', scrollHandler);
+    }
+}, []);
 
   return (
     <>
-      <nav className=" flex justify-between items-center md:w-full sm:w-full rounded-md mx-auto px-6 lg:px-20 xl:px-0 top-0 left-0 right-0 fixed bg-transparent backdrop-blur-sm z-50 py-5">
+      <nav className= {`flex justify-between items-center md:w-full sm:w-full rounded-md mx-auto px-6 lg:px-20 xl:px-0 top-0 left-0 right-0 fixed bg-transparent  z-50 py-5 ${!top && 'backdrop-blur-sm'}`}>
         <Link href="/" className='bg-transparent' >
           <Image src="/logo.png" alt="logo" width={200} height={200} className='bg-transparent' />
         </Link>
 
-        <ul className="hidden h-full gap-5 lg:flex bg-transparent">
+        <ul className="hidden h-full ml-8 gap-5 lg:flex bg-transparent">
           {NAV_LINKS.map((link) => (
             <Link href={link.href} key={link.key} className={`${isActive(link.href)} text-[20px]  leading-9 flex items-center text-myblack justify-center cursor-pointer pb-1.5 transition-all  font-normal font-['Sitka'] hover:scale-125`}>
               {link.label}

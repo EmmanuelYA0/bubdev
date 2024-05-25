@@ -119,7 +119,7 @@ export const CartContextProvider = (props: Props) => {
                     return item.id !== product.id
                 })
                 setCartItems(filteredProducts)
-                toast.success('Produit supprimé avec succès')
+                toast.success('Produit supprimé')
                 localStorage.setItem('BubblyShopCartItems', JSON.stringify(filteredProducts));
             }   
     }, [cartItems]);
