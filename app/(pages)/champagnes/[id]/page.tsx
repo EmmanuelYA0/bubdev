@@ -32,6 +32,7 @@ export default function ChampagneItem({ params }: ParamsProps) {
       name: champagne?.name,
       description: champagne?.description,
       price: champagne?.price,
+      soldPrice : champagne?.soldPrice,
       img: champagne?.img,
       quantity: cartQuantity,
     };
@@ -88,6 +89,7 @@ export default function ChampagneItem({ params }: ParamsProps) {
         name: champagne.name,
         description: champagne.description,
         price: champagne.price,
+        soldPrice : champagne.soldPrice,
         img: champagne.img,
         quantity: cartQuantity,
       });
@@ -138,7 +140,8 @@ export default function ChampagneItem({ params }: ParamsProps) {
                 {champagne.description}
               </p>
               <p className="text-3xl text-redhot font-[Cormorant] font-normal ">
-                {formatPrice(champagne.price)} FCFA
+                {formatPrice(champagne.soldPrice)} FCFA
+                <span className=" text-2xl text-gray-600 font-[Cormorant] font-normal italic line-through"> {formatPrice(champagne.price)} FCFA </span>
               </p>
               <div className=" w-full flex gap-4">
                 <div className="flex items-center gap-1">

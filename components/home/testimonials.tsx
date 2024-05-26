@@ -39,7 +39,7 @@ const testimonials = [
         quote: "Je suis ravi de la diversité des spiritueux disponibles sur ce site. Le processus de commande était simple et le service client était très réactif lorsque j'avais des questions. Je recommande sans hésitation!",
     },
     {
-        img: "./avatars/premium_photo-1683147627621-190cc667fd92 (1).jpeg",
+        img: "./avatars/istockphoto-1218066385-170667a.webp",
         name: "Ahou Bédié",
         title: "Enthusiastic Wine Collector",
         quote:

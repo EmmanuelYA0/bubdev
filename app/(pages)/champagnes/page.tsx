@@ -10,6 +10,7 @@ import { CartProductsInterface, Champagne } from "@/lib/constants";
 import toast from 'react-hot-toast';
 import { useCart } from '@/hooks/useCart';
 import { formatPrice } from '@/lib/formatPrice';
+import HeroSlider from '@/components/layout/HeroSlider';
 
 
 export default function Champagnes() {
@@ -49,6 +50,7 @@ export default function Champagnes() {
                     name: champagne.name,
                     description: champagne.description,
                     price: champagne.price,
+                    soldPrice : champagne.soldPrice,
                     img: champagne.img,
                     quantity: 1,
                 };
@@ -73,6 +75,7 @@ export default function Champagnes() {
                 name: champagne.name,
                 description: champagne.description,
                 price: champagne.price,
+                soldPrice : champagne.soldPrice,
                 img: champagne.img,
                 quantity: 1,
             };
@@ -114,22 +117,14 @@ export default function Champagnes() {
 
     return (
         <>
-            <div className=' w-full left-0 my-0 right-0 mt-28'>
-                <Image
-                    src='/bgs/Ruinart_AT_HOME_StudioMB_01_1.jpeg'
-                    alt=''
-                    width={900}
-                    height={525}
-                    className=' object-cover w-full h-[520px] rounded-sm'
-                />
-            </div>
+            <HeroSlider/>
             <h1 className={`${styles.Produits_texte} top-32 `}>
                 Nos meilleurs champagnes pour votre plaisir
             </h1>
             <section className={styles.section_produits}>
                 {isloading ? (
                     <div className=' grid grid-cols-3 justify-center items-center'>
-                        {"0123456".split('').map(i => (
+                        {"012345678".split('').map(i => (
                             <SkeletonCard key={i} />
                         ))}
                     </div>

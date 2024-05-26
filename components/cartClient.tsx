@@ -65,7 +65,7 @@ export default function CartClient() {
                                             )}
 
                                             <dl className="mt-0.5 space-y-px sm:text-lg text-xs text-gray-600">
-                                                <p>{formatPrice(item.price)} FCFA</p>
+                                                <p>{formatPrice(item.soldPrice)} FCFA</p>
                                             </dl>
                                         </div>
 
@@ -91,7 +91,7 @@ export default function CartClient() {
                                             </div>
 
                                             <p className="mt-0.5 space-y-px sm:text-sm font-semibold text-xs max-sm:w-10 text-gray-600">
-                                                {item.price && item.quantity && formatPrice(item.price * item.quantity)} FCFA
+                                                {item.soldPrice && item.quantity && formatPrice(item.soldPrice * item.quantity)} FCFA
                                             </p>
 
 

@@ -1,12 +1,12 @@
 //app/(pages)/vins/[id]/pages.tsx
 
-'use client';
+"use client";
 
 import Loading from "@/app/loading";
 import { CartProductsInterface, Vin } from "@/lib/constants";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Plus, Minus, ArrowRight } from 'lucide-react';
+import { Plus, Minus, ArrowRight } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -19,14 +19,14 @@ interface ParamsProps {
   };
 }
 
-
 export default function VinItem({ params }: ParamsProps) {
   const [vins, setVins] = useState<Vin | null>();
   const { handleAddProductToCart, cartItems } = useCart();
-  const [cartProduct, setCartProduct] = useState<CartProductsInterface | null>(null);
+  const [cartProduct, setCartProduct] = useState<CartProductsInterface | null>(
+    null
+  );
   const [isProductInCart, setIsProductInCart] = useState(false);
-  const router = useRouter()
-
+  const router = useRouter();
 
   const handleAddToCart = () => {
     const newCartProduct: CartProductsInterface = {
@@ -34,25 +34,24 @@ export default function VinItem({ params }: ParamsProps) {
       name: vins?.name,
       description: vins?.description,
       price: vins?.price,
+      soldPrice: vins?.soldPrice,
       img: vins?.img,
       quantity: cartQuantity,
     };
     handleAddProductToCart(newCartProduct);
-    toast.success('Produit ajouté au panier avec succès', {
+    toast.success("Produit ajouté au panier avec succès", {
       style: {
-        backgroundColor: '#fff', // Couleur de fond de la notification
-        color: '#000', // Couleur du texte
+        backgroundColor: "#fff", // Couleur de fond de la notification
+        color: "#000", // Couleur du texte
       },
       iconTheme: {
-        primary: '#4caf50', // Couleur de l'icône
-        secondary: '#fff', // Couleur de fond de l'icône (s'il y a un fond)
+        primary: "#4caf50", // Couleur de l'icône
+        secondary: "#fff", // Couleur de fond de l'icône (s'il y a un fond)
       },
     });
-    
   };
 
   // console.log(cartItems);
-
 
   const [cartQuantity, setCartQuantity] = useState(1);
 
@@ -74,13 +73,15 @@ export default function VinItem({ params }: ParamsProps) {
     setIsProductInCart(false);
 
     if (cartItems && cartProduct) {
-      const existingIndex = cartItems?.findIndex((item) => item.id === cartProduct?.id);
+      const existingIndex = cartItems?.findIndex(
+        (item) => item.id === cartProduct?.id
+      );
 
       if (existingIndex > -1) {
         setIsProductInCart(true);
       }
     }
-  }, [cartItems, cartProduct])
+  }, [cartItems, cartProduct]);
 
   useEffect(() => {
     // Mise à jour de cartProduct lorsque cartQuantity change
@@ -90,12 +91,12 @@ export default function VinItem({ params }: ParamsProps) {
         name: vins.name,
         description: vins.description,
         price: vins.price,
+        soldPrice: vins.soldPrice,
         img: vins.img,
         quantity: cartQuantity,
       });
     }
   }, [cartQuantity, vins]);
-
 
   useEffect(() => {
     const fetchVins = async () => {
@@ -133,9 +134,7 @@ export default function VinItem({ params }: ParamsProps) {
                   src="/no-image-available.jpg"
                   className=" h-full w-full object-contain transition-transform duration-300 transform hover:scale-110"
                 />
-              )
-              }
-
+              )}
             </div>
             <div className=" flex flex-col gap-7 p-10 rounded-md w-full bg-white  drop-shadow-2xl">
               <h1 className="text-3xl font-[Montserrat] text-redhot font-bold">
@@ -145,11 +144,16 @@ export default function VinItem({ params }: ParamsProps) {
                 {vins.description}
               </p>
               <p className="text-3xl text-redhot font-[Cormorant] font-normal ">
-                {formatPrice(vins.price)} FCFA
+                {formatPrice(vins.soldPrice)} FCFA
+                <span className=" text-2xl text-gray-600 font-[Cormorant] font-normal italic line-through"> {formatPrice(vins.price)} FCFA </span>
               </p>
               <div className=" w-full flex max-lg:flex-col gap-4">
                 <div className="flex items-center gap-1">
-                  <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={decreaseQuantity}>
+                  <button
+                    type="button"
+                    className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                    onClick={decreaseQuantity}
+                  >
                     <Minus className=" bg-slate-300 rounded-sm h-6 w-6" />
                   </button>
 
@@ -160,31 +164,82 @@ export default function VinItem({ params }: ParamsProps) {
                     readOnly
                   />
 
-                  <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={increaseQuantity}>
+                  <button
+                    type="button"
+                    className="size-10 leading-10 text-gray-600 transition hover:opacity-75"
+                    onClick={increaseQuantity}
+                  >
                     <Plus className=" bg-slate-300 rounded-sm h-6 w-6" />
                   </button>
                 </div>
-                {isProductInCart ?
+                {isProductInCart ? (
                   <>
-                    <Button onClick={() => router.push('/panier')} className=" hover:border-blue-400 w-60 flex  items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
+                    <Button
+                      onClick={() => router.push("/panier")}
+                      className=" hover:border-blue-400 w-60 flex  items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot"
+                    >
                       <p className=" bg-transparent">Voir panier</p>
-                      <ArrowRight size={18} className=" bg-transparent"/>
+                      <ArrowRight size={18} className=" bg-transparent" />
                     </Button>
-                  </> :
+                  </>
+                ) : (
                   <>
-                    <a onClick={handleAddToCart} className="hover:border-blue-400 max-md:w-full max-md:mx-auto w-60 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none cursor-pointer focus:ring-4 focus:ring-redhot">
-                      <svg width="24" height="24" viewBox="0 0 24 24" className="mr-2 h-6 w-6 bg-transparent stroke-white" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 16.0001H15.2632C19.7508 16.0001 20.4333 13.1809 21.261 9.06916C21.4998 7.8832 21.6192 7.29022 21.3321 6.89515C21.1034 6.58048 20.7077 6.51645 20 6.50342" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                        <path d="M9 6.5H17M13 10.5V2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                        <path d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-                        <path d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        <circle cx="10.5" cy="20.5" r="1.5" stroke="white" strokeWidth="1.5" />
-                        <circle cx="17.5" cy="20.5" r="1.5" stroke="white" strokeWidth="1.5" />
+                    <a
+                      onClick={handleAddToCart}
+                      className="hover:border-blue-400 max-md:w-full max-md:mx-auto w-60 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none cursor-pointer focus:ring-4 focus:ring-redhot"
+                    >
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        className="mr-2 h-6 w-6 bg-transparent stroke-white"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M8 16.0001H15.2632C19.7508 16.0001 20.4333 13.1809 21.261 9.06916C21.4998 7.8832 21.6192 7.29022 21.3321 6.89515C21.1034 6.58048 20.7077 6.51645 20 6.50342"
+                          stroke="white"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M9 6.5H17M13 10.5V2.5"
+                          stroke="white"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8 16L5.37873 3.51493C5.15615 2.62459 4.35618 2 3.43845 2H2.5"
+                          stroke="white"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                        <path
+                          d="M8.88 16H8.46857C7.10522 16 6 17.1513 6 18.5714C6 18.8081 6.1842 19 6.41143 19H17.5"
+                          stroke="white"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <circle
+                          cx="10.5"
+                          cy="20.5"
+                          r="1.5"
+                          stroke="white"
+                          strokeWidth="1.5"
+                        />
+                        <circle
+                          cx="17.5"
+                          cy="20.5"
+                          r="1.5"
+                          stroke="white"
+                          strokeWidth="1.5"
+                        />
                       </svg>
                       Ajouter au panier
                     </a>
                   </>
-                }
+                )}
               </div>
             </div>
           </div>

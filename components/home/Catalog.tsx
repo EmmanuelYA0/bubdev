@@ -55,6 +55,7 @@ const Catalog = () => {
                         name: champagne.name,
                         description: champagne.description,
                         price: champagne.price,
+                        soldPrice : champagne.soldPrice,
                         img: champagne.img,
                         quantity: 1,
                     };
@@ -79,6 +80,7 @@ const Catalog = () => {
                     name: champagne.name,
                     description: champagne.description,
                     price: champagne.price,
+                    soldPrice : champagne.soldPrice,
                     img: champagne.img,
                     quantity: 1,
                 };
@@ -144,10 +146,10 @@ const Catalog = () => {
 
 
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
-                    <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
+                    <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative  mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="champagnes/8">
                             <Image
-                                src="/champagne-imgs/moet-chandon-brut-imperial-champagne.png"
+                                src="/champagne-imgs/moet-chandon-dom-perignon-2010.png"
                                 alt="bottle1"
                                 width={500}
                                 height={500}
@@ -166,8 +168,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-xl font-bold text-white  bg-transparent">33.500 FCFA</span>
-                                    <span className="text-sm text-white line-through bg-transparent">40.000 FCFA</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">1.120.000 FCFA</span>
+                                    <span className="text-sm text-white line-through bg-transparent">1.184.000 FCFA</span>
                                 </p>
                             </div>
                             <a onClick={() => handleAddToCart(8)} className="hover:border-white/40 flex items-center cursor-pointer justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -187,7 +189,7 @@ const Catalog = () => {
 
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
-                    <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
+                    <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="champagnes/9">
                             <Image
                                 src="/champagne-imgs/veuve-clicquot-champagne-sparkling-veuve-clicquot-yellow-lab.jpg"
@@ -205,12 +207,12 @@ const Catalog = () => {
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
                             <a href="#">
-                                <h5 className="text-xl tracking-tight text-white bg-transparent">Veuve Clicquot - Brut Yellow Label Champagne (750ml)</h5>
+                                <h5 className="text-xl tracking-tight text-white bg-transparent">Veuve Clicquot - Brut Label Champagne (750ml)</h5>
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-xl font-bold text-white  bg-transparent">40.000 FCFA</span>
-                                    <span className="text-sm text-white line-through bg-transparent">50.000 FCFA</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">400.000FCFA</span>
+                                    <span className="text-sm text-white line-through bg-transparent">450.000FCFA</span>
                                 </p>
                             </div>
                             <a onClick={() => handleAddToCart(9)} className=" cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -230,16 +232,16 @@ const Catalog = () => {
 
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
-                    <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
+                    <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl" href="champagnes/10">
                             <Image
-                                src="/champagne-imgs/dom-perignon-champagne-sparkling-dom-perignon-750ml-31515614 (1).png"
+                                src="/champagne-imgs/perrier-jouet-belle-epoque-champagne.png"
                                 alt="bottle1"
                                 width={750}
                                 height={750}
                                 className="peer absolute top-0 bg-coolbg right-0 h-full w-full object-contain" />
                             <Image
-                                src="/champagne-imgs/final-dom.png"
+                                src="/champagne-imgs/champagne-perrier-jouet-belle-epoque-2014.png"
                                 alt="bottle3"
                                 width={400}
                                 height={400}
@@ -248,12 +250,12 @@ const Catalog = () => {
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
                             <a href="#">
-                                <h5 className="text-xl tracking-tight text-white bg-transparent">Dom Pérignon-Vintage Champagne (750ml)</h5>
+                                <h5 className="text-xl tracking-tight text-white bg-transparent">Perrier-Jouët Belle Époque Blanc de Blancs 2012</h5>
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-xl font-bold text-white  bg-transparent">120.000FCFA</span>
-                                    <span className="text-sm text-white line-through bg-transparent">122.000FCFA</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">928.000FCFA</span>
+                                    <span className="text-sm text-white line-through bg-transparent">960.000FCFA</span>
                                 </p>
                             </div>
                             <a onClick={() => handleAddToCart(10)} className="cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -273,7 +275,7 @@ const Catalog = () => {
 
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
-                    <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
+                    <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl" href="champagnes/11">
                             <Image
                                 src="/champagne-imgs/LouisRoedererCristal.png"
@@ -282,7 +284,7 @@ const Catalog = () => {
                                 height={614}
                                 className="peer absolute top-0 right-0 bg-coolbg h-full w-full object-contain" />
                             <Image
-                                src="/champagne-imgs/louis.png"
+                                src="/champagne-imgs/louis-roederer-cristal-2012.png"
                                 alt="bottle2"
                                 width={500}
                                 height={500}
@@ -291,12 +293,12 @@ const Catalog = () => {
                         </a>
                         <div className="mt-4 px-5 pb-5 bg-transparent">
                             <a href="#">
-                                <h5 className="text-xl tracking-tight text-white bg-transparent">Louis Roederer Cristal Rosé - Brut Champagne(750ml)</h5>
+                                <h5 className="text-xl tracking-tight text-white bg-transparent">Louis Roederer Cristal - Brut Champagne(750ml)</h5>
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-xl font-bold text-white  bg-transparent">360.000 FCFA</span>
-                                    <span className="text-xs text-white line-through bg-transparent">385.000 FCFA</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">1.248.000 FCFA</span>
+                                    <span className="text-xs text-white line-through bg-transparent">1.312.000 FCFA</span>
                                 </p>
                             </div>
                             <a onClick={() => handleAddToCart(11)} className=" cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">
@@ -316,10 +318,10 @@ const Catalog = () => {
 
                 </SwiperSlide>
                 <SwiperSlide className="grid  lg:grid-cols-3 justify-center">
-                    <div className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
+                    <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
                         <a className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl" href="champagnes/12">
                             <Image
-                                src="/champagne-imgs/dom-perignon-p2-plenitude-brut-rose.png"
+                                src="/champagne-imgs/dom-perignon-p2-2002.png"
                                 alt="bottle1"
                                 width={458}
                                 height={533}
@@ -338,8 +340,8 @@ const Catalog = () => {
                             </a>
                             <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                                 <p className=' bg-transparent'>
-                                    <span className="text-xl font-bold text-white  bg-transparent">240.000 FCFA</span>
-                                    <span className="text-xs text-white line-through bg-transparent">245.000 FCFA</span>
+                                    <span className="text-xl font-bold text-white  bg-transparent">1.696.000 FCFA</span>
+                                    <span className="text-xs text-white line-through bg-transparent">1.760.000 FCFA</span>
                                 </p>
                             </div>
                             <a onClick={() => handleAddToCart(12)} className=" cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot">

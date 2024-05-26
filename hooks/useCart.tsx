@@ -38,7 +38,7 @@ export const CartContextProvider = (props: Props) => {
       const getTotal = () =>{
         if(cartItems){
             const {total, qty} = cartItems?.reduce((acc, item) => {
-                const itemTotal = (item.price && item.quantity) && (item.price * item.quantity)
+                const itemTotal = (item.soldPrice && item.quantity) && (item.soldPrice * item.quantity)
     
                 acc.total += itemTotal? itemTotal : 0
                 acc.qty += item.quantity? item.quantity : 0

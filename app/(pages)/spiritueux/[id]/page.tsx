@@ -32,6 +32,7 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
       name: spiritueux?.name,
       description: spiritueux?.description,
       price: spiritueux?.price,
+      soldPrice: spiritueux?.soldPrice,
       img: spiritueux?.img,
       quantity: cartQuantity,
     };
@@ -88,6 +89,7 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
         name: spiritueux.name,
         description: spiritueux.description,
         price: spiritueux.price,
+        soldPrice: spiritueux.soldPrice,
         img: spiritueux.img,
         quantity: cartQuantity,
       });
@@ -137,7 +139,8 @@ export default function SpiritueuxItem({ params }: ParamsProps) {
                 {spiritueux.description}
               </p>
               <p className="text-3xl text-redhot font-[Cormorant] font-normal ">
-                {formatPrice(spiritueux.price)} FCFA
+                {formatPrice(spiritueux.soldPrice)} FCFA
+                <span className=" text-2xl text-gray-600 font-[Cormorant] font-normal italic line-through"> {formatPrice(spiritueux.price)} FCFA </span>
               </p>
               <div className=" w-full flex gap-4">
                 <div className="flex items-center gap-1">

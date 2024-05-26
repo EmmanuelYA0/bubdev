@@ -17,7 +17,7 @@ export default function UserSideBar() {
   return (
     <div className=" left-0 -ml-6 top-28 w-60 pt-0 ">
       <div className="flex flex-col text-lg gap-5 -mt-2">
-        <Button className='bg-transparent hover:bg-transparent  text-base w-full' onClick={() => {router.push('/user')}}>
+        <Button className='bg-transparent hover:bg-transparent  text-base w-full' onClick={() => {router.push('http://localhost:3000/user')}}>
           <p className={`${isActive('/user')} flex items-center pl-3 gap-3  rounded-md h-10 w-60`}>
             <User />
             Profil
