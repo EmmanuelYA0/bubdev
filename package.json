@@ -37,6 +37,7 @@
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "framer-motion": "^11.0.28",
+    "gsap-trial": "^3.12.5",
     "lucide-react": "^0.367.0",
     "next": "14.3.0-canary.16",
     "next-auth": "5.0.0-beta.16",

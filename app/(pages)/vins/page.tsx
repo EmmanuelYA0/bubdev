@@ -208,7 +208,7 @@ export default function Vins() {
                     />
                   </a>
                   <div className="mt-4 px-5 pb-5 bg-transparent">
-                    <a href="#">
+                    <a href={`vins/${vin.id}`}>
                       <h5 className="text-lg tracking-tight text-white bg-transparent">
                         {vin.name}
                       </h5>

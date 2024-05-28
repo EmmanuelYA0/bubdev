@@ -1,29 +1,50 @@
 "use client";
 
-import React from "react";
-import Button from "../Button";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { WordRotating } from "./wordRotating";
 import { useRef } from "react";
-import gsap from "gsap";
+import gsap from "gsap-trial";
+import ScrollSmoother from "gsap-trial/ScrollSmoother";
+import ScrollTrigger from "gsap-trial/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { TextTyping } from "./typingText";
+import { Button } from "../ui/button";
+// import Button from "../Button";
 
 const Hero = () => {
-  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
 
   const bottle = useRef<HTMLDivElement>(null);
+  const smoother = useRef<ScrollSmoother | null>(null);
 
-  useGSAP(
-    () => {
-      gsap.fromTo(bottle.current,
-        {x: 500,},
-        { x: 70, duration: 2},
-        
-        );
-    },
-  ); 
+  const handleScrollToAboutText = () => {
+    if (smoother.current) {
+      gsap.to(smoother.current, {
+        scrollTop: smoother.current.offset(".AboutText", "center center"),
+        duration: 2,
+        ease: "back.out",
+      });
+    }
+  };
+
+  useGSAP(() => {
+    gsap.fromTo(bottle.current, { x: 500 }, { x: 70, duration: 2 });
+
+    smoother.current = ScrollSmoother.create({
+      wrapper: "smooth-wrapper",
+      content: "smooth-content",
+      smooth: 2,
+    });
+
+    ScrollTrigger.create({
+      trigger: ".AboutText",
+      pin: true,
+      start: "center center",
+      end: "+=500",
+    });
+  });
 
   return (
     <>
@@ -45,32 +66,30 @@ const Hero = () => {
               CHAQUE GORGEE
             </span>
           </h1>
-          {/* <p className="w-[550px] left-1 top-16 text-myblack text-2xl font-normal font-['Montaga']"> */}
-            {/*  */}
-            {/* Explorez notre sélection exquise de vins, champagnes et autres
-            spiritueux , conçue pour éveiller vos sens et élever chaque moment
-            spécial. */}
-            <TextTyping/>
-          {/* </p> */}
+          <TextTyping />
           <Link href="/vins">
-            <Button
-              type="button"
-              title="Visiter la boutique"
-              variant="bg-[#4A050D] w-44 h-12 p-2.5 text-white transition-all hover:bg-redhot gap-2.5 inline-flex"
-              position="top-28 left-24"
-            />
+            <Button className=" bg-[#4A050D] text-lg w-44 h-12 p-2.5 text-white transition-all hover:bg-redhot gap-2.5 inline-flex top-20 left-24">
+              Visiter la boutique
+            </Button>
           </Link>
-          <Link href="#About">
+          <Button
+            onClick={handleScrollToAboutText}
+            variant="outline"
+            className="z-20 left-96 bg-transparent hover:bg-transparent border-0 top-80"
+          >
             <Image
               src="/fleche.svg"
               alt="fleche"
               width={14}
               height={36}
-              className=" z-20 bg-transparent left-96 top-80 "
+              className=""
             />
-          </Link>
+          </Button>
         </div>
-        <div ref={bottle} className=" imge left-[552px] top-[-630px] w-[600px] h-[900px] overflow-hidden z-40 object-contain">
+        <div
+          ref={bottle}
+          className=" imge left-[552px] top-[-630px] w-[600px] h-[900px] overflow-hidden z-40 object-contain"
+        >
           <Image
             src="/hero-bottle.svg"
             alt="bottle-image"
@@ -93,4 +112,3 @@ const Hero = () => {
   );
 };
 export default Hero;
-

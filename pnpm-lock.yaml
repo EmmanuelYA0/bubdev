@@ -92,6 +92,9 @@ importers:
       framer-motion:
         specifier: ^11.0.28
         version: 11.0.28(@emotion/is-prop-valid@1.2.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      gsap-trial:
+        specifier: ^3.12.5
+        version: 3.12.5
       lucide-react:
         specifier: ^0.367.0
         version: 0.367.0(react@18.2.0)
@@ -1433,6 +1436,9 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  gsap-trial@3.12.5:
+    resolution: {integrity: sha512-Mdq2sLBq6rt9qje/MoF/hRa/xKfvKOUdllPouU2Fhz1K6mpCk0SOGBDhxCrOrJXZ4O7YFFRFVADKIJVeHdKA8A==}
 
   gsap@3.12.5:
     resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
@@ -3414,6 +3420,8 @@ snapshots:
       csstype: 3.1.3
 
   graceful-fs@4.2.11: {}
+
+  gsap-trial@3.12.5: {}
 
   gsap@3.12.5: {}
 

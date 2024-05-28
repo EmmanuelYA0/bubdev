@@ -6,9 +6,15 @@ export async function WordRotating() {
       className="text-redhot  text-5xl font-normal font-['Montaga']"
       words={[
         "EXCELLENCE",
+        "ÉLÉGANCE",
+        "ÉMERVEILLEMENT",
+        "EXTASE",
+        "EUPHORIE",
         "INNOVATION",
-        "ELEGANCE",
-        "EXPERIENCE",
+        "EXALTATION",
+        "ÉBLOUISSEMENT",
+        "ENCHANTEMENT",
+        "OSMOSE",
       ]}
     />
   );

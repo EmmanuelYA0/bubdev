@@ -159,7 +159,7 @@ export default function Spiritueux() {
                     />
                   </a>
                   <div className="mt-4 px-5 pb-5 bg-transparent">
-                    <a href="#">
+                    <a href={`spiritueux/${spiritueux.id}`}>
                       <h5 className="text-xl tracking-tight text-white bg-transparent">
                         {spiritueux.name}
                       </h5>
