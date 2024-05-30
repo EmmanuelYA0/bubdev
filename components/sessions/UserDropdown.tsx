@@ -89,15 +89,15 @@ const UserDropdown = () => {
         //      className=' stroke-myblack bg-transparent hidden lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125'
         //     />
         // </Link>
-        <Link href="/login" className="bg-transparent">
-          <Image
-            src="/avatar.svg"
-            alt="avatar-icon"
-            width={35}
-            height={35}
-            className="bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125"
-          />
-        </Link>
+          <Link href="/login" className="bg-transparent">
+            <Image
+              src="/avatar.svg"
+              alt="avatar-icon"
+              width={35}
+              height={35}
+              className="bg-transparent hidden h-full lg:flex cursor-pointer hover:stroke-[#4A050D] hover:scale-125"
+            />
+          </Link>
       )}
     </>
   );

@@ -14,138 +14,133 @@ datasource db {
 }
 
 model User {
-  id                  Int             @id @default(autoincrement())
-  name                String
-  lastname            String?
-  image               String?
-  username            String?          @unique
-  age                 String?
-  gender              String?
-  email               String          @unique
-  emailVerified       DateTime?
-  password            String?
-  role                Role            @default(USER)
-  createdAt           DateTime        @default(now())
-  updatedAt            DateTime        @updatedAt
-  Orders              Order[]
-  reservations        Reservation[]
-  accounts            Account[]
-  sessions            Session[]
+  id            Int           @id @default(autoincrement())
+  name          String
+  lastname      String?
+  image         String?
+  username      String?       @unique
+  age           String?
+  gender        String?
+  email         String        @unique
+  emailVerified DateTime?
+  password      String?
+  role          Role          @default(USER)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  Orders        Order[]
+  reservations  Reservation[]
+  accounts      Account[]
+  sessions      Session[]
 }
 
 model Account {
-  id                 Int  @id @default(autoincrement())
-  userId             Int
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
- 
+  id                Int     @id @default(autoincrement())
+  userId            Int
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           Int   @id @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   sessionToken String   @unique
   userId       Int
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
- 
- 
+
 model VerificationToken {
   identifier String
   token      String   @unique
   expires    DateTime
- 
+
   @@unique([identifier, token])
 }
 
-
-
-model Product {
-  id                Int               @id @default(autoincrement())
-  name              String   
-  description       String?           @db.Text
-  img               String
-  isAvailable       Boolean           @default(true)  
-  createdAt         DateTime          @default(now())
-  quantity          Float?
-  price             Float 
-  soldPrice         Float?
-  category          Categories?       @relation(fields: [categoryId], references: [id])
-  categoryId        Int? 
-  Orders            Order_items[]
-  paniers           Panier[]
-}
-
-
 model Categories {
-  id          Int         @id @default(autoincrement())
-  name        String   
-  products    Product[]
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
 }
-
-
 
 model Panier {
-  id                  Int           @id @default(autoincrement())
-  isEmpty             Boolean       @default(true)
-  products            Product?      @relation(fields: [productId], references: [id])
-  productId           Int? 
+  id        Int     @id @default(autoincrement())
+  isEmpty   Boolean @default(true)
+  productId Int?
 }
 
-
+model Product {
+  id          Int            @id @default(autoincrement())
+  name        String
+  description String         @db.Text
+  img         String
+  isAvailable Boolean        @default(true)
+  createdAt   DateTime       @default(now())
+  quantity    Float
+  price       Float
+  soldPrice   Float
+  category    Categories?    @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  orders      ProductOrder[]
+}
 
 model Order {
-  id                  Int           @id @default(autoincrement())
-  delivery_address    String
-  createdAt           DateTime      @default(now())
-  amount              Float
-  status              String?  
-  author              User?       @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId            Int? 
-  orders_items        Order_items[]    
-
+  id               Int            @id @default(autoincrement())
+  delivery_address String
+  createdAt        DateTime       @default(now())
+  amount           Float
+  status           OrderStatus    @default(PENDING)
+  author           User?          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId         Int
+  products         ProductOrder[]
+  reservation      Reservation?   @relation(fields: [reservationId], references: [id])
+  reservationId    Int?           @unique
 }
 
+model ProductOrder {
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   Int
+  quantity  Int
 
-
-model Order_items {
-  id                  Int           @id @default(autoincrement())
-  orders              Order?        @relation(fields: [orderId], references: [id])
-  orderId             Int?           
-  products            Product?      @relation(fields: [productId], references: [id])
-  productId           Int?  
-  quantity            Int    
-
+  @@id([productId, orderId])
 }
-
-
 
 model Payment {
-  id                  Int                 @id @default(autoincrement())
-  createdAt           DateTime
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime
 }
 
 model Reservation {
-  id            Int           @id @default(autoincrement())
-  createdAt     DateTime      @default(now())
-  status        String?
-  author        User?       @relation(fields: [authorId], references: [id])
-  authorId      Int?   
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  status    String?
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+  order     Order?
 }
-
 
 enum Role {
   USER
   ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
 }

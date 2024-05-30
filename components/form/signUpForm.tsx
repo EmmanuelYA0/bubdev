@@ -174,7 +174,7 @@ export function SignUpForm() {
             render={({ field }) => (
               <FormItem className="bg-slate-200 mb-2">
                 <FormLabel className=" bg-transparent">Age</FormLabel>
-                <FormDescription className=" bg-transparent text-rose-400">
+                <FormDescription className=" bg-transparent text-sky-400">
                   * Entrez votre age sous forme de nombre
                 </FormDescription>
                 <FormControl>
@@ -231,7 +231,7 @@ export function SignUpForm() {
                         <RadioGroupItem value="none" />
                       </FormControl>
                       <FormLabel className="font-normal bg-transparent">
-                        Aucun
+                        Ne pas préciser
                       </FormLabel>
                     </FormItem>
                   </RadioGroup>

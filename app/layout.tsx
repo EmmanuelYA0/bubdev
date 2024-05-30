@@ -5,8 +5,8 @@ import Navbar from "@/components/home/Navbar";
 import Footer from "@/components/home/Footer";
 import Provider from "@/components/providers";
 import CartProvider from "@/providers/CartProvider";
-import { Toaster } from 'react-hot-toast'
-
+import { Toaster } from "react-hot-toast";
+import ProtectedUserRoute from "@/components/user/protected-user-route";
 
 export const metadata: Metadata = {
   title: "BubblyApp",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -29,11 +29,11 @@ export default function RootLayout({
           containerStyle={{}}
           toastOptions={{
             // Define default options
-            className: 'bg-transparent',
+            className: "bg-transparent",
             duration: 5000,
             style: {
-              background: '#363636',
-              color: '#fff',
+              background: "#363636",
+              color: "#fff",
             },
 
             // Default options for specific types
@@ -44,14 +44,14 @@ export default function RootLayout({
         />
         <Provider>
           <CartProvider>
-            <Navbar />
-            <main className=" overflow-hidden">
-              {children}
-            </main>
-            <Footer />
+            <ProtectedUserRoute>
+              <Navbar />
+              <main className=" overflow-hidden">{children}</main>
+              <Footer />
+            </ProtectedUserRoute>
           </CartProvider>
         </Provider>
       </body>
     </html>
-  )
+  );
 }

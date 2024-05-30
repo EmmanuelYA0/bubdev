@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { Search, ShoppingBasketIcon, X } from 'lucide-react';
 import UserDropdown from '../sessions/UserDropdown';
 import { Button } from '../ui/button';
-import { CartCount } from '../cartCount';
+import { CartCount } from '../cart/cartCount';
 import SearchModal from './NavbarSearch';
 import SidebarUserIcon from '../sessions/SidebarUserIcon';
 

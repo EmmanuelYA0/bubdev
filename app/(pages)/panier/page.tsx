@@ -1,5 +1,4 @@
-import CartClient from '@/components/cartClient'
-import Image from 'next/image'
+import CartClient from '@/components/cart/cartClient'
 import React from 'react'
 
 export default function Cart() {

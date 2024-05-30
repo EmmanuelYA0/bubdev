@@ -128,6 +128,7 @@ export const CartContextProvider = (props: Props) => {
         setCartItems(null);
         setCartTotalQty(0);
         localStorage.setItem('BubblyShopCartItems', JSON.stringify(null));
+        localStorage.removeItem("cartTotalAmountAfterDiscount");
     },[cartItems])
 
 

@@ -23,15 +23,22 @@ import Delete from "../custom-ui/Delete";
 import ImageUpload from "../custom-ui/ImageUpload";
 import CategorySelect from "../admin/categorySelect";
 
-const formSchema = z.object({
-  name: z.string().min(5).max(100),
-  description: z.string().min(10).max(900).trim(),
-  img: z.string(),
-  categoryId: z.number(),
-  price: z.coerce.number().min(500),
-  soldPrice: z.coerce.number().min(500),
-  quantity: z.coerce.number().min(1),
-});
+const formSchema = z
+  .object({
+    name: z.string().min(5, "Doit contenir au moins 5 caracteres").max(100),
+    description: z.string().min(10).max(900).trim(),
+    img: z.string(),
+    categoryId: z.number(),
+    price: z.coerce.number().min(500, "Le prix doit etre superieur a 500"),
+    soldPrice: z.coerce
+      .number()
+      .min(500, "Le prix promo doit etre superieur a 500"),
+    quantity: z.coerce.number().min(1, "La quantite doit etre superieur a 1"),
+  })
+  .refine((data) => data.price >= data.soldPrice, {
+    path: ["soldPrice"],
+    message: "le prix doit etre superieur au prix promo",
+  });
 
 interface ProductFormProps {
   initialData?: CartProducts | null; //Must have "?" to make it optional
@@ -42,22 +49,21 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 
   const [loading, setLoading] = useState(false);
 
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData
       ? {
-        ...initialData
-      }
+          ...initialData,
+        }
       : {
-        name: "",
-        description: "",
-        img: "",
-        categoryId: 1,
-        price: 500,
-        soldPrice: 500,
-        quantity: 1,
-      },
+          name: "",
+          description: "",
+          img: "",
+          categoryId: 1,
+          price: 500,
+          soldPrice: 500,
+          quantity: 1,
+        },
   });
 
   const handleKeyPress = (
@@ -82,7 +88,11 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       });
       if (res.ok) {
         setLoading(false);
-        toast.success(`Produit ${initialData ? "mis à jour avec succès" : "crée avec succès"}`);
+        toast.success(
+          `Produit ${
+            initialData ? "mis à jour avec succès" : "crée avec succès"
+          }`
+        );
         window.location.href = "http://localhost:3000/admin/products";
         router.push("http://localhost:3000/admin/products");
       }
@@ -91,7 +101,6 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
       toast.error("Quelque chose n'a pas fonctionné ! Veuillez réessayer.");
     }
   };
-
 
   return (
     <div className="p-10 mt-20">
@@ -206,7 +215,10 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Catégorie</FormLabel>
                   <FormControl>
-                    <CategorySelect value={field.value} onChange={field.onChange} />
+                    <CategorySelect
+                      value={field.value}
+                      onChange={field.onChange}
+                    />
                   </FormControl>
                   <FormMessage className="text-red-600" />
                 </FormItem>
@@ -230,19 +242,23 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
-
           </div>
 
           <div className="flex gap-10 mt-20">
             <Button
               type="button"
-              variant='outline'
-              onClick={() => router.push("http://localhost:3000/admin/products")}
+              variant="outline"
+              onClick={() =>
+                router.push("http://localhost:3000/admin/products")
+              }
               className=" bg-white border border-redhot text-pourpre hover:bg-redhot hover:text-white"
             >
               Annuler
             </Button>
-            <Button type="submit" className="bg-pourpre hover:bg-redhot text-white">
+            <Button
+              type="submit"
+              className="bg-pourpre hover:bg-redhot text-white"
+            >
               Créer
             </Button>
           </div>
