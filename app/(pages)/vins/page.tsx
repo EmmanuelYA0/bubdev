@@ -186,7 +186,7 @@ export default function Vins() {
               <div className="grid justify-center">
                 <div
                   key={vin.id}
-                  className="group border-gray-100/30 flex w-full max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 "
+                  className="group border-gray-100/30 flex w-full max-w-xs min-h-[500px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 "
                 >
                   <a
                     className="relative mx-3 mt-3 bg-white flex h-60 overflow-hidden rounded-2xl"

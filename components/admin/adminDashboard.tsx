@@ -76,7 +76,7 @@ const AdminDashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-0 gap-y-3">
         <Card className=' border border-gray-300'>
           <CardHeader className="flex flex-row text-redhot max-sm:text-base justify-between items-center">
-            <CardTitle>Ventes totales</CardTitle>
+            <CardTitle className=' text-lg'>Ventes totales</CardTitle>
             <CircleDollarSign className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
@@ -86,7 +86,7 @@ const AdminDashboard = () => {
 
         <Card className=' border border-gray-300'>
           <CardHeader className="flex flex-row max-lg:flex-col text-redhot max-lg:text-base justify-between items-center">
-            <CardTitle>Commandes totales</CardTitle>
+            <CardTitle className=' text-lg'>Commandes totales</CardTitle>
             <ShoppingBag className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
@@ -96,7 +96,7 @@ const AdminDashboard = () => {
 
         <Card className=' border border-gray-300'>
           <CardHeader className="flex flex-row max-lg:flex-col text-redhot max-sm:text-base justify-between items-center">
-            <CardTitle className='max-sm:text-base'>Total Clients</CardTitle>
+            <CardTitle className='max-sm:text-base text-lg'>Total Utilisateurs</CardTitle>
             <UserRound className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
@@ -107,7 +107,7 @@ const AdminDashboard = () => {
 
       <Card className="mt-10 border border-gray-300 ">
         <CardHeader className='text-redhot '>
-          <CardTitle>Graphique des ventes (CFA)</CardTitle>
+          <CardTitle className=' text-lg'>Graphique des ventes / mois (CFA)</CardTitle>
         </CardHeader>
         <CardContent>
           <SalesChart data={graphData} />

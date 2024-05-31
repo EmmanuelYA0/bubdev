@@ -65,3 +65,33 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Une erreur est survenue lors de la création de l'utilisateur" }, { status: 500 });
     }
 }
+
+export async function GET(request: Request) {
+    const { searchParams } = new URL(request.url);
+    const sort = searchParams.get('sort')?.split(':') || [];
+    const [sortField, sortOrder] = sort;
+    const username = searchParams.get('username') || undefined;
+  
+    try {
+      const customers = await prisma.user.findMany({
+        where: {
+          username: username ? { contains: username } : undefined,
+        },
+        select: {
+          id: true,
+          username: true,
+          email: true,
+          role: true,
+        },
+        orderBy: sortField ? {
+          [sortField]: sortOrder === 'desc' ? 'desc' : 'asc',
+        } : {
+          username: 'asc',
+        },
+      });
+      return NextResponse.json(customers);
+    } catch (error) {
+      console.error('Erreur:', error);
+      return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
+    }
+  }

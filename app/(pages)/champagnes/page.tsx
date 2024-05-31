@@ -131,7 +131,7 @@ export default function Champagnes() {
               <div className="grid justify-center">
                 <div
                   key={index}
-                  className="group border-gray-100/30 flex w-full min-h-80 max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 "
+                  className="group border-gray-100/30 flex w-full min-h-[500px] max-w-xs flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-12 "
                 >
                   <a
                     className="relative bg-white mx-3 mt-3 flex h-60 overflow-hidden rounded-2xl"
