@@ -128,7 +128,7 @@ const Catalog = () => {
   }, []);
 
   return (
-    <section className="mt-10 w-full h-[800px]">
+    <section className="mt-96 w-full h-[800px]">
       <h1 className="font-[Cormorant] pb-8 text-6xl font-medium mb-16 text-myblack">
         Notre Catalogue
       </h1>
@@ -155,7 +155,7 @@ const Catalog = () => {
           <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
             <a
               className="relative  mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl"
-              href="champagnes/9"
+              href="champagnes/48"
             >
               <Image
                 src="/champagne-imgs/moet-chandon-dom-perignon-2010.png"
@@ -184,15 +184,15 @@ const Catalog = () => {
               <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                 <p className=" bg-transparent">
                   <span className="text-xl font-bold text-white  bg-transparent">
-                    1.120.000 FCFA
+                    120.000 FCFA
                   </span>
                   <span className="text-sm text-white line-through bg-transparent">
-                    1.184.000 FCFA
+                    184.000 FCFA
                   </span>
                 </p>
               </div>
               <a
-                onClick={() => handleAddToCart(9)}
+                onClick={() => handleAddToCart(48)}
                 className="hover:border-white/40 flex items-center cursor-pointer justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot"
               >
                 <svg
@@ -252,7 +252,7 @@ const Catalog = () => {
           <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
             <a
               className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl"
-              href="champagnes/8"
+              href="champagnes/36"
             >
               <Image
                 src="/champagne-imgs/veuve-clicquot-champagne-sparkling-veuve-clicquot-yellow-lab.jpg"
@@ -289,7 +289,7 @@ const Catalog = () => {
                 </p>
               </div>
               <a
-                onClick={() => handleAddToCart(8)}
+                onClick={() => handleAddToCart(36)}
                 className=" cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot"
               >
                 <svg
@@ -349,7 +349,7 @@ const Catalog = () => {
           <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
             <a
               className="relative mx-3 mt-3 bg-coolbg flex h-60 overflow-hidden rounded-2xl"
-              href="champagnes/12"
+              href="champagnes/49"
             >
               <Image
                 src="/champagne-imgs/perrier-jouet-belle-epoque-champagne.png"
@@ -378,15 +378,15 @@ const Catalog = () => {
               <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                 <p className=" bg-transparent">
                   <span className="text-xl font-bold text-white  bg-transparent">
-                    928.000FCFA
+                    27.500 FCFA
                   </span>
                   <span className="text-sm text-white line-through bg-transparent">
-                    960.000FCFA
+                    29.500 FCFA
                   </span>
                 </p>
               </div>
               <a
-                onClick={() => handleAddToCart(12)}
+                onClick={() => handleAddToCart(49)}
                 className="cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot"
               >
                 <svg
@@ -446,7 +446,7 @@ const Catalog = () => {
           <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
             <a
               className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl"
-              href="champagnes/10"
+              href="champagnes/47"
             >
               <Image
                 src="/champagne-imgs/LouisRoedererCristal.png"
@@ -475,15 +475,15 @@ const Catalog = () => {
               <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                 <p className=" bg-transparent">
                   <span className="text-xl font-bold text-white  bg-transparent">
-                    1.248.000 FCFA
+                    32.900 FCFA
                   </span>
                   <span className="text-xs text-white line-through bg-transparent">
-                    1.312.000 FCFA
+                    34.900 FCFA
                   </span>
                 </p>
               </div>
               <a
-                onClick={() => handleAddToCart(10)}
+                onClick={() => handleAddToCart(47)}
                 className=" cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot"
               >
                 <svg
@@ -543,7 +543,7 @@ const Catalog = () => {
           <div className="group border-gray-100/30 flex w-full max-w-xs min-h-[530px] flex-col self-center overflow-hidden rounded-3xl border bg-rock-800 shadow-md mb-2">
             <a
               className="relative mx-3 mt-3 flex h-60 bg-coolbg overflow-hidden rounded-2xl"
-              href="champagnes/11"
+              href="champagnes/32"
             >
               <Image
                 src="/champagne-imgs/dom-perignon-p2-2002.png"
@@ -572,15 +572,15 @@ const Catalog = () => {
               <div className="mt-2 mb-5 flex items-center bg-transparent justify-between">
                 <p className=" bg-transparent">
                   <span className="text-xl font-bold text-white  bg-transparent">
-                    1.696.000 FCFA
+                    27.500 FCFA
                   </span>
                   <span className="text-xs text-white line-through bg-transparent">
-                    1.760.000 FCFA
+                    29.500 FCFA
                   </span>
                 </p>
               </div>
               <a
-                onClick={() => handleAddToCart(11)}
+                onClick={() => handleAddToCart(32)}
                 className=" cursor-pointer hover:border-white/40 flex items-center justify-center rounded-md border border-transparent bg-[#4A050D] px-5 py-2.5 text-center text-sm font-medium text-white focus:outline-none focus:ring-4 focus:ring-redhot"
               >
                 <svg

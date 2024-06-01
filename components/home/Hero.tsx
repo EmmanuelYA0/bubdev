@@ -6,44 +6,44 @@ import Link from "next/link";
 import { WordRotating } from "./wordRotating";
 import { useRef } from "react";
 import gsap from "gsap-trial";
-import ScrollSmoother from "gsap-trial/ScrollSmoother";
-import ScrollTrigger from "gsap-trial/ScrollTrigger";
+// import ScrollSmoother from "gsap-trial/ScrollSmoother";
+// import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { TextTyping } from "./typingText";
 import { Button } from "../ui/button";
 // import Button from "../Button";
 
 const Hero = () => {
-  gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(useGSAP);
 
   const bottle = useRef<HTMLDivElement>(null);
-  const smoother = useRef<ScrollSmoother | null>(null);
+  // const smoother = useRef<ScrollSmoother | null>(null);
 
-  const handleScrollToAboutText = () => {
-    if (smoother.current) {
-      gsap.to(smoother.current, {
-        scrollTop: smoother.current.offset(".AboutText", "center center"),
-        duration: 2,
-        ease: "back.out",
-      });
-    }
-  };
+  // const handleScrollToAboutText = () => {
+  //   if (smoother.current) {
+  //     gsap.to(smoother.current, {
+  //       scrollTop: smoother.current.offset(".AboutText", "center center"),
+  //       duration: 2,
+  //       ease: "back.out",
+  //     });
+  //   }
+  // };
 
   useGSAP(() => {
     gsap.fromTo(bottle.current, { x: 500 }, { x: 70, duration: 2 });
 
-    smoother.current = ScrollSmoother.create({
-      wrapper: "smooth-wrapper",
-      content: "smooth-content",
-      smooth: 2,
-    });
+    // smoother.current = ScrollSmoother.create({
+    //   wrapper: "smooth-wrapper",
+    //   content: "smooth-content",
+    //   smooth: 2,
+    // });
 
-    ScrollTrigger.create({
-      trigger: ".AboutText",
-      pin: true,
-      start: "center center",
-      end: "+=500",
-    });
+    // ScrollTrigger.create({
+    //   trigger: ".AboutText",
+    //   pin: true,
+    //   start: "center center",
+    //   end: "+=500",
+    // });
   });
 
   return (
@@ -72,19 +72,20 @@ const Hero = () => {
               Visiter la boutique
             </Button>
           </Link>
-          <Button
-            onClick={handleScrollToAboutText}
+          {/* <Button
             variant="outline"
             className="z-20 left-96 bg-transparent hover:bg-transparent border-0 top-80"
-          >
-            <Image
-              src="/fleche.svg"
-              alt="fleche"
-              width={14}
-              height={36}
-              className=""
-            />
-          </Button>
+          > */}
+           <Link href='#About'>
+              <Image
+                src="/fleche.svg"
+                alt="fleche"
+                width={14}
+                height={36}
+                className="z-20 left-96 bg-transparent hover:bg-transparent border-0 top-80"
+              />
+           </Link>
+          {/* </Button> */}
         </div>
         <div
           ref={bottle}

@@ -3,7 +3,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div id="smooth-wrapper" className=" py-1 -mb-64">
+    <div  className=" py-1 -mb-64">
       <div
         id="smooth-content"
         className=" AboutText flex flex-wrap items-center h-[700px]"
@@ -19,7 +19,7 @@ const About = () => {
           className=" bg-transparent z-10"
           
         />
-        <div className=" AboutText w-[750px] h-32 mx-[350px] text-justify">
+        <div id='About' className=" AboutText w-[750px] h-32 mx-[350px] text-justify">
           <span className="text-myblack text-xl font-normal font-['Montaga']">
             Nous sommes une entreprise passionnée par le vin et le champagne.
             Chez
