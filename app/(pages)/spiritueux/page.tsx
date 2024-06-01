@@ -103,24 +103,27 @@ export default function Spiritueux() {
     return ""; // Return empty string if price is undefined
   };
 
-  useEffect(() => {
-    const fetchSpiritueux = async () => {
-      try {
-        const response = await fetch("/api/spiritueux");
-        const data = await response.json();
-        setSpiritueux(data.spiritueux);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching spiritueux:", error);
-      }
-    };
+  const fetchSpiritueux = async () => {
+    try {
+      const response = await fetch("/api/spiritueux", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setSpiritueux(data.spiritueux);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching spiritueux:", error);
+    }
+  };
 
+  
+  useEffect(() => {
     fetchSpiritueux();
   }, []);
 
   return (
     <>
-      <HeroSlider/>
+      <HeroSlider />
       <h1 className={`${styles.Produits_texte} top-20 `}>
         Nos meilleurs spiritueux pour votre plaisir
       </h1>

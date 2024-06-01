@@ -151,18 +151,23 @@ export default function Vins() {
     }
     return ""; // Return empty string if price is undefined
   };
-  useEffect(() => {
-    const fetchVins = async () => {
-      try {
-        const response = await fetch("/api/vins");
-        const data = await response.json();
-        setVins(data.vins);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching vins:", error);
-      }
-    };
 
+
+  const fetchVins = async () => {
+    try {
+      const response = await fetch("/api/vins", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setVins(data.vins);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching vins:", error);
+    }
+  };
+
+  
+  useEffect(() => {
     fetchVins();
   }, []);
 

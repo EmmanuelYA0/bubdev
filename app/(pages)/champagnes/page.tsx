@@ -13,7 +13,7 @@ import { formatPrice } from "@/lib/formatPrice";
 import HeroSlider from "@/components/layout/HeroSlider";
 
 export default function Champagnes() {
-  const [Champagnes, setchampagnes] = useState<Champagne[]>([]);
+  const [Champagnes, setChampagnes] = useState<Champagne[]>([]);
   const [isloading, setLoading] = useState(true);
   const { handleAddProductToCart, cartItems } = useCart();
 
@@ -97,18 +97,21 @@ export default function Champagnes() {
     }
   };
 
-  useEffect(() => {
-    const fetchChampagnes = async () => {
-      try {
-        const response = await fetch("/api/champagnes");
-        const data = await response.json();
-        setchampagnes(data.champagnes);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching champagnes:", error);
-      }
-    };
+  const fetchChampagnes = async () => {
+    try {
+      const response = await fetch("/api/champagnes", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setChampagnes(data.champagnes);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching champagnes:", error);
+    }
+  };
 
+  
+  useEffect(() => {
     fetchChampagnes();
   }, []);
 
