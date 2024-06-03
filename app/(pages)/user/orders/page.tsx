@@ -14,9 +14,6 @@ const UserOrders = () => {
       try {
         const response = await fetch("/api/user/getUserOrders", {
           method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
         });
 
         if (response.ok) {
