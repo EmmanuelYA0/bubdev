@@ -104,6 +104,7 @@ export default function Champagnes() {
     try {
       const response = await fetch("/api/champagnes", {
         method: "GET",
+        next: {revalidate:0}
       });
       const data = await response.json();
       setChampagnes(data);

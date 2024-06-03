@@ -109,7 +109,7 @@ export default function Spiritueux() {
     try {
       const response = await fetch("/api/spiritueux", {
         method: "GET",
-        next: { revalidate: 1800}
+        next: { revalidate: 0}
       });
       const data = await response.json();
       setSpiritueux(data);
