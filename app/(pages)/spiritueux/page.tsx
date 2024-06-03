@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { useCart } from "@/hooks/useCart";
 import HeroSlider from "@/components/layout/HeroSlider";
 
-export const revalidate = 1800;
+// export const revalidate = 1800;
 
 export default function Spiritueux() {
   const [spiritueux, setSpiritueux] = useState<SpiritueuxInterface[]>([]);
@@ -109,6 +109,7 @@ export default function Spiritueux() {
     try {
       const response = await fetch("/api/spiritueux", {
         method: "GET",
+        next: { revalidate: 1800}
       });
       const data = await response.json();
       setSpiritueux(data.spiritueux);
