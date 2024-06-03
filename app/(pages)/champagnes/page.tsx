@@ -13,7 +13,7 @@ import { formatPrice } from "@/lib/formatPrice";
 import HeroSlider from "@/components/layout/HeroSlider";
 
 
-export const revalidate = 0;
+export const revalidate = 1800;
 
 export default function Champagnes() {
   const [Champagnes, setChampagnes] = useState<Champagne[]>([]);

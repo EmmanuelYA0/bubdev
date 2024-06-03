@@ -11,7 +11,7 @@ import { useCart } from "@/hooks/useCart";
 import toast from "react-hot-toast";
 import HeroSlider from "@/components/layout/HeroSlider";
 
-export const revalidate = 0;
+export const revalidate = 1800;
 
 
 export default function Vins() {
