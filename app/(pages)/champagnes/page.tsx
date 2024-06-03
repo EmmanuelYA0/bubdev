@@ -1,6 +1,6 @@
 // app/champagnes/page.tsx
 
-"use client";
+// "use client";
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -11,114 +11,118 @@ import toast from "react-hot-toast";
 import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/formatPrice";
 import HeroSlider from "@/components/layout/HeroSlider";
+import ChampagneList from "./ChampagnesList";
+import { fetchChampagnes } from "@/lib/data/data";
 
 
 // export const revalidate = 1800;
 export const dynamic = 'force-dynamic';
 
-export default function Champagnes() {
-  const [Champagnes, setChampagnes] = useState<Champagne[]>([]);
-  const [isloading, setLoading] = useState(true);
-  const { handleAddProductToCart, cartItems } = useCart();
+export default async function Champagnes() {
+  // const [Champagnes, setChampagnes] = useState<Champagne[]>([]);
+  // const [isloading, setLoading] = useState(true);
+  // const { handleAddProductToCart, cartItems } = useCart();
 
-  const handleAddToCart = (champagne: Champagne) => {
-    // Vérifier si cartItems est null avant de l'utiliser
-    if (cartItems) {
-      const existingCartItemIndex = cartItems.findIndex(
-        (item) => item.id === champagne.id
-      );
+  // const handleAddToCart = (champagne: Champagne) => {
+  //   // Vérifier si cartItems est null avant de l'utiliser
+  //   if (cartItems) {
+  //     const existingCartItemIndex = cartItems.findIndex(
+  //       (item) => item.id === champagne.id
+  //     );
 
-      if (existingCartItemIndex !== -1) {
-        const updatedCartItems = [...cartItems];
-        let newQuantity = updatedCartItems[existingCartItemIndex].quantity;
-        if (newQuantity) {
-          newQuantity += 1;
-          updatedCartItems[existingCartItemIndex].quantity = newQuantity;
-          toast.success(
-            "Quantité du produit mise à jour dans le panier avec succès",
-            {
-              duration: 1500,
-              style: {
-                backgroundColor: "#fff",
-                color: "#000",
-              },
-              iconTheme: {
-                primary: "#4caf50",
-                secondary: "#fff",
-              },
-            }
-          );
-        }
-      } else {
-        // Si le produit n'est pas encore dans le panier
-        const cartProduct: CartProductsInterface = {
-          id: champagne.id,
-          name: champagne.name,
-          description: champagne.description,
-          price: champagne.price,
-          soldPrice: champagne.soldPrice,
-          img: champagne.img,
-          quantity: 1,
-        };
+  //     if (existingCartItemIndex !== -1) {
+  //       const updatedCartItems = [...cartItems];
+  //       let newQuantity = updatedCartItems[existingCartItemIndex].quantity;
+  //       if (newQuantity) {
+  //         newQuantity += 1;
+  //         updatedCartItems[existingCartItemIndex].quantity = newQuantity;
+  //         toast.success(
+  //           "Quantité du produit mise à jour dans le panier avec succès",
+  //           {
+  //             duration: 1500,
+  //             style: {
+  //               backgroundColor: "#fff",
+  //               color: "#000",
+  //             },
+  //             iconTheme: {
+  //               primary: "#4caf50",
+  //               secondary: "#fff",
+  //             },
+  //           }
+  //         );
+  //       }
+  //     } else {
+  //       // Si le produit n'est pas encore dans le panier
+  //       const cartProduct: CartProductsInterface = {
+  //         id: champagne.id,
+  //         name: champagne.name,
+  //         description: champagne.description,
+  //         price: champagne.price,
+  //         soldPrice: champagne.soldPrice,
+  //         img: champagne.img,
+  //         quantity: 1,
+  //       };
 
-        handleAddProductToCart(cartProduct);
-        toast.success("Produit ajouté au panier avec succès", {
-          duration: 1000,
-          style: {
-            backgroundColor: "#fff",
-            color: "#000",
-          },
-          iconTheme: {
-            primary: "#4caf50",
-            secondary: "#fff",
-          },
-        });
-      }
-    } else {
-      // Si le panier est vide
-      const cartProduct: CartProductsInterface = {
-        id: champagne.id,
-        name: champagne.name,
-        description: champagne.description,
-        price: champagne.price,
-        soldPrice: champagne.soldPrice,
-        img: champagne.img,
-        quantity: 1,
-      };
+  //       handleAddProductToCart(cartProduct);
+  //       toast.success("Produit ajouté au panier avec succès", {
+  //         duration: 1000,
+  //         style: {
+  //           backgroundColor: "#fff",
+  //           color: "#000",
+  //         },
+  //         iconTheme: {
+  //           primary: "#4caf50",
+  //           secondary: "#fff",
+  //         },
+  //       });
+  //     }
+  //   } else {
+  //     // Si le panier est vide
+  //     const cartProduct: CartProductsInterface = {
+  //       id: champagne.id,
+  //       name: champagne.name,
+  //       description: champagne.description,
+  //       price: champagne.price,
+  //       soldPrice: champagne.soldPrice,
+  //       img: champagne.img,
+  //       quantity: 1,
+  //     };
 
-      handleAddProductToCart(cartProduct);
-      toast.success("Produit ajouté au panier avec succès", {
-        duration: 1000,
-        style: {
-          backgroundColor: "#fff",
-          color: "#000",
-        },
-        iconTheme: {
-          primary: "#4caf50",
-          secondary: "#fff",
-        },
-      });
-    }
-  };
+  //     handleAddProductToCart(cartProduct);
+  //     toast.success("Produit ajouté au panier avec succès", {
+  //       duration: 1000,
+  //       style: {
+  //         backgroundColor: "#fff",
+  //         color: "#000",
+  //       },
+  //       iconTheme: {
+  //         primary: "#4caf50",
+  //         secondary: "#fff",
+  //       },
+  //     });
+  //   }
+  // };
 
-  const fetchChampagnes = async () => {
-    try {
-      const response = await fetch("/api/champagnes", {
-        method: "GET",
-        next: {revalidate:0}
-      });
-      const data = await response.json();
-      setChampagnes(data);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching champagnes:", error);
-    }
-  };
+  // const fetchChampagnes = async () => {
+  //   try {
+  //     const response = await fetch("/api/champagnes", {
+  //       method: "GET",
+  //       next: {revalidate:0}
+  //     });
+  //     const data = await response.json();
+  //     setChampagnes(data);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error("Error fetching champagnes:", error);
+  //   }
+  // };
 
   
-  useEffect(() => {
-    fetchChampagnes();
-  }, []);
+  // useEffect(() => {
+  //   fetchChampagnes();
+  // }, []);
+
+  const { champagnes } = await fetchChampagnes();
 
   return (
     <>
@@ -126,7 +130,7 @@ export default function Champagnes() {
       <h1 className={`${styles.Produits_texte} top-32 `}>
         Nos meilleurs champagnes pour votre plaisir
       </h1>
-      <section className={styles.section_produits}>
+      {/* <section className={styles.section_produits}>
         {isloading ? (
           <div className=" grid grid-cols-3 justify-center items-center">
             {"012345678".split("").map((i) => (
@@ -236,7 +240,8 @@ export default function Champagnes() {
             ))}
           </div>
         )}
-      </section>
+      </section> */}
+      <ChampagneList initialChampagnes={champagnes} />
     </>
   );
 }
