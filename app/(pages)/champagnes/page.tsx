@@ -106,7 +106,7 @@ export default function Champagnes() {
         method: "GET",
       });
       const data = await response.json();
-      setChampagnes(data.champagnes);
+      setChampagnes(data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching champagnes:", error);

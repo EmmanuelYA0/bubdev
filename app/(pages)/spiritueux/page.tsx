@@ -112,7 +112,7 @@ export default function Spiritueux() {
         next: { revalidate: 1800}
       });
       const data = await response.json();
-      setSpiritueux(data.spiritueux);
+      setSpiritueux(data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching spiritueux:", error);

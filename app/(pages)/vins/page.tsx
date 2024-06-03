@@ -162,7 +162,7 @@ export default function Vins() {
         method: "GET",
       });
       const data = await response.json();
-      setVins(data.vins);
+      setVins(data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching vins:", error);
