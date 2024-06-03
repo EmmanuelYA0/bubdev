@@ -12,6 +12,9 @@ import { useCart } from "@/hooks/useCart";
 import { formatPrice } from "@/lib/formatPrice";
 import HeroSlider from "@/components/layout/HeroSlider";
 
+
+export const revalidate = 0;
+
 export default function Champagnes() {
   const [Champagnes, setChampagnes] = useState<Champagne[]>([]);
   const [isloading, setLoading] = useState(true);

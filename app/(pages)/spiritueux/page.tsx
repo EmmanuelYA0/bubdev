@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
 import { useCart } from "@/hooks/useCart";
 import HeroSlider from "@/components/layout/HeroSlider";
 
+export const revalidate = 0;
+
 export default function Spiritueux() {
   const [spiritueux, setSpiritueux] = useState<SpiritueuxInterface[]>([]);
   const [isloading, setLoading] = useState(true);
