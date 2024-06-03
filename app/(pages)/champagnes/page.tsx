@@ -14,6 +14,7 @@ import HeroSlider from "@/components/layout/HeroSlider";
 
 
 // export const revalidate = 1800;
+export const dynamic = 'force-dynamic';
 
 export default function Champagnes() {
   const [Champagnes, setChampagnes] = useState<Champagne[]>([]);

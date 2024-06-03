@@ -12,6 +12,7 @@ import { useCart } from "@/hooks/useCart";
 import HeroSlider from "@/components/layout/HeroSlider";
 
 // export const revalidate = 1800;
+export const dynamic = 'force-dynamic';
 
 export default function Spiritueux() {
   const [spiritueux, setSpiritueux] = useState<SpiritueuxInterface[]>([]);
