@@ -4,7 +4,7 @@ export async function fetchChampagnes(): Promise<{ champagnes: Champagne[] }> {
   try {
     const response = await fetch("/api/champagnes", {
       method: "GET",
-      next: { revalidate: 1800 }
+      next: { revalidate: 0}
     });
 
     if (!response.ok) {
